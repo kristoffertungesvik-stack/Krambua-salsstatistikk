@@ -145,6 +145,7 @@
   <header class="top">
     <h1>Krambua — Varestatistikk</h1>
     <div style="display:flex;align-items:center;gap:10px;">
+      <a href="#" id="changeTokenLink" class="muted" style="text-decoration:underline;font-size:.78rem;">Endre GitHub-token</a>
       <button class="ghost small" id="installBtn" style="display:none;">📲 Installer app</button>
       <div class="tag">bensin &amp; storkiosk</div>
     </div>
@@ -332,6 +333,17 @@
   </div>
 </div>
 
+<div id="tokenGateOverlay" style="display:none;position:fixed;inset:0;background:rgba(32,48,61,.6);z-index:70;align-items:center;justify-content:center;">
+  <div class="box" style="max-width:420px;">
+    <h2 style="margin-top:0;">GitHub-token</h2>
+    <p class="sub" id="tokenGateMsg" style="margin-bottom:10px;">Lim inn din GitHub personal access token. Han vert lagra berre i denne nettlesaren, på denne eininga — aldri sendt til eller lagra i sjølve repoet.</p>
+    <input type="text" id="tokenGateInput" placeholder="ghp_... eller github_pat_..." style="margin-bottom:14px;">
+    <div style="display:flex;gap:10px;justify-content:flex-end;">
+      <button class="primary" id="tokenGateSave">Lagre token</button>
+    </div>
+  </div>
+</div>
+
 <script>
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
@@ -339,25 +351,30 @@ window.addEventListener('error', e=>{ console.error('Uventa feil:', e.error||e.m
 window.addEventListener('unhandledrejection', e=>{ console.error('Uventa feil (promise):', e.reason); toast('Uventa feil: '+(e.reason&&e.reason.message?e.reason.message:e.reason)); });
 
 // ============================================================
-// OPPSETT — FYLL UT DESSE FIRE FØR APPEN TEK I BRUK GITHUB SOM SKYLAGRING:
+// OPPSETT — desse to er IKKJE hemmelege, greit å committa:
 // ============================================================
 const GH_OWNER  = 'kristoffertungesvik-stack';
 const GH_REPO   = 'Krambua-salsstatistikk';
 const GH_BRANCH = 'main';
-const GH_TOKEN  = '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';
+// GH_TOKEN er MED VILJE ikkje her — GitHub tilbakekallar automatisk sine eigne
+// tokens så snart dei vert oppdaga committa i eit repo (også private repo).
+// Tokenet vert i staden lagra berre lokalt i nettlesaren, éin gong per eining
+// — sjå token-oppsettet lenger nede.
 // ============================================================
 
 // ---------- storage (GitHub Contents API — data vert lagra som filer i repoet ditt, delt mellom alle einingar) ----------
 const GH_API = 'https://api.github.com';
+const GH_TOKEN_KEY = 'krambua-gh-token';
 
-function ghConfigMissing(){
-  return GH_OWNER.startsWith('DIN-') || GH_REPO.startsWith('DITT-') || GH_TOKEN.startsWith('DIN-');
-}
+function getStoredToken(){ return (localStorage.getItem(GH_TOKEN_KEY) || '').trim(); }
+function setStoredToken(v){ localStorage.setItem(GH_TOKEN_KEY, (v || '').trim()); }
+function clearStoredToken(){ localStorage.removeItem(GH_TOKEN_KEY); }
+
 function ghPath(key){ return 'data/' + key.replace(/:/g, '__') + '.json'; }
 function utf8ToBase64(str){ return btoa(unescape(encodeURIComponent(str))); }
 function base64ToUtf8(b64){ return decodeURIComponent(escape(atob(b64.replace(/\n/g, '')))); }
 function ghHeaders(extra){
-  return Object.assign({ Authorization: `token ${GH_TOKEN}`, Accept: 'application/vnd.github+json' }, extra || {});
+  return Object.assign({ Authorization: `token ${getStoredToken()}`, Accept: 'application/vnd.github+json' }, extra || {});
 }
 async function ghGetRaw(path){
   const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}?ref=${GH_BRANCH}`, { headers: ghHeaders() });
@@ -407,19 +424,44 @@ function isRateLimit(err){
   return /\(403\)/.test(msg);
 }
 
+// ---------- token-oppsett: spør éin gong per eining, lagra berre lokalt, aldri committa ----------
+function showTokenGate(message){
+  const overlay = document.getElementById('tokenGateOverlay');
+  if(message) document.getElementById('tokenGateMsg').textContent = message;
+  overlay.style.display = 'flex';
+}
+function hideTokenGate(){
+  document.getElementById('tokenGateOverlay').style.display = 'none';
+}
+document.getElementById('tokenGateSave').addEventListener('click', async () => {
+  const val = document.getElementById('tokenGateInput').value.trim();
+  if(!val){ toast('Lim inn tokenet ditt fyrst.'); return; }
+  setStoredToken(val);
+  hideTokenGate();
+  await checkStorageAvailable();
+  renderPeriodsList(); renderDashboardSelectors();
+});
+document.getElementById('changeTokenLink').addEventListener('click', (e) => {
+  e.preventDefault();
+  document.getElementById('tokenGateInput').value = '';
+  showTokenGate('Lim inn ein ny eller oppdatert token.');
+});
+
 async function checkStorageAvailable(){
   const banner = document.getElementById('storageWarning');
-  if(ghConfigMissing()){
-    banner.style.display = 'block';
-    banner.textContent = 'Du må fylla inn GH_OWNER, GH_REPO og GH_TOKEN øvst i koden (sjå "OPPSETT"-blokka) før lagring fungerer.';
+  if(!getStoredToken()){
+    showTokenGate('');
     disableSaving(true);
     return false;
   }
   try{
     const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}`, { headers: ghHeaders() });
-    if(res.status === 401){ banner.textContent = 'Ugyldig eller utløpt GitHub-token. Lag ein ny fine-grained token og lim inn på nytt.'; banner.style.display='block'; disableSaving(true); return false; }
-    if(res.status === 404){ banner.textContent = 'Fann ikkje repoet — sjekk at GH_OWNER og GH_REPO er rett skrivne, og at token har tilgang til det.'; banner.style.display='block'; disableSaving(true); return false; }
-    if(res.status === 403){ banner.textContent = 'GitHub avviste tilkoplinga (403) — sjekk token-rettane (treng "Contents: Read and write").'; banner.style.display='block'; disableSaving(true); return false; }
+    if(res.status === 401){
+      banner.textContent = 'Denne tokenen vart avvist av GitHub (ugyldig eller tilbakekalla). Lag ein ny og lim han inn på nytt — knapp finn du ved sida av tittelen øvst.';
+      banner.style.display='block'; disableSaving(true); return false;
+    }
+    if(res.status === 404){ banner.textContent = 'Fann ikkje repoet — sjekk GH_OWNER/GH_REPO i koden.'; banner.style.display='block'; disableSaving(true); return false; }
+    if(res.status === 403){ banner.textContent = 'GitHub avviste tilkoplinga (403) — sjekk token-rettane (treng "Contents: Read and write"), eller vent om det er ei rategrense.'; banner.style.display='block'; disableSaving(true); return false; }
     if(!res.ok){ banner.textContent = `Kunne ikkje kopla til GitHub (status ${res.status}).`; banner.style.display='block'; disableSaving(true); return false; }
   }catch(err){
     console.error(err);

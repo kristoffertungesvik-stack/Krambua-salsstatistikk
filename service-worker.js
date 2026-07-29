@@ -29,6 +29,8 @@ self.addEventListener('fetch', event => {
   const isPageRequest = event.request.mode === 'navigate' || acceptsHTML;
 
   if (isPageRequest) {
+    // Network-first for the app itself: code/config edits (like GH_TOKEN) must
+    // always take effect on next load. Cache is only a fallback for offline use.
     event.respondWith(
       fetch(event.request, { cache: 'no-store' })
         .then(response => {
@@ -41,6 +43,7 @@ self.addEventListener('fetch', event => {
     return;
   }
 
+  // Cache-first (with background refresh) for static assets that rarely change.
   event.respondWith(
     caches.match(event.request).then(cached => {
       const networkFetch = fetch(event.request)
