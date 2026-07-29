@@ -1,7 +1,5 @@
-const CACHE_NAME = 'krambua-varestatistikk-v1';
+const CACHE_NAME = 'krambua-varestatistikk-v2';
 const APP_SHELL = [
-  './',
-  './index.html',
   './manifest.json',
   './icon-192.png',
   './icon-512.png',
@@ -24,9 +22,24 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Cache-first for the app shell, network-first fallback-to-cache for everything else (fonts, pdf.js, etc.)
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
+
+  const acceptsHTML = (event.request.headers.get('accept') || '').includes('text/html');
+  const isPageRequest = event.request.mode === 'navigate' || acceptsHTML;
+
+  if (isPageRequest) {
+    event.respondWith(
+      fetch(event.request, { cache: 'no-store' })
+        .then(response => {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, clone));
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
 
   event.respondWith(
     caches.match(event.request).then(cached => {
