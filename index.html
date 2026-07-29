@@ -1241,6 +1241,14 @@ function addPurchaseRow(values){
 document.getElementById('pAddRow').addEventListener('click', ()=> addPurchaseRow());
 addPurchaseRow(); // start with one empty row
 
+function removeBlankStarterRow(){
+  const tbody = document.getElementById('pRowsBody');
+  if(tbody.children.length !== 1) return;
+  const tr = tbody.children[0];
+  const isBlank = !tr.querySelector('.p-name').value.trim() && !tr.querySelector('.p-code').value.trim() && !tr.querySelector('.p-antall').value;
+  if(isBlank) tr.remove();
+}
+
 // ---------- best-effort PDF/CSV parsing for order confirmations (format varies by supplier) ----------
 const PURCHASE_SKIP_PATTERNS = [
   /^Side\s+\d+/i, /^\d{2}\.\d{2}\.\d{4},?\s+\d{2}:\d{2}/, /^Sum\b/i, /^Totalt\b/i, /^Total\b/i,
@@ -1377,9 +1385,9 @@ async function handlePurchaseFile(file){
     if(!items.length){
       toast('Fann ingen linjer eg kunne tolka automatisk i denne fila — fyll ut radene manuelt i staden.');
     } else {
-      document.getElementById('pRowsBody').innerHTML = '';
+      removeBlankStarterRow();
       items.forEach(it => addPurchaseRow({ code: it.code||'', name: it.name, antall: it.antall, pris: it.pris }));
-      toast(`${items.length} rader tolka — kontroller tal/pris før du lagrar (format og pakningsstorleik varierer mellom leverandørar).`);
+      toast(`${items.length} rader tolka og lagt til (${document.getElementById('pRowsBody').children.length} rader totalt) — kontroller tal/pris før du lagrar. Last gjerne opp fleire filer for å leggja til enda fleire rader før du lagrar innkjøpet.`);
     }
   }catch(err){
     console.error(err);
