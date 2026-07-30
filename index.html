@@ -228,6 +228,14 @@
         <input type="file" id="importAllFile" accept="application/json,.json" style="display:none;">
       </div>
     </div>
+
+    <div class="card">
+      <h2>Reparer periode-/innkjøpslista</h2>
+      <p class="sub">Viser "Lagra periodar" for få eller feil oppføringar samanlikna med det som faktisk ligg i <code>data/</code>-mappa i repoet (t.d. etter manuell redigering av ei indeks-fil)? Trykk her for å byggja lista opp att automatisk, ut frå filene som faktisk finst — ingen data går tapt, dette rører berre sjølve lista, ikkje periode-/innkjøpsfilene.</p>
+      <div class="btnrow">
+        <button class="ghost" id="repairIndexBtn">Reparer lista no</button>
+      </div>
+    </div>
   </section>
 
   <!-- SEARCH -->
@@ -397,6 +405,13 @@ async function ghDeleteRaw(path, sha){
     method: 'DELETE', headers: ghHeaders({'Content-Type':'application/json'}), body: JSON.stringify({ message: 'Slett ' + path, sha, branch: GH_BRANCH })
   });
   if(!res.ok) throw new Error(`GitHub-feil (${res.status}) ved sletting av ${path}`);
+}
+async function ghListDir(path){
+  const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}?ref=${GH_BRANCH}`, { headers: ghHeaders() });
+  if(res.status === 404) return [];
+  if(!res.ok) throw new Error(`GitHub-feil (${res.status}) ved lesing av mappa ${path}`);
+  const data = await res.json();
+  return Array.isArray(data) ? data : [];
 }
 
 const S = {
@@ -828,6 +843,54 @@ document.getElementById('importAllFile').addEventListener('change', e=>{
   if(e.target.files[0]) importAllDataFile(e.target.files[0]);
   e.target.value = '';
 });
+
+async function repairIndexes(){
+  const btn = document.getElementById('repairIndexBtn');
+  btn.disabled = true;
+  try{
+    toast('Byggjer opp att listene frå filene i repoet …');
+    const files = await ghListDir('data');
+    const periodFiles = files.filter(f => f.type === 'file' && /^period__.+\.json$/.test(f.name));
+    const purchaseFiles = files.filter(f => f.type === 'file' && /^purchase__.+\.json$/.test(f.name));
+
+    const periodContents = await Promise.all(periodFiles.map(f => ghGetRaw(f.path)));
+    const periodEntries = [];
+    periodFiles.forEach((f, i) => {
+      const raw = periodContents[i];
+      if(!raw) return;
+      let obj; try{ obj = JSON.parse(raw.content); }catch(e){ return; }
+      const key = f.name.replace(/^period__/, '').replace(/\.json$/, '');
+      periodEntries.push({ key, year: obj.year, week: obj.week, range: obj.range, itemCount: (obj.items||[]).length, importedAt: obj.importedAt || new Date().toISOString() });
+    });
+    periodEntries.sort((a,b)=> b.year-a.year || b.week-a.week);
+
+    const purchaseContents = await Promise.all(purchaseFiles.map(f => ghGetRaw(f.path)));
+    const purchaseEntries = [];
+    purchaseFiles.forEach((f, i) => {
+      const raw = purchaseContents[i];
+      if(!raw) return;
+      let obj; try{ obj = JSON.parse(raw.content); }catch(e){ return; }
+      const id = f.name.replace(/^purchase__/, '').replace(/\.json$/, '');
+      purchaseEntries.push({ id, date: obj.date, supplier: obj.supplier, itemCount: (obj.items||[]).length });
+    });
+
+    const existingIdx = await ghGetRaw('data/periods-index.json');
+    await ghPutRaw('data/periods-index.json', JSON.stringify(periodEntries), existingIdx ? existingIdx.sha : undefined);
+    const existingPIdx = await ghGetRaw('data/purchases-index.json');
+    await ghPutRaw('data/purchases-index.json', JSON.stringify(purchaseEntries), existingPIdx ? existingPIdx.sha : undefined);
+
+    invalidateCache(); invalidatePurchaseCache();
+    toast(`Reparert: fann ${periodEntries.length} periodar og ${purchaseEntries.length} innkjøp i repoet.`);
+    renderPeriodsList();
+    renderDashboardSelectors();
+  }catch(err){
+    console.error(err);
+    toast('Klarte ikkje å reparera listene: ' + (err.message || err));
+  }finally{
+    btn.disabled = false;
+  }
+}
+document.getElementById('repairIndexBtn').addEventListener('click', repairIndexes);
 
 // ============================================================
 // DASHBOARD
