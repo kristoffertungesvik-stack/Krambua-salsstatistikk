@@ -896,11 +896,12 @@ async function updateDashboard(){
   const cmpKey = document.getElementById('dashCompare').value;
   const el = document.getElementById('dashBody');
   if(!periodKey){ el.innerHTML = '<div class="empty">Vel ein periode.</div>'; return; }
-  const period = await getPeriod(periodKey);
+  el.innerHTML = '<div class="empty"><span class="spin"></span>Hentar data …</div>';
+  const [period, cmpPeriodFetched] = await Promise.all([getPeriod(periodKey), cmpKey ? getPeriod(cmpKey) : Promise.resolve(null)]);
   if(!period){ el.innerHTML = '<div class="empty">Fann ikkje perioden.</div>'; return; }
   const stats = computePeriodStats(period);
-  let cmpStats = null, cmpPeriod = null;
-  if(cmpKey){ cmpPeriod = await getPeriod(cmpKey); if(cmpPeriod) cmpStats = computePeriodStats(cmpPeriod); }
+  let cmpStats = null, cmpPeriod = cmpPeriodFetched;
+  if(cmpPeriod){ cmpStats = computePeriodStats(cmpPeriod); }
 
   let kpis = `
     <div class="kpi"><div class="label">Omsetning</div><div class="value">kr ${fmtKr(stats.totalBelop)}</div>
@@ -969,8 +970,9 @@ async function populateSearchCategories(){
   const index = await getIndex();
   const sel = document.getElementById('searchCategory');
   const cur = sel.value;
+  const periods = await Promise.all(index.map(p => getPeriod(p.key)));
   const cats = new Set();
-  for(const p of index){ const period = await getPeriod(p.key); if(period) period.items.forEach(i=> cats.add(i.category || 'Ukategorisert')); }
+  periods.forEach(period => { if(period) period.items.forEach(i => cats.add(i.category || 'Ukategorisert')); });
   sel.innerHTML = '<option value="">Alle kategoriar</option>' + [...cats].sort().map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
   sel.value = cur || '';
 }
@@ -1008,9 +1010,13 @@ async function runSearch(query){
   if(!index.length){ el.innerHTML = '<div class="empty">Ingen periodar er importerte enno.</div>'; return; }
   const onlyOnePeriod = index.length < 2;
 
+  el.innerHTML = '<div class="empty"><span class="spin"></span>Hentar data …</div>';
+  const periods = await Promise.all(index.map(p => getPeriod(p.key)));
+
   const groups = new Map();
-  for(const p of index){
-    const period = await getPeriod(p.key);
+  for(let idx = 0; idx < index.length; idx++){
+    const p = index[idx];
+    const period = periods[idx];
     if(!period) continue;
     for(const item of period.items){
       if(query && !item.name.toLowerCase().includes(query) && !(item.code||'').toLowerCase().includes(query)) continue;
@@ -1128,9 +1134,13 @@ async function updateCompare(){
   const filterQ = document.getElementById('cmpFilter').value.trim().toLowerCase();
   const onlyChanged = document.getElementById('cmpOnlyChanged').checked;
 
-  const basePeriod = await getPeriod(base);
+  el.innerHTML = '<div class="empty"><span class="spin"></span>Hentar data …</div>';
+  const [basePeriod, fetchedOthers] = await Promise.all([
+    getPeriod(base),
+    Promise.all(checked.map(key => getPeriod(key)))
+  ]);
   const otherPeriods = [];
-  for(const key of checked){ const p = await getPeriod(key); if(p) otherPeriods.push({ key, year: p.year, week: p.week, items: p.items }); }
+  checked.forEach((key, i) => { const p = fetchedOthers[i]; if(p) otherPeriods.push({ key, year: p.year, week: p.week, items: p.items }); });
   if(!basePeriod){ el.innerHTML = '<div class="empty">Fann ikkje hovudperioden.</div>'; return; }
 
   const baseMap = new Map();
@@ -1464,25 +1474,27 @@ async function renderPurchasesList(){
 async function computeStock(){
   const stockMap = new Map();
   const salesIndex = await getIndex();
-  for(const p of salesIndex){
-    const period = await getPeriod(p.key);
-    if(!period) continue;
+  const purchaseIndex = await getPurchaseIndex();
+  const [periods, batches] = await Promise.all([
+    Promise.all(salesIndex.map(p => getPeriod(p.key))),
+    Promise.all(purchaseIndex.map(p => getPurchase(p.id)))
+  ]);
+  periods.forEach(period => {
+    if(!period) return;
     for(const it of period.items){
       const k = productKey(it);
       if(!stockMap.has(k)) stockMap.set(k, { name: it.name, code: it.code, category: it.category, bought: 0, sold: 0 });
       stockMap.get(k).sold += it.antall;
     }
-  }
-  const purchaseIndex = await getPurchaseIndex();
-  for(const p of purchaseIndex){
-    const batch = await getPurchase(p.id);
-    if(!batch) continue;
+  });
+  batches.forEach(batch => {
+    if(!batch) return;
     for(const it of batch.items){
       const k = productKey(it);
       if(!stockMap.has(k)) stockMap.set(k, { name: it.name, code: it.code, category: null, bought: 0, sold: 0 });
       stockMap.get(k).bought += it.antall;
     }
-  }
+  });
   return stockMap;
 }
 
@@ -1492,6 +1504,7 @@ async function renderLagerStatus(){
   const threshold = parseFloat(document.getElementById('lagerThreshold').value) || 0;
   const onlyLow = document.getElementById('lagerOnlyLow').checked;
 
+  el.innerHTML = '<div class="empty"><span class="spin"></span>Hentar data …</div>';
   const stockMap = await computeStock();
   if(!stockMap.size){ el.innerHTML = '<div class="empty">Ingen data enno. Importer minst éin sals-periode og/eller eitt innkjøp.</div>'; return; }
 
