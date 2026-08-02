@@ -66,6 +66,8 @@
   button.ghost{background:transparent;border:1px solid var(--line);padding:7px 12px;border-radius:7px;
     font-family:var(--sans);font-size:.78rem;cursor:pointer;color:var(--ink-soft);}
   button.ghost:hover{border-color:var(--bad);color:var(--bad);}
+  button.ghost.toggle-active{background:var(--accent);color:var(--white);border-color:var(--accent);}
+  button.ghost.toggle-active:hover{background:var(--accent);color:var(--white);border-color:var(--accent);}
   button.small{padding:5px 10px;font-size:.74rem;}
   .btnrow{display:flex;gap:10px;flex-wrap:wrap;}
 
@@ -166,9 +168,15 @@
 
   <!-- DASHBOARD -->
   <section class="panel active" id="panel-dash">
+    <div class="card" id="overallCard">
+      <h2>Totalt samandrag</h2>
+      <p class="sub">Alle periodar samla, frå fyrste til siste importerte veke.</p>
+      <div id="overallBody"><div class="empty"><div class="glyph">📊</div>Importer minst éin periode for å sjå totalsamandrag.</div></div>
+    </div>
+
+    <h2 style="font-family:var(--display);font-size:1rem;margin:26px 0 10px;">Samandrag og samanlikning for éi periode</h2>
     <div class="card" id="dashPickerCard">
-      <h2>Veljs periode</h2>
-      <p class="sub">Appen vel automatisk siste periode og næraste tidlegare periode å samanlikna med — endre gjerne sjølv.</p>
+      <p class="sub" style="margin-top:0;">Appen vel automatisk siste periode og næraste tidlegare periode å samanlikna med — endre gjerne sjølv.</p>
       <div class="row">
         <div>
           <label class="field">Periode</label>
@@ -929,7 +937,119 @@ function computeMovers(baseItems, otherItems, minAntall){
   return movers;
 }
 
+let overallTrendMetric = 'belop';
+
+function fmtCompact(n){
+  if(Math.abs(n) >= 1000) return (n/1000).toLocaleString('nb-NO',{maximumFractionDigits:1}) + 'k';
+  return Math.round(n).toString();
+}
+
+function trendChartSVG(series, valueKey){
+  const w = 720, h = 220;
+  const padL = 50, padR = 16, padT = 16, padB = 30;
+  const innerW = w - padL - padR, innerH = h - padT - padB;
+  const n = series.length;
+  const values = series.map(s => s[valueKey]);
+  const maxV = Math.max(...values, 1);
+
+  if(n === 1){
+    // single point — show a labelled dot rather than a degenerate line
+    const x = padL + innerW/2, y = padT + innerH/2;
+    return `<svg width="100%" viewBox="0 0 ${w} ${h}" style="max-width:100%;">
+      <circle cx="${x}" cy="${y}" r="4" fill="#2F5D50"/>
+      <text x="${x}" y="${y-14}" text-anchor="middle" font-size="11" font-family="IBM Plex Mono" fill="#20303D">${fmtCompact(values[0])}</text>
+      <text x="${x}" y="${h-10}" text-anchor="middle" font-size="10" font-family="IBM Plex Mono" fill="#5B6B72">V${series[0].week}/${series[0].year}</text>
+    </svg>`;
+  }
+
+  const xStep = innerW / (n - 1);
+  const pts = series.map((s,i) => {
+    const x = padL + i * xStep;
+    const y = padT + innerH - (s[valueKey] / maxV) * innerH;
+    return { x, y, s };
+  });
+  const linePath = pts.map((p,i) => (i===0?'M':'L') + p.x.toFixed(1) + ',' + p.y.toFixed(1)).join(' ');
+  const areaPath = linePath + ` L ${pts[n-1].x.toFixed(1)},${(padT+innerH).toFixed(1)} L ${pts[0].x.toFixed(1)},${(padT+innerH).toFixed(1)} Z`;
+
+  const gridLines = [0, 0.5, 1].map(f => {
+    const y = padT + innerH - f*innerH;
+    return `<line x1="${padL}" y1="${y.toFixed(1)}" x2="${w-padR}" y2="${y.toFixed(1)}" stroke="#CFC9B8" stroke-width="1" stroke-dasharray="${f===0?'0':'3,3'}"/>
+      <text x="${padL-8}" y="${(y+4).toFixed(1)}" text-anchor="end" font-size="10" font-family="IBM Plex Mono" fill="#5B6B72">${fmtCompact(maxV*f)}</text>`;
+  }).join('');
+
+  const labelEvery = Math.max(1, Math.ceil(n / 9));
+  const xLabels = pts.map((p,i) => (i % labelEvery === 0 || i === n-1)
+    ? `<text x="${p.x.toFixed(1)}" y="${h-10}" text-anchor="middle" font-size="10" font-family="IBM Plex Mono" fill="#5B6B72">V${p.s.week}</text>` : '').join('');
+
+  const dots = pts.map(p => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="#2F5D50"/>`).join('');
+
+  return `<svg width="100%" viewBox="0 0 ${w} ${h}" style="max-width:100%;">
+    ${gridLines}
+    <path d="${areaPath}" fill="#2F5D50" opacity="0.12"/>
+    <path d="${linePath}" fill="none" stroke="#2F5D50" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    ${dots}
+    ${xLabels}
+  </svg>`;
+}
+
+async function renderOverallSummary(){
+  const el = document.getElementById('overallBody');
+  const index = await getIndex();
+  if(!index.length){
+    el.innerHTML = '<div class="empty"><div class="glyph">📊</div>Importer minst éin periode for å sjå totalsamandrag.</div>';
+    return;
+  }
+  el.innerHTML = '<div class="empty"><span class="spin"></span>Hentar data …</div>';
+
+  const ascIndex = [...index].sort((a,b)=> a.year-b.year || a.week-b.week);
+  const periods = await Promise.all(ascIndex.map(p => getPeriod(p.key)));
+
+  let totalBelop = 0, totalAntall = 0;
+  const series = [];
+  ascIndex.forEach((p, i) => {
+    const period = periods[i];
+    if(!period) return;
+    const stats = computePeriodStats(period);
+    totalBelop += stats.totalBelop;
+    totalAntall += stats.totalAntall;
+    series.push({ year: p.year, week: p.week, belop: stats.totalBelop, antall: stats.totalAntall });
+  });
+  const periodCount = series.length;
+  const snittBelop = periodCount ? totalBelop / periodCount : 0;
+
+  const kpis = `
+    <div class="kpi"><div class="label">Total omsetning</div><div class="value">kr ${fmtKr(totalBelop)}</div></div>
+    <div class="kpi"><div class="label">Total tal selde einingar</div><div class="value">${fmtNum(totalAntall)}</div></div>
+    <div class="kpi"><div class="label">Periodar registrert</div><div class="value">${fmtNum(periodCount)}</div></div>
+    <div class="kpi"><div class="label">Snitt omsetning/periode</div><div class="value">kr ${fmtKr(snittBelop)}</div></div>
+  `;
+
+  const toggleHtml = `
+    <div class="btnrow" style="margin-bottom:8px;">
+      <button class="ghost small" id="trendBelopBtn">Omsetning</button>
+      <button class="ghost small" id="trendAntallBtn">Tal selde</button>
+    </div>`;
+
+  el.innerHTML = `
+    <div class="kpi-row">${kpis}</div>
+    <h2 style="font-size:.92rem;margin:18px 0 4px;">Salsutvikling over tid</h2>
+    ${toggleHtml}
+    <div id="trendChartWrap">${trendChartSVG(series, overallTrendMetric)}</div>
+  `;
+
+  const belopBtn = document.getElementById('trendBelopBtn');
+  const antallBtn = document.getElementById('trendAntallBtn');
+  const setActive = () => {
+    belopBtn.classList.toggle('toggle-active', overallTrendMetric==='belop');
+    antallBtn.classList.toggle('toggle-active', overallTrendMetric==='antall');
+  };
+  setActive();
+  belopBtn.addEventListener('click', () => { overallTrendMetric='belop'; document.getElementById('trendChartWrap').innerHTML = trendChartSVG(series,'belop'); setActive(); });
+  antallBtn.addEventListener('click', () => { overallTrendMetric='antall'; document.getElementById('trendChartWrap').innerHTML = trendChartSVG(series,'antall'); setActive(); });
+}
+
 async function renderDashboardSelectors(){
+  renderOverallSummary();
   const index = await getIndex();
   const periodSel = document.getElementById('dashPeriod'), cmpSel = document.getElementById('dashCompare');
   if(!index.length){
