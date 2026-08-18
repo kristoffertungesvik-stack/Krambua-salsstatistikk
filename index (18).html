@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="nn">
+<head>
+<meta charset="UTF-8">
+<title>Krambua – Varestatistikk</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#20303D">
+<link rel="icon" href="icon-192.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Krambua">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+  :root{
+    --paper:#EDEAE1; --paper-2:#E4E0D4; --ink:#20303D; --ink-soft:#5B6B72; --line:#CFC9B8;
+    --accent:#2F5D50; --accent-soft:#DCE7E1; --bad:#AE4534; --bad-soft:#F3E0DA; --white:#F8F7F2;
+    --warn:#9C7A1F; --warn-soft:#F1E7CE;
+    --mono:'IBM Plex Mono',monospace; --display:'Space Grotesk',sans-serif; --sans:'Inter',sans-serif;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1080px;margin:0 auto;padding:24px 18px 90px;}
+  header.top{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:18px;border-bottom:2px solid var(--ink);padding-bottom:14px;}
+  header.top h1{font-family:var(--display);font-weight:700;font-size:1.55rem;margin:0;letter-spacing:-0.01em;}
+  header.top .tag{font-family:var(--mono);font-size:.7rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.08em;}
+
+  nav.tabs{display:flex;gap:4px;margin-bottom:20px;background:var(--paper-2);padding:4px;border-radius:10px;width:fit-content;overflow-x:auto;max-width:100%;}
+  nav.tabs button{border:none;background:transparent;padding:9px 15px;font-family:var(--sans);font-weight:600;font-size:.86rem;
+    color:var(--ink-soft);border-radius:7px;cursor:pointer;transition:.15s;white-space:nowrap;}
+  nav.tabs button.active{background:var(--ink);color:var(--white);}
+  .panel{display:none;} .panel.active{display:block;animation:fade .2s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(3px);}to{opacity:1;transform:translateY(0);}}
+
+  .card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin-bottom:16px;}
+  .card h2{font-family:var(--display);font-size:1rem;margin:0 0 4px;}
+  .card .sub{color:var(--ink-soft);font-size:.8rem;margin:0 0 14px;}
+  .muted{color:var(--ink-soft);font-size:.85rem;}
+
+  .kpi-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px;}
+  .kpi{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:14px 16px;}
+  .kpi .label{font-family:var(--sans);font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);margin-bottom:6px;}
+  .kpi .value{font-family:var(--mono);font-size:1.35rem;font-weight:600;color:var(--ink);}
+  .kpi .delta{margin-top:6px;}
+
+  .dropzone{border:2px dashed var(--line);border-radius:10px;padding:26px;text-align:center;cursor:pointer;transition:.15s;background:var(--paper);}
+  .dropzone:hover,.dropzone.drag{border-color:var(--accent);background:var(--accent-soft);}
+  .dropzone input{display:none;}
+  .dropzone .big{font-family:var(--display);font-weight:600;font-size:1rem;margin-bottom:4px;}
+
+  label.field{display:block;font-size:.75rem;font-weight:600;color:var(--ink-soft);margin-bottom:5px;text-transform:uppercase;letter-spacing:.04em;}
+  input[type=number],input[type=text],select{font-family:var(--mono);font-size:.9rem;padding:8px 10px;border:1px solid var(--line);
+    border-radius:7px;background:var(--white);color:var(--ink);width:100%;}
+  input[type=text]{font-family:var(--sans);}
+  .row{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:14px;align-items:end;}
+  .row > div{flex:1;min-width:140px;}
+
+  button.primary{background:var(--accent);color:var(--white);border:none;padding:10px 18px;border-radius:8px;
+    font-family:var(--sans);font-weight:600;font-size:.86rem;cursor:pointer;transition:.15s;}
+  button.primary:hover{background:#254a40;}
+  button.primary:disabled{background:var(--line);cursor:not-allowed;}
+  button.ghost{background:transparent;border:1px solid var(--line);padding:7px 12px;border-radius:7px;
+    font-family:var(--sans);font-size:.78rem;cursor:pointer;color:var(--ink-soft);}
+  button.ghost:hover{border-color:var(--bad);color:var(--bad);}
+  button.ghost.toggle-active{background:var(--accent);color:var(--white);border-color:var(--accent);}
+  button.ghost.toggle-active:hover{background:var(--accent);color:var(--white);border-color:var(--accent);}
+  button.small{padding:5px 10px;font-size:.74rem;}
+  .btnrow{display:flex;gap:10px;flex-wrap:wrap;}
+
+  table{width:100%;border-collapse:collapse;font-size:.84rem;}
+  th{text-align:left;font-family:var(--sans);font-weight:600;font-size:.7rem;text-transform:uppercase;
+     letter-spacing:.05em;color:var(--ink-soft);padding:6px 8px;border-bottom:1px solid var(--ink);white-space:nowrap;}
+  th.sortable{cursor:pointer;user-select:none;}
+  th.sortable:hover{color:var(--accent);}
+  td{padding:7px 8px;border-bottom:1px dotted var(--line);font-family:var(--mono);}
+  td.name{font-family:var(--sans);}
+  tr:hover td{background:var(--accent-soft);}
+  .num{text-align:right;font-variant-numeric:tabular-nums;}
+
+  .pill{display:inline-block;font-family:var(--mono);font-size:.7rem;padding:2px 8px;border-radius:20px;background:var(--paper-2);color:var(--ink-soft);}
+  .delta{font-family:var(--mono);font-weight:600;font-size:.8rem;padding:2px 7px;border-radius:5px;white-space:nowrap;display:inline-block;}
+  .delta.up{background:var(--accent-soft);color:var(--accent);}
+  .delta.down{background:var(--bad-soft);color:var(--bad);}
+  .delta.flat{background:var(--paper-2);color:var(--ink-soft);}
+  .delta.warn{background:var(--warn-soft);color:var(--warn);}
+  #pRowsTable input{width:100%;font-family:var(--mono);font-size:.82rem;padding:5px 6px;border:1px solid var(--line);border-radius:6px;background:var(--white);}
+  #pRowsTable td{padding:4px 6px;}
+  #pRowsTable .rmRow{background:none;border:none;color:var(--bad);cursor:pointer;font-size:.9rem;}
+
+  .period-item{display:flex;align-items:center;justify-content:space-between;padding:10px 4px;border-bottom:1px solid var(--line);gap:10px;}
+  .period-item:last-child{border-bottom:none;}
+  .period-item .meta{font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);}
+  .period-item .name{font-family:var(--sans);font-weight:600;}
+
+  .checkgrid{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:10px;}
+  .checkgrid label{display:flex;align-items:center;gap:6px;background:var(--paper);border:1px solid var(--line);
+     border-radius:20px;padding:5px 12px;font-family:var(--mono);font-size:.76rem;cursor:pointer;}
+  .checkgrid input{margin:0;}
+
+  .empty{text-align:center;padding:38px 20px;color:var(--ink-soft);}
+  .empty .glyph{font-size:1.7rem;margin-bottom:8px;}
+
+  #toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--ink);color:var(--white);
+    padding:10px 18px;border-radius:8px;font-size:.84rem;opacity:0;pointer-events:none;transition:.25s;font-family:var(--sans);z-index:50;max-width:90%;text-align:center;}
+  #toast.show{opacity:1;transform:translateX(-50%) translateY(-4px);}
+
+  .spin{width:16px;height:16px;border:2px solid var(--paper-2);border-top-color:var(--accent);border-radius:50%;
+    display:inline-block;animation:spin .7s linear infinite;vertical-align:-3px;margin-right:6px;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  details.preview summary{cursor:pointer;font-family:var(--sans);font-weight:600;font-size:.84rem;color:var(--accent);margin:10px 0;}
+
+  .catbar-row{display:flex;align-items:center;gap:10px;margin-bottom:8px;font-size:.82rem;}
+  .catbar-row .cname{width:150px;flex-shrink:0;font-family:var(--sans);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .catbar-track{flex:1;background:var(--paper-2);border-radius:5px;height:16px;overflow:hidden;}
+  .catbar-fill{background:var(--accent);height:100%;border-radius:5px;}
+  .catbar-val{width:120px;flex-shrink:0;text-align:right;font-family:var(--mono);font-size:.78rem;color:var(--ink-soft);}
+
+  .mover-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;}
+  .mover-list{list-style:none;margin:0;padding:0;}
+  .mover-list li{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:7px 0;border-bottom:1px dotted var(--line);cursor:pointer;}
+  .mover-list li:last-child{border-bottom:none;}
+  .mover-list li:hover{color:var(--accent);}
+  .mover-list .mname{font-size:.82rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:150px;}
+
+  .product-card{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin-bottom:14px;}
+  .product-head{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:8px;}
+  .product-head strong{font-family:var(--sans);font-size:.95rem;}
+  .sparkwrap{display:flex;align-items:center;gap:10px;margin:6px 0 10px;}
+
+  #modalOverlay{display:none;position:fixed;inset:0;background:rgba(32,48,61,.45);z-index:60;align-items:center;justify-content:center;}
+  #modalOverlay .box{background:var(--white);border-radius:12px;padding:22px;max-width:340px;width:90%;box-shadow:0 12px 40px rgba(0,0,0,.2);}
+
+  @media (max-width:640px){
+    .kpi-row{grid-template-columns:1fr 1fr;}
+    .catbar-row .cname{width:90px;}
+    .catbar-val{width:90px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1>Krambua — Varestatistikk</h1>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <a href="#" id="changeTokenLink" class="muted" style="text-decoration:underline;font-size:.78rem;">Endre GitHub-token</a>
+      <button class="ghost small" id="installBtn" style="display:none;">📲 Installer app</button>
+      <div class="tag">bensin &amp; storkiosk</div>
+    </div>
+  </header>
+  <p class="muted" id="iosInstallHint" style="display:none;margin:-10px 0 16px;">iPhone/iPad: trykk Del-ikonet i nettlesaren og vel "Legg til på Heim-skjerm" for å installera som app.</p>
+
+  <div id="storageWarning" style="display:none;background:var(--bad-soft);color:var(--bad);border:1px solid var(--bad);
+    border-radius:8px;padding:10px 14px;font-size:.82rem;margin-bottom:12px;font-family:var(--sans);"></div>
+  <p class="muted" style="margin:-6px 0 16px;">Data vert lagra i GitHub-repoet ditt og delt mellom alle einingar som opnar denne same nettadressa.</p>
+
+  <nav class="tabs">
+    <button data-tab="dash" class="active">Oversikt</button>
+    <button data-tab="import">Importer</button>
+    <button data-tab="search">Søk vare</button>
+    <button data-tab="compare">Samanlikn</button>
+    <button data-tab="year">År</button>
+  </nav>
+
+  <!-- DASHBOARD -->
+  <section class="panel active" id="panel-dash">
+    <div class="card" id="overallCard">
+      <h2>Totalt samandrag</h2>
+      <p class="sub">Alle periodar samla, frå fyrste til siste importerte veke.</p>
+      <div id="overallBody"><div class="empty"><div class="glyph">📊</div>Importer minst éin periode for å sjå totalsamandrag.</div></div>
+    </div>
+
+    <h2 style="font-family:var(--display);font-size:1rem;margin:26px 0 10px;">Samandrag og samanlikning for éi periode</h2>
+    <div class="card" id="dashPickerCard">
+      <p class="sub" style="margin-top:0;">Appen vel automatisk siste periode og næraste tidlegare periode å samanlikna med — endre gjerne sjølv.</p>
+      <div class="row">
+        <div>
+          <label class="field">Periode</label>
+          <select id="dashPeriod"></select>
+        </div>
+        <div>
+          <label class="field">Samanlikna med</label>
+          <select id="dashCompare"></select>
+        </div>
+      </div>
+    </div>
+    <div id="dashBody"><div class="empty"><div class="glyph">📊</div>Importer minst éin periode for å sjå oversikt.</div></div>
+  </section>
+
+  <!-- IMPORT -->
+  <section class="panel" id="panel-import">
+    <div class="card">
+      <h2>Last opp statistikk-PDF</h2>
+      <p class="sub">Same PDF-eksport som frå kassasystemet ("Statistikk ..."). Varelinjer, priser og tal seld vert lest ut automatisk.</p>
+      <div class="dropzone" id="dropzone">
+        <div class="big" id="dz-label">Slepp PDF her, eller trykk for å velja fil</div>
+        <div class="muted" id="dz-sub">Éin fil om gongen</div>
+        <input type="file" id="fileInput" accept="application/pdf">
+      </div>
+    </div>
+
+    <div class="card" id="reviewCard" style="display:none;">
+      <h2>Kontroller periode</h2>
+      <div class="row">
+        <div><label class="field">Veke</label><input type="number" id="rvWeek" min="1" max="53"></div>
+        <div><label class="field">År</label><input type="number" id="rvYear" min="2000" max="2100"></div>
+        <div><label class="field">Datoperiode i fila</label><input type="text" id="rvRange" disabled></div>
+      </div>
+      <p class="muted" id="rvSummary"></p>
+      <details class="preview">
+        <summary>Vis eit utval av tolka varelinjer</summary>
+        <table><thead><tr><th>Kategori</th><th>Kode</th><th>Vare</th><th class="num">Tal</th><th class="num">Beløp</th></tr></thead>
+        <tbody id="previewBody"></tbody></table>
+      </details>
+      <div class="btnrow" style="margin-top:14px;">
+        <button class="primary" id="saveBtn">Lagre periode</button>
+        <button class="ghost" id="cancelBtn">Avbryt</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Lagra periodar</h2>
+      <div id="periodsList"><div class="empty">Ingen periodar lagra enno.</div></div>
+    </div>
+
+    <div class="card">
+      <h2>Tryggingskopi (backup)</h2>
+      <p class="sub">Sidan alt no vert lagra i GitHub-repoet ditt, treng du ikkje dette for å synkronisera mellom einingar lenger — men det er lurt å ta ein backup no og då, i tilfelle repoet skulle bli sletta eller endra ved eit uhell.</p>
+      <div class="btnrow">
+        <button class="primary" id="exportAllBtn">Eksporter alle data</button>
+        <button class="ghost" id="importAllBtn">Importer data</button>
+        <input type="file" id="importAllFile" accept="application/json,.json" style="display:none;">
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Reparer periodelista</h2>
+      <p class="sub">Viser "Lagra periodar" for få eller feil oppføringar samanlikna med det som faktisk ligg i <code>data/</code>-mappa i repoet (t.d. etter manuell redigering av ei indeks-fil)? Trykk her for å byggja lista opp att automatisk, ut frå filene som faktisk finst — ingen data går tapt, dette rører berre sjølve lista, ikkje periodefilene.</p>
+      <div class="btnrow">
+        <button class="ghost" id="repairIndexBtn">Reparer lista no</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEARCH -->
+  <section class="panel" id="panel-search">
+    <div class="card">
+      <h2>Søk etter vare</h2>
+      <div class="row" style="margin-bottom:0;">
+        <div style="flex:2;"><input type="text" id="searchInput" placeholder="Skriv varenamn eller strekkode …"></div>
+        <div><select id="searchCategory"><option value="">Alle kategoriar</option></select></div>
+        <div>
+          <select id="searchSort">
+            <option value="name">Sorter: namn</option>
+            <option value="antall">Sorter: mest selde (siste periode)</option>
+            <option value="prisendring">Sorter: størst prisendring</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="card" id="searchResults">
+      <div class="empty"><div class="glyph">🔍</div>Søk opp ei vare for å sjå prishistorikk.</div>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="panel" id="panel-compare">
+    <div class="card">
+      <h2>Vel periodar å samanlikna</h2>
+      <div class="row">
+        <div><label class="field">Hovudperiode</label><select id="cmpBase"></select></div>
+      </div>
+      <label class="field">Samanlikna med</label>
+      <div class="checkgrid" id="cmpOthers"></div>
+      <div class="row" style="margin-top:6px;">
+        <div style="flex:2;"><input type="text" id="cmpFilter" placeholder="Filtrer varer i samanlikninga …"></div>
+        <div>
+          <label style="display:flex;align-items:center;gap:6px;font-size:.82rem;color:var(--ink-soft);white-space:nowrap;">
+            <input type="checkbox" id="cmpOnlyChanged"> Vis berre varer med endring
+          </label>
+        </div>
+      </div>
+      <div class="btnrow">
+        <button class="ghost small" id="cmpExport">Last ned som CSV</button>
+      </div>
+    </div>
+    <div class="card" id="cmpResults">
+      <div class="empty">Vel minst éi periode å samanlikna med hovudperioden.</div>
+    </div>
+  </section>
+
+  <!-- ÅR -->
+  <section class="panel" id="panel-year">
+    <div class="card">
+      <h2>Last opp årsstatistikk-PDF</h2>
+      <p class="sub">Same PDF-eksport som i Importer-fana, men for eit heilt år (01.01–31.12). Vert lagra åtskild frå dei vanlege veke-/månadsperiodane, så "Totalt samandrag" på Oversikt-fana vert ikkje påverka.</p>
+      <div class="dropzone" id="yearDropzone">
+        <div class="big" id="ydz-label">Slepp årsstatistikk-PDF her, eller trykk for å velja fil</div>
+        <div class="muted">Éin fil om gongen</div>
+        <input type="file" id="yearFileInput" accept="application/pdf">
+      </div>
+    </div>
+
+    <div class="card" id="yearReviewCard" style="display:none;">
+      <h2>Kontroller år</h2>
+      <div class="row">
+        <div><label class="field">År</label><input type="number" id="ryYear" min="2000" max="2100"></div>
+        <div><label class="field">Datoperiode i fila</label><input type="text" id="ryRange" disabled></div>
+      </div>
+      <p class="muted" id="rySummary"></p>
+      <div class="btnrow" style="margin-top:14px;">
+        <button class="primary" id="yearSaveBtn">Lagre år</button>
+        <button class="ghost" id="yearCancelBtn">Avbryt</button>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Lagra år</h2>
+      <div id="yearsList"><div class="empty">Ingen år lagra enno.</div></div>
+    </div>
+
+    <div class="card">
+      <h2>Vis / samanlikn år</h2>
+      <p class="sub">Vel eitt år for å sjå oversikt, eller to år for å samanlikna dei.</p>
+      <div class="checkgrid" id="yearPicker"></div>
+    </div>
+    <div id="yearResults"><div class="empty">Vel minst eitt år over.</div></div>
+
+    <div class="card">
+      <h2>Tryggingskopi for årsdata</h2>
+      <div class="btnrow">
+        <button class="primary" id="exportYearsBtn">Eksporter årsdata</button>
+        <button class="ghost" id="importYearsBtn">Importer årsdata</button>
+        <input type="file" id="importYearsFile" accept="application/json,.json" style="display:none;">
+      </div>
+    </div>
+  </section>
+</div>
+<div id="toast"></div>
+<div id="modalOverlay">
+  <div class="box">
+    <p id="modalMsg" style="margin:0 0 16px;font-family:var(--sans);font-size:.92rem;color:var(--ink);"></p>
+    <div style="display:flex;gap:10px;justify-content:flex-end;">
+      <button class="ghost" id="modalCancel">Avbryt</button>
+      <button class="primary" id="modalOk">Ja, gjer det</button>
+    </div>
+  </div>
+</div>
+
+<div id="tokenGateOverlay" style="display:none;position:fixed;inset:0;background:rgba(32,48,61,.6);z-index:70;align-items:center;justify-content:center;">
+  <div class="box" style="max-width:420px;">
+    <h2 style="margin-top:0;">GitHub-token</h2>
+    <p class="sub" id="tokenGateMsg" style="margin-bottom:10px;">Lim inn din GitHub personal access token. Han vert lagra berre i denne nettlesaren, på denne eininga — aldri sendt til eller lagra i sjølve repoet.</p>
+    <input type="text" id="tokenGateInput" placeholder="ghp_... eller github_pat_..." style="margin-bottom:14px;">
+    <div style="display:flex;gap:10px;justify-content:flex-end;">
+      <button class="primary" id="tokenGateSave">Lagre token</button>
+    </div>
+  </div>
+</div>
+
+<script>
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+window.addEventListener('error', e=>{ console.error('Uventa feil:', e.error||e.message); toast('Uventa feil: '+(e.message||'sjå konsollen')); });
+window.addEventListener('unhandledrejection', e=>{ console.error('Uventa feil (promise):', e.reason); toast('Uventa feil: '+(e.reason&&e.reason.message?e.reason.message:e.reason)); });
+
+// ============================================================
+// OPPSETT — desse to er IKKJE hemmelege, greit å committa:
+// ============================================================
+const GH_OWNER  = 'kristoffertungesvik-stack';
+const GH_REPO   = 'Krambua-salsstatistikk';
+const GH_BRANCH = 'main';
+// GH_TOKEN er MED VILJE ikkje her — GitHub tilbakekallar automatisk sine eigne
+// tokens så snart dei vert oppdaga committa i eit repo (også private repo).
+// Tokenet vert i staden lagra berre lokalt i nettlesaren, éin gong per eining
+// — sjå token-oppsettet lenger nede.
+// ============================================================
+
+// ---------- storage (GitHub Contents API — data vert lagra som filer i repoet ditt, delt mellom alle einingar) ----------
+const GH_API = 'https://api.github.com';
+const GH_TOKEN_KEY = 'krambua-gh-token';
+
+function getStoredToken(){ return (localStorage.getItem(GH_TOKEN_KEY) || '').trim(); }
+function setStoredToken(v){ localStorage.setItem(GH_TOKEN_KEY, (v || '').trim()); }
+function clearStoredToken(){ localStorage.removeItem(GH_TOKEN_KEY); }
+
+function ghPath(key){ return 'data/' + key.replace(/:/g, '__') + '.json'; }
+function utf8ToBase64(str){ return btoa(unescape(encodeURIComponent(str))); }
+function base64ToUtf8(b64){ return decodeURIComponent(escape(atob(b64.replace(/\n/g, '')))); }
+function ghHeaders(extra){
+  return Object.assign({ Authorization: `token ${getStoredToken()}`, Accept: 'application/vnd.github+json' }, extra || {});
+}
+async function ghGetRaw(path){
+  const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}?ref=${GH_BRANCH}`, { headers: ghHeaders() });
+  if(res.status === 404) return null;
+  if(!res.ok) throw new Error(`GitHub-feil (${res.status}) ved henting av ${path}`);
+  const data = await res.json();
+  return { content: base64ToUtf8(data.content), sha: data.sha };
+}
+async function ghPutRaw(path, content, sha){
+  const body = { message: 'Oppdater ' + path, content: utf8ToBase64(content), branch: GH_BRANCH };
+  if(sha) body.sha = sha;
+  const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`, {
+    method: 'PUT', headers: ghHeaders({'Content-Type':'application/json'}), body: JSON.stringify(body)
+  });
+  if(!res.ok) throw new Error(`GitHub-feil (${res.status}) ved lagring av ${path}`);
+  return res.json();
+}
+async function ghDeleteRaw(path, sha){
+  const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}`, {
+    method: 'DELETE', headers: ghHeaders({'Content-Type':'application/json'}), body: JSON.stringify({ message: 'Slett ' + path, sha, branch: GH_BRANCH })
+  });
+  if(!res.ok) throw new Error(`GitHub-feil (${res.status}) ved sletting av ${path}`);
+}
+async function ghListDir(path){
+  const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}/contents/${path}?ref=${GH_BRANCH}`, { headers: ghHeaders() });
+  if(res.status === 404) return [];
+  if(!res.ok) throw new Error(`GitHub-feil (${res.status}) ved lesing av mappa ${path}`);
+  const data = await res.json();
+  return Array.isArray(data) ? data : [];
+}
+
+const S = {
+  async get(key){
+    const result = await ghGetRaw(ghPath(key));
+    if(!result) throw new Error('key not found: ' + key);
+    return { key, value: result.content, shared: false };
+  },
+  async set(key, value){
+    const path = ghPath(key);
+    const existing = await ghGetRaw(path);
+    await ghPutRaw(path, value, existing ? existing.sha : undefined);
+    return { key, value, shared: false };
+  },
+  async delete(key){
+    const path = ghPath(key);
+    const existing = await ghGetRaw(path);
+    if(existing) await ghDeleteRaw(path, existing.sha);
+    return { key, deleted: true, shared: false };
+  }
+};
+
+function isRateLimit(err){
+  const msg = (err && err.message) ? err.message : String(err || '');
+  return /\(403\)/.test(msg);
+}
+
+// ---------- token-oppsett: spør éin gong per eining, lagra berre lokalt, aldri committa ----------
+function showTokenGate(message){
+  const overlay = document.getElementById('tokenGateOverlay');
+  if(message) document.getElementById('tokenGateMsg').textContent = message;
+  overlay.style.display = 'flex';
+}
+function hideTokenGate(){
+  document.getElementById('tokenGateOverlay').style.display = 'none';
+}
+document.getElementById('tokenGateSave').addEventListener('click', async () => {
+  const val = document.getElementById('tokenGateInput').value.trim();
+  if(!val){ toast('Lim inn tokenet ditt fyrst.'); return; }
+  setStoredToken(val);
+  hideTokenGate();
+  await checkStorageAvailable();
+  renderPeriodsList(); renderDashboardSelectors();
+});
+document.getElementById('changeTokenLink').addEventListener('click', (e) => {
+  e.preventDefault();
+  document.getElementById('tokenGateInput').value = '';
+  showTokenGate('Lim inn ein ny eller oppdatert token.');
+});
+
+async function checkStorageAvailable(){
+  const banner = document.getElementById('storageWarning');
+  if(!getStoredToken()){
+    showTokenGate('');
+    disableSaving(true);
+    return false;
+  }
+  try{
+    const res = await fetch(`${GH_API}/repos/${GH_OWNER}/${GH_REPO}`, { headers: ghHeaders() });
+    if(res.status === 401){
+      banner.textContent = 'Denne tokenen vart avvist av GitHub (ugyldig eller tilbakekalla). Lag ein ny og lim han inn på nytt — knapp finn du ved sida av tittelen øvst.';
+      banner.style.display='block'; disableSaving(true); return false;
+    }
+    if(res.status === 404){ banner.textContent = 'Fann ikkje repoet — sjekk GH_OWNER/GH_REPO i koden.'; banner.style.display='block'; disableSaving(true); return false; }
+    if(res.status === 403){ banner.textContent = 'GitHub avviste tilkoplinga (403) — sjekk token-rettane (treng "Contents: Read and write"), eller vent om det er ei rategrense.'; banner.style.display='block'; disableSaving(true); return false; }
+    if(!res.ok){ banner.textContent = `Kunne ikkje kopla til GitHub (status ${res.status}).`; banner.style.display='block'; disableSaving(true); return false; }
+  }catch(err){
+    console.error(err);
+    banner.textContent = 'Kunne ikkje kopla til GitHub. Sjekk internettforbindelsen.';
+    banner.style.display = 'block'; disableSaving(true); return false;
+  }
+  banner.style.display = 'none';
+  disableSaving(false);
+  return true;
+}
+function disableSaving(isDisabled){
+  const btn = document.getElementById('saveBtn');
+  if(btn) btn.disabled = isDisabled;
+}
+function showRateLimitBanner(){
+  const banner = document.getElementById('storageWarning');
+  banner.style.display = 'block';
+  banner.textContent = 'GitHub sin API-rategrense er nådd for augeblinken. Vent nokre minutt og prøv igjen.';
+}
+
+async function getJSON(key, fallback){
+  try{ const r = await S.get(key); return r ? JSON.parse(r.value) : fallback; }
+  catch(e){ if(isRateLimit(e)) showRateLimitBanner(); return fallback; }
+}
+async function setJSON(key, value){
+  try{ return await S.set(key, JSON.stringify(value)); }
+  catch(e){ if(isRateLimit(e)) showRateLimitBanner(); throw e; }
+}
+
+const periodCache = new Map();
+async function getPeriod(key){
+  if(periodCache.has(key)) return periodCache.get(key);
+  const p = await getJSON('period:' + key, null);
+  periodCache.set(key, p);
+  return p;
+}
+function invalidateCache(key){ if(key) periodCache.delete(key); else periodCache.clear(); indexCache = null; }
+
+let indexCache = null;
+async function getIndex(force){
+  if(indexCache && !force) return indexCache;
+  const idx = await getJSON('periods-index', []);
+  idx.sort((a,b)=> b.year - a.year || b.week - a.week);
+  indexCache = idx;
+  return idx;
+}
+
+
+
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toast._h); toast._h = setTimeout(()=>t.classList.remove('show'), 2800);
+}
+function askConfirm(message){
+  return new Promise(resolve=>{
+    const overlay = document.getElementById('modalOverlay');
+    document.getElementById('modalMsg').textContent = message;
+    overlay.style.display = 'flex';
+    const ok = document.getElementById('modalOk'), cancel = document.getElementById('modalCancel');
+    const cleanup = r => { overlay.style.display='none'; ok.removeEventListener('click',onOk); cancel.removeEventListener('click',onCancel); resolve(r); };
+    const onOk = ()=>cleanup(true), onCancel = ()=>cleanup(false);
+    ok.addEventListener('click', onOk); cancel.addEventListener('click', onCancel);
+  });
+}
+function escapeHtml(s){ return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function fmtNum(n){ return n.toLocaleString('nb-NO'); }
+function fmtKr(n){ return n.toLocaleString('nb-NO',{minimumFractionDigits:2,maximumFractionDigits:2}); }
+
+// ---------- tabs ----------
+document.querySelectorAll('nav.tabs button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    document.querySelectorAll('nav.tabs button').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-'+btn.dataset.tab).classList.add('active');
+    if(btn.dataset.tab==='compare') renderCompareSelectors();
+    if(btn.dataset.tab==='dash') renderDashboardSelectors();
+    if(btn.dataset.tab==='search') populateSearchCategories();
+    if(btn.dataset.tab==='year') renderYearTab();
+  });
+});
+
+// ---------- ISO week ----------
+function isoWeekAndYear(date){
+  const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+  const dayNum = (d.getUTCDay() + 6) % 7;
+  d.setUTCDate(d.getUTCDate() - dayNum + 3);
+  const firstThursday = new Date(Date.UTC(d.getUTCFullYear(),0,4));
+  const week = 1 + Math.round(((d - firstThursday) / 86400000 - 3 + ((firstThursday.getUTCDay()+6)%7)) / 7);
+  return { week, year: d.getUTCFullYear() };
+}
+function parseNorwegianDate(s){ const [dd,mm,yyyy] = s.split('.').map(Number); return new Date(yyyy, mm-1, dd); }
+function toNum(s){ return parseFloat(s.replace(/\s/g,'').replace(',', '.')); }
+
+// ---------- PDF extraction ----------
+async function extractLines(file){
+  const buf = await file.arrayBuffer();
+  const pdf = await pdfjsLib.getDocument({data: buf}).promise;
+  let allLines = [];
+  for(let p=1; p<=pdf.numPages; p++){
+    const page = await pdf.getPage(p);
+    const content = await page.getTextContent();
+    const items = content.items.map(it => ({str: it.str, x: it.transform[4], y: it.transform[5]})).filter(it => it.str.trim().length);
+    items.sort((a,b)=> (b.y - a.y) || (a.x - b.x));
+    const lines = []; let curY=null, cur=[]; const TOL=2.5;
+    for(const it of items){
+      if(curY===null || Math.abs(it.y-curY)>TOL){ if(cur.length) lines.push(cur); cur=[it]; curY=it.y; }
+      else cur.push(it);
+    }
+    if(cur.length) lines.push(cur);
+    allLines.push(...lines.map(g=>g.sort((a,b)=>a.x-b.x).map(i=>i.str).join(' ').replace(/\s+/g,' ').trim()));
+  }
+  return allLines;
+}
+
+const SKIP_PATTERNS = [
+  /KRAMBUA BENSIN/i, /^Statistikk\s/i, /^Varegruppe2\s+Vare\s+Antall\s+Bel/i,
+  /^\d{2}\.\d{2}\.\d{4},?\s+\d{2}:\d{2}/, /^Side\s+\d+/i, /^Sum\b/, /^Totalt\b/i
+];
+
+function parseStatistikkLines(lines){
+  const items = [];
+  const lineRe = /^(.*\S)\s+(-?\d[\d\s]*,\d{2})\s+(-?\d[\d\s]*,\d{2})\s*$/;
+  for(const raw of lines){
+    const line = raw.trim();
+    if(!line) continue;
+    if(SKIP_PATTERNS.some(re => re.test(line))) continue;
+    const m = line.match(lineRe);
+    if(!m) continue;
+    const desc = m[1].trim();
+    const antall = toNum(m[2]), belop = toNum(m[3]);
+    if(isNaN(antall) || isNaN(belop)) continue;
+    let category=null, code=null, name=desc;
+    const sepIdx = desc.indexOf(' - ');
+    if(sepIdx !== -1){
+      const left = desc.slice(0, sepIdx).trim();
+      name = desc.slice(sepIdx + 3).trim();
+      const tokens = left.split(/\s+/).filter(Boolean);
+      code = tokens.pop() || null;
+      category = tokens.join(' ').trim() || null;
+    }
+    if(!name) continue;
+    items.push({ category, code, name, antall, belop });
+  }
+  return items;
+}
+function findDateRange(lines){
+  const full = lines.join(' ');
+  const m = full.match(/Statistikk\s+(\d{2}\.\d{2}\.\d{4})\s+\d{2}:\d{2}\s*-\s*(\d{2}\.\d{2}\.\d{4})\s+\d{2}:\d{2}/);
+  return m ? { from: m[1], to: m[2] } : null;
+}
+function productKey(item){
+  if(item.code && item.code !== '-' && item.code !== ',' && /[a-zA-Z0-9]/.test(item.code)) return 'c:' + item.code;
+  return 'n:' + item.name.toLowerCase().replace(/\s+/g,' ').trim();
+}
+function pctChange(oldV, newV){ if(oldV===0 || !isFinite(oldV)) return null; return ((newV-oldV)/oldV)*100; }
+function deltaBadge(pct){
+  if(pct === null) return '<span class="pill">ny</span>';
+  const cls = pct > 0.05 ? 'up' : pct < -0.05 ? 'down' : 'flat';
+  const arrow = pct > 0.05 ? '▲' : pct < -0.05 ? '▼' : '·';
+  return `<span class="delta ${cls}">${arrow} ${pct>0?'+':''}${pct.toFixed(1)}%</span>`;
+}
+function csvDownload(filename, rows){
+  const csv = rows.map(r => r.map(cell => {
+    const s = String(cell ?? '');
+    return /[;"\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s;
+  }).join(';')).join('\n');
+  const blob = new Blob(['\uFEFF' + csv], {type:'text/csv;charset=utf-8;'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob); a.download = filename;
+  document.body.appendChild(a); a.click(); a.remove();
+}
+
+// ============================================================
+// IMPORT FLOW
+// ============================================================
+let pendingParse = null;
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+dropzone.addEventListener('click', ()=> fileInput.click());
+dropzone.addEventListener('dragover', e=>{ e.preventDefault(); dropzone.classList.add('drag'); });
+dropzone.addEventListener('dragleave', ()=> dropzone.classList.remove('drag'));
+dropzone.addEventListener('drop', e=>{ e.preventDefault(); dropzone.classList.remove('drag'); if(e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]); });
+fileInput.addEventListener('change', e=>{ if(e.target.files[0]) handleFile(e.target.files[0]); });
+
+async function handleFile(file){
+  document.getElementById('dz-label').innerHTML = '<span class="spin"></span>Les og tolkar PDF …';
+  try{
+    const lines = await extractLines(file);
+    const items = parseStatistikkLines(lines);
+    const range = findDateRange(lines);
+    let week, year;
+    if(range){ const d = parseNorwegianDate(range.from); ({week, year} = isoWeekAndYear(d)); }
+    else { ({week, year} = isoWeekAndYear(new Date())); }
+    if(!items.length){ toast('Fann ingen varelinjer i denne PDF-en. Sjekk at det er rett filtype.'); return; }
+    pendingParse = { items, range };
+    document.getElementById('rvWeek').value = week;
+    document.getElementById('rvYear').value = year;
+    document.getElementById('rvRange').value = range ? `${range.from} – ${range.to}` : 'ikkje funne';
+    document.getElementById('rvSummary').textContent =
+      `${items.length} varelinjer tolka, sum kr ${fmtKr(items.reduce((a,i)=>a+i.belop,0))}.`;
+    document.getElementById('previewBody').innerHTML = items.slice(0,15).map(i => `<tr>
+      <td>${i.category||'—'}</td><td>${i.code||'—'}</td><td class="name">${escapeHtml(i.name)}</td>
+      <td class="num">${fmtNum(i.antall)}</td><td class="num">${fmtKr(i.belop)}</td></tr>`).join('');
+    document.getElementById('reviewCard').style.display = 'block';
+    document.getElementById('reviewCard').scrollIntoView({behavior:'smooth', block:'nearest'});
+  }catch(err){
+    console.error(err); toast('Klarte ikkje å lesa PDF-en. Prøv igjen.');
+  }finally{
+    document.getElementById('dz-label').textContent = 'Slepp PDF her, eller trykk for å velja fil';
+    fileInput.value = '';
+  }
+}
+
+document.getElementById('cancelBtn').addEventListener('click', ()=>{
+  pendingParse = null; document.getElementById('reviewCard').style.display = 'none';
+});
+
+document.getElementById('saveBtn').addEventListener('click', async ()=>{
+  if(!pendingParse) return;
+  try{
+    const week = parseInt(document.getElementById('rvWeek').value, 10);
+    const year = parseInt(document.getElementById('rvYear').value, 10);
+    if(!week || !year){ toast('Fyll ut veke og år.'); return; }
+    const key = `${year}-W${String(week).padStart(2,'0')}`;
+    const index = await getIndex();
+    const existing = index.find(p => p.key === key);
+    if(existing){
+      const ok = await askConfirm(`Veke ${week}, ${year} er alt lagra. Vil du overskriva han?`);
+      if(!ok) return;
+    }
+    const periodData = { year, week, range: pendingParse.range, importedAt: new Date().toISOString(), items: pendingParse.items };
+    await setJSON('period:' + key, periodData);
+    invalidateCache(key);
+    const newIndex = index.filter(p => p.key !== key);
+    newIndex.push({ key, year, week, range: pendingParse.range, itemCount: pendingParse.items.length, importedAt: periodData.importedAt });
+    newIndex.sort((a,b)=> b.year - a.year || b.week - a.week);
+    await setJSON('periods-index', newIndex);
+    toast(`Veke ${week}, ${year} lagra (${pendingParse.items.length} varelinjer).`);
+    pendingParse = null;
+    document.getElementById('reviewCard').style.display = 'none';
+    renderPeriodsList();
+  }catch(err){
+    console.error(err);
+    if(isRateLimit(err)) toast('For mange lagringskall på kort tid. Vent litt og prøv igjen.');
+    else toast('Klarte ikkje å lagra perioden. Prøv igjen.');
+  }
+});
+
+async function renderPeriodsList(){
+  const index = await getIndex();
+  const el = document.getElementById('periodsList');
+  if(!index.length){ el.innerHTML = '<div class="empty">Ingen periodar lagra enno.</div>'; return; }
+  el.innerHTML = index.map(p => `
+    <div class="period-item" data-key="${p.key}">
+      <div>
+        <div class="name">Veke ${p.week}, ${p.year}</div>
+        <div class="meta">${p.range ? p.range.from + ' – ' + p.range.to : ''} · ${p.itemCount} varelinjer</div>
+      </div>
+      <div class="btnrow">
+        <button class="ghost small" data-csv="${p.key}">CSV</button>
+        <button class="ghost small" data-del="${p.key}">Slett</button>
+      </div>
+    </div>`).join('');
+  el.querySelectorAll('[data-del]').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const key = btn.dataset.del;
+      const ok = await askConfirm('Slette denne perioden permanent?');
+      if(!ok) return;
+      try{ await S.delete('period:' + key, false); }catch(e){}
+      invalidateCache(key);
+      const idx = await getIndex();
+      await setJSON('periods-index', idx.filter(p=>p.key!==key));
+      renderPeriodsList();
+      toast('Periode sletta.');
+    });
+  });
+  el.querySelectorAll('[data-csv]').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const key = btn.dataset.csv;
+      const p = await getPeriod(key);
+      if(!p){ toast('Fann ikkje perioden.'); return; }
+      const rows = [['Kategori','Kode','Vare','Tal seld','Beløp','Pris/stk']];
+      p.items.forEach(i => rows.push([i.category||'', i.code||'', i.name, i.antall, i.belop.toFixed(2), (i.belop/i.antall).toFixed(2)]));
+      csvDownload(`krambua-${key}.csv`, rows);
+    });
+  });
+}
+
+// ============================================================
+// EKSPORTER / IMPORTER ALLE DATA (overføring mellom PC og mobil)
+// ============================================================
+async function exportAllData(){
+  try{
+    const periodsIndex = await getIndex(true);
+    const periods = {};
+    for(const p of periodsIndex){ periods[p.key] = await getPeriod(p.key); }
+    const payload = { exportedAt: new Date().toISOString(), periodsIndex, periods };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `krambua-varestatistikk-backup-${new Date().toISOString().slice(0,10)}.json`;
+    document.body.appendChild(a); a.click(); a.remove();
+    toast(`Eksporterte ${periodsIndex.length} periodar.`);
+  }catch(err){
+    console.error(err);
+    toast('Klarte ikkje å eksportera data.');
+  }
+}
+async function importAllDataFile(file){
+  try{
+    const text = await file.text();
+    const data = JSON.parse(text);
+    if(!data.periodsIndex){ toast('Fila inneheld ikkje gjenkjennelege data frå denne appen.'); return; }
+
+    let periodCount = 0;
+    if(data.periodsIndex){
+      const existingIdx = await getIndex(true);
+      const mergedIdx = [...existingIdx];
+      for(const p of data.periodsIndex){
+        const period = data.periods && data.periods[p.key];
+        if(!period) continue;
+        await setJSON('period:' + p.key, period);
+        invalidateCache(p.key);
+        const i = mergedIdx.findIndex(x => x.key === p.key);
+        if(i >= 0) mergedIdx[i] = p; else mergedIdx.push(p);
+        periodCount++;
+      }
+      mergedIdx.sort((a,b)=> b.year - a.year || b.week - a.week);
+      await setJSON('periods-index', mergedIdx);
+      indexCache = null;
+    }
+
+    toast(`Importerte ${periodCount} periodar. Data frå fila overskriv likt namngjevne periodar — resten vert lagt til.`);
+    renderPeriodsList();
+    renderDashboardSelectors();
+  }catch(err){
+    console.error(err);
+    toast('Klarte ikkje å lesa denne fila — er det ein gyldig backup-fil frå denne appen?');
+  }
+}
+document.getElementById('exportAllBtn').addEventListener('click', exportAllData);
+document.getElementById('importAllBtn').addEventListener('click', ()=> document.getElementById('importAllFile').click());
+document.getElementById('importAllFile').addEventListener('change', e=>{
+  if(e.target.files[0]) importAllDataFile(e.target.files[0]);
+  e.target.value = '';
+});
+
+async function repairIndexes(){
+  const btn = document.getElementById('repairIndexBtn');
+  btn.disabled = true;
+  try{
+    toast('Byggjer opp att lista frå filene i repoet …');
+    const files = await ghListDir('data');
+    const periodFiles = files.filter(f => f.type === 'file' && /^period__.+\.json$/.test(f.name));
+
+    const periodContents = await Promise.all(periodFiles.map(f => ghGetRaw(f.path)));
+    const periodEntries = [];
+    periodFiles.forEach((f, i) => {
+      const raw = periodContents[i];
+      if(!raw) return;
+      let obj; try{ obj = JSON.parse(raw.content); }catch(e){ return; }
+      const key = f.name.replace(/^period__/, '').replace(/\.json$/, '');
+      periodEntries.push({ key, year: obj.year, week: obj.week, range: obj.range, itemCount: (obj.items||[]).length, importedAt: obj.importedAt || new Date().toISOString() });
+    });
+    periodEntries.sort((a,b)=> b.year-a.year || b.week-a.week);
+
+    const existingIdx = await ghGetRaw('data/periods-index.json');
+    await ghPutRaw('data/periods-index.json', JSON.stringify(periodEntries), existingIdx ? existingIdx.sha : undefined);
+
+    invalidateCache();
+    toast(`Reparert: fann ${periodEntries.length} periodar i repoet.`);
+    renderPeriodsList();
+    renderDashboardSelectors();
+  }catch(err){
+    console.error(err);
+    toast('Klarte ikkje å reparera listene: ' + (err.message || err));
+  }finally{
+    btn.disabled = false;
+  }
+}
+document.getElementById('repairIndexBtn').addEventListener('click', repairIndexes);
+
+// ============================================================
+// DASHBOARD
+// ============================================================
+function computePeriodStats(period){
+  let totalBelop=0, totalAntall=0;
+  const byCategory = new Map();
+  for(const it of period.items){
+    totalBelop += it.belop; totalAntall += it.antall;
+    const cat = it.category || 'Ukategorisert';
+    if(!byCategory.has(cat)) byCategory.set(cat, {belop:0, antall:0});
+    const c = byCategory.get(cat); c.belop += it.belop; c.antall += it.antall;
+  }
+  return { totalBelop, totalAntall, byCategory, itemCount: period.items.length };
+}
+function findDefaultComparison(index, currentKey){
+  const asc = [...index].sort((a,b)=> a.year-b.year || a.week-b.week);
+  const idx = asc.findIndex(p=>p.key===currentKey);
+  if(idx === -1) return null;
+  const cur = asc[idx];
+  const sameWeekLastYear = asc.find(p=> p.year===cur.year-1 && p.week===cur.week);
+  if(sameWeekLastYear) return sameWeekLastYear.key;
+  if(idx>0) return asc[idx-1].key;
+  return null;
+}
+function computeMovers(baseItems, otherItems, minAntall){
+  const otherMap = new Map(); for(const it of otherItems) otherMap.set(productKey(it), it);
+  const movers = [];
+  for(const it of baseItems){
+    const match = otherMap.get(productKey(it));
+    if(!match) continue;
+    if(it.antall < minAntall || match.antall < minAntall) continue;
+    const prisNow = it.belop/it.antall, prisFor = match.belop/match.antall;
+    movers.push({ name: it.name, prisPct: pctChange(prisFor, prisNow), antallPct: pctChange(match.antall, it.antall), antall: it.antall });
+  }
+  return movers;
+}
+
+let overallTrendMetric = 'belop';
+
+// Department/catch-all lines that aren't real individual products — excluded from
+// "best selling products" rankings (they still count toward total omsetning/antall).
+const EXCLUDED_PRODUCT_NAMES = new Set(['jernvarer', 'kiosk 15%', 'kolon', 'kolon 15%']);
+function isExcludedProduct(name){
+  return EXCLUDED_PRODUCT_NAMES.has((name||'').trim().toLowerCase());
+}
+
+function fmtCompact(n){
+  if(Math.abs(n) >= 1000) return (n/1000).toLocaleString('nb-NO',{maximumFractionDigits:1}) + 'k';
+  return Math.round(n).toString();
+}
+
+function trendChartSVG(series, valueKey, sharedMax){
+  const w = 460, h = 200;
+  const padL = 48, padR = 14, padT = 16, padB = 30;
+  const innerW = w - padL - padR, innerH = h - padT - padB;
+  const n = series.length;
+  const values = series.map(s => s[valueKey]);
+  const maxV = sharedMax || Math.max(...values, 1);
+
+  if(n === 0){
+    return `<div class="empty" style="padding:20px;">Ingen data for dette året.</div>`;
+  }
+  if(n === 1){
+    const x = padL + innerW/2, y = padT + innerH/2;
+    return `<svg width="100%" viewBox="0 0 ${w} ${h}" style="max-width:100%;">
+      <circle cx="${x}" cy="${y}" r="4" fill="#2F5D50"/>
+      <text x="${x}" y="${y-14}" text-anchor="middle" font-size="11" font-family="IBM Plex Mono" fill="#20303D">${fmtCompact(values[0])}</text>
+      <text x="${x}" y="${h-10}" text-anchor="middle" font-size="10" font-family="IBM Plex Mono" fill="#5B6B72">V${series[0].week}</text>
+    </svg>`;
+  }
+
+  const xStep = innerW / (n - 1);
+  const pts = series.map((s,i) => {
+    const x = padL + i * xStep;
+    const y = padT + innerH - (s[valueKey] / maxV) * innerH;
+    return { x, y, s };
+  });
+  const linePath = pts.map((p,i) => (i===0?'M':'L') + p.x.toFixed(1) + ',' + p.y.toFixed(1)).join(' ');
+  const areaPath = linePath + ` L ${pts[n-1].x.toFixed(1)},${(padT+innerH).toFixed(1)} L ${pts[0].x.toFixed(1)},${(padT+innerH).toFixed(1)} Z`;
+
+  const gridLines = [0, 0.5, 1].map(f => {
+    const y = padT + innerH - f*innerH;
+    return `<line x1="${padL}" y1="${y.toFixed(1)}" x2="${w-padR}" y2="${y.toFixed(1)}" stroke="#CFC9B8" stroke-width="1" stroke-dasharray="${f===0?'0':'3,3'}"/>
+      <text x="${padL-8}" y="${(y+4).toFixed(1)}" text-anchor="end" font-size="10" font-family="IBM Plex Mono" fill="#5B6B72">${fmtCompact(maxV*f)}</text>`;
+  }).join('');
+
+  const labelEvery = Math.max(1, Math.ceil(n / 7));
+  const xLabels = pts.map((p,i) => (i % labelEvery === 0 || i === n-1)
+    ? `<text x="${p.x.toFixed(1)}" y="${h-10}" text-anchor="middle" font-size="10" font-family="IBM Plex Mono" fill="#5B6B72">V${p.s.week}</text>` : '').join('');
+
+  const dots = pts.map(p => `<circle cx="${p.x.toFixed(1)}" cy="${p.y.toFixed(1)}" r="3" fill="#2F5D50"/>`).join('');
+
+  return `<svg width="100%" viewBox="0 0 ${w} ${h}" style="max-width:100%;">
+    ${gridLines}
+    <path d="${areaPath}" fill="#2F5D50" opacity="0.12"/>
+    <path d="${linePath}" fill="none" stroke="#2F5D50" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+    ${dots}
+    ${xLabels}
+  </svg>`;
+}
+
+function computeTopProducts(periods, n){
+  const agg = new Map();
+  for(const period of periods){
+    if(!period) continue;
+    for(const it of period.items){
+      if(isExcludedProduct(it.name)) continue;
+      const key = productKey(it);
+      if(!agg.has(key)) agg.set(key, { name: it.name, antall: 0, belop: 0 });
+      const a = agg.get(key);
+      a.antall += it.antall; a.belop += it.belop;
+    }
+  }
+  return [...agg.values()].sort((a,b)=> b.antall - a.antall).slice(0, n);
+}
+
+async function renderOverallSummary(){
+  const el = document.getElementById('overallBody');
+  const index = await getIndex();
+  if(!index.length){
+    el.innerHTML = '<div class="empty"><div class="glyph">📊</div>Importer minst éin periode for å sjå totalsamandrag.</div>';
+    return;
+  }
+  el.innerHTML = '<div class="empty"><span class="spin"></span>Hentar data …</div>';
+
+  const ascIndex = [...index].sort((a,b)=> a.year-b.year || a.week-b.week);
+  const periods = await Promise.all(ascIndex.map(p => getPeriod(p.key)));
+  const validPeriods = periods.filter(Boolean);
+
+  let totalBelop = 0, totalAntall = 0;
+  const byYear = new Map(); // year -> [{week, belop, antall}]
+  ascIndex.forEach((p, i) => {
+    const period = periods[i];
+    if(!period) return;
+    const stats = computePeriodStats(period);
+    totalBelop += stats.totalBelop;
+    totalAntall += stats.totalAntall;
+    if(!byYear.has(p.year)) byYear.set(p.year, []);
+    byYear.get(p.year).push({ week: p.week, belop: stats.totalBelop, antall: stats.totalAntall });
+  });
+  const periodCount = ascIndex.length;
+  const snittBelop = periodCount ? totalBelop / periodCount : 0;
+  const years = [...byYear.keys()].sort((a,b)=> b-a); // newest first
+
+  const kpis = `
+    <div class="kpi"><div class="label">Total omsetning</div><div class="value">kr ${fmtKr(totalBelop)}</div></div>
+    <div class="kpi"><div class="label">Total tal selde einingar</div><div class="value">${fmtNum(totalAntall)}</div></div>
+    <div class="kpi"><div class="label">Periodar registrert</div><div class="value">${fmtNum(periodCount)}</div></div>
+    <div class="kpi"><div class="label">Snitt omsetning/periode</div><div class="value">kr ${fmtKr(snittBelop)}</div></div>
+  `;
+
+  const toggleHtml = `
+    <div class="btnrow" style="margin-bottom:8px;">
+      <button class="ghost small" id="trendBelopBtn">Omsetning</button>
+      <button class="ghost small" id="trendAntallBtn">Tal selde</button>
+    </div>`;
+
+  function renderYearCharts(metric){
+    const sharedMax = Math.max(...years.flatMap(y => byYear.get(y).map(s => s[metric])), 1);
+    return years.map(y => `
+      <div>
+        <div class="muted" style="font-family:var(--display);font-weight:600;color:var(--ink);margin-bottom:4px;">${y}</div>
+        ${trendChartSVG(byYear.get(y), metric, sharedMax)}
+      </div>`).join('');
+  }
+
+  const topProducts = computeTopProducts(validPeriods, 10);
+  const topProductsHtml = topProducts.length ? `<ol style="margin:0;padding-left:20px;">
+    ${topProducts.map(p => `<li style="padding:5px 0;border-bottom:1px dotted var(--line);display:flex;justify-content:space-between;gap:10px;">
+      <span>${escapeHtml(p.name)}</span><span class="pill" style="font-family:var(--mono);">${fmtNum(p.antall)} stk</span>
+    </li>`).join('')}
+  </ol>` : '<p class="muted">Ingen data enno.</p>';
+
+  el.innerHTML = `
+    <div class="kpi-row">${kpis}</div>
+    <h2 style="font-size:.92rem;margin:18px 0 4px;">Salsutvikling — år mot år</h2>
+    ${toggleHtml}
+    <div id="yearChartsWrap" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;">${renderYearCharts(overallTrendMetric)}</div>
+    <h2 style="font-size:.92rem;margin:22px 0 4px;">Topp 10 mest selde varer</h2>
+    <p class="sub" style="margin-top:0;">Samlekategoriar utan eige varenummer (Jernvarer, Kiosk 15%, Kolon) er ikkje tekne med her, sidan dei ikkje er enkeltvarer.</p>
+    ${topProductsHtml}
+  `;
+
+  const belopBtn = document.getElementById('trendBelopBtn');
+  const antallBtn = document.getElementById('trendAntallBtn');
+  const setActive = () => {
+    belopBtn.classList.toggle('toggle-active', overallTrendMetric==='belop');
+    antallBtn.classList.toggle('toggle-active', overallTrendMetric==='antall');
+  };
+  setActive();
+  belopBtn.addEventListener('click', () => { overallTrendMetric='belop'; document.getElementById('yearChartsWrap').innerHTML = renderYearCharts('belop'); setActive(); });
+  antallBtn.addEventListener('click', () => { overallTrendMetric='antall'; document.getElementById('yearChartsWrap').innerHTML = renderYearCharts('antall'); setActive(); });
+}
+
+async function renderDashboardSelectors(){
+  renderOverallSummary();
+  const index = await getIndex();
+  const periodSel = document.getElementById('dashPeriod'), cmpSel = document.getElementById('dashCompare');
+  if(!index.length){
+    periodSel.innerHTML=''; cmpSel.innerHTML='';
+    document.getElementById('dashBody').innerHTML = '<div class="empty"><div class="glyph">📊</div>Importer minst éin periode for å sjå oversikt.</div>';
+    return;
+  }
+  const label = p => `Veke ${p.week}, ${p.year}`;
+  periodSel.innerHTML = index.map(p => `<option value="${p.key}">${label(p)}</option>`).join('');
+  periodSel.value = index[0].key;
+  const defaultCmp = findDefaultComparison(index, index[0].key);
+  cmpSel.innerHTML = '<option value="">Ingen samanlikning</option>' + index.filter(p=>p.key!==index[0].key).map(p => `<option value="${p.key}">${label(p)}</option>`).join('');
+  if(defaultCmp) cmpSel.value = defaultCmp;
+  periodSel.onchange = () => {
+    const idx2 = index;
+    const dc = findDefaultComparison(idx2, periodSel.value);
+    cmpSel.innerHTML = '<option value="">Ingen samanlikning</option>' + idx2.filter(p=>p.key!==periodSel.value).map(p=>`<option value="${p.key}">${label(p)}</option>`).join('');
+    if(dc) cmpSel.value = dc;
+    updateDashboard();
+  };
+  cmpSel.onchange = updateDashboard;
+  updateDashboard();
+}
+
+async function updateDashboard(){
+  const periodKey = document.getElementById('dashPeriod').value;
+  const cmpKey = document.getElementById('dashCompare').value;
+  const el = document.getElementById('dashBody');
+  if(!periodKey){ el.innerHTML = '<div class="empty">Vel ein periode.</div>'; return; }
+  el.innerHTML = '<div class="empty"><span class="spin"></span>Hentar data …</div>';
+  const [period, cmpPeriodFetched] = await Promise.all([getPeriod(periodKey), cmpKey ? getPeriod(cmpKey) : Promise.resolve(null)]);
+  if(!period){ el.innerHTML = '<div class="empty">Fann ikkje perioden.</div>'; return; }
+  const stats = computePeriodStats(period);
+  let cmpStats = null, cmpPeriod = cmpPeriodFetched;
+  if(cmpPeriod){ cmpStats = computePeriodStats(cmpPeriod); }
+
+  let kpis = `
+    <div class="kpi"><div class="label">Omsetning</div><div class="value">kr ${fmtKr(stats.totalBelop)}</div>
+      ${cmpStats ? `<div class="delta">${deltaBadge(pctChange(cmpStats.totalBelop, stats.totalBelop))}</div>` : ''}</div>
+    <div class="kpi"><div class="label">Tal selde einingar</div><div class="value">${fmtNum(stats.totalAntall)}</div>
+      ${cmpStats ? `<div class="delta">${deltaBadge(pctChange(cmpStats.totalAntall, stats.totalAntall))}</div>` : ''}</div>
+    <div class="kpi"><div class="label">Varelinjer</div><div class="value">${fmtNum(stats.itemCount)}</div></div>
+    <div class="kpi"><div class="label">Samanlikna med</div><div class="value" style="font-size:.95rem;">${cmpPeriod ? 'Veke '+cmpPeriod.week+', '+cmpPeriod.year : '—'}</div></div>
+  `;
+
+  const catRows = [...stats.byCategory.entries()].sort((a,b)=> b[1].belop - a[1].belop);
+  const maxCat = Math.max(...catRows.map(c=>c[1].belop), 1);
+  const catHtml = catRows.map(([name, c]) => `
+    <div class="catbar-row">
+      <div class="cname" title="${escapeHtml(name)}">${escapeHtml(name)}</div>
+      <div class="catbar-track"><div class="catbar-fill" style="width:${(c.belop/maxCat*100).toFixed(1)}%"></div></div>
+      <div class="catbar-val">kr ${fmtKr(c.belop)} · ${((c.belop/stats.totalBelop)*100).toFixed(0)}%</div>
+    </div>`).join('');
+
+  let moversHtml = '';
+  if(cmpPeriod){
+    const movers = computeMovers(period.items, cmpPeriod.items, 2);
+    const byPrisUp = [...movers].filter(m=>m.prisPct!==null).sort((a,b)=>b.prisPct-a.prisPct).slice(0,5);
+    const byPrisDown = [...movers].filter(m=>m.prisPct!==null).sort((a,b)=>a.prisPct-b.prisPct).slice(0,5);
+    const bySalgUp = [...movers].filter(m=>m.antallPct!==null).sort((a,b)=>b.antallPct-a.antallPct).slice(0,5);
+    const bySalgDown = [...movers].filter(m=>m.antallPct!==null).sort((a,b)=>a.antallPct-b.antallPct).slice(0,5);
+    const list = (arr, field) => arr.length ? `<ul class="mover-list">${arr.map(m=>`<li data-jump="${escapeHtml(m.name)}"><span class="mname">${escapeHtml(m.name)}</span>${deltaBadge(m[field])}</li>`).join('')}</ul>` : '<p class="muted">Ingen data (min. 2 selde i begge periodar).</p>';
+    moversHtml = `
+      <div class="card">
+        <h2>Størst endring sidan Veke ${cmpPeriod.week}, ${cmpPeriod.year}</h2>
+        <p class="sub">Berre varer selde minst 2 gonger i begge periodar er tekne med, for å unngå tilfeldig støy.</p>
+        <div class="mover-grid">
+          <div><strong style="font-size:.82rem;color:var(--accent);">▲ Størst prisauke</strong>${list(byPrisUp,'prisPct')}</div>
+          <div><strong style="font-size:.82rem;color:var(--bad);">▼ Størst prisnedgang</strong>${list(byPrisDown,'prisPct')}</div>
+          <div><strong style="font-size:.82rem;color:var(--accent);">▲ Størst sals-auke</strong>${list(bySalgUp,'antallPct')}</div>
+          <div><strong style="font-size:.82rem;color:var(--bad);">▼ Størst sals-nedgang</strong>${list(bySalgDown,'antallPct')}</div>
+        </div>
+      </div>`;
+  } else {
+    moversHtml = `<div class="card"><p class="muted" style="margin:0;">Vel ei samanlikningsperiode for å sjå kva varer som har endra seg mest.</p></div>`;
+  }
+
+  el.innerHTML = `
+    <div class="kpi-row">${kpis}</div>
+    ${moversHtml}
+    <div class="card">
+      <h2>Omsetning pr. kategori</h2>
+      <p class="sub">Veke ${period.week}, ${period.year}</p>
+      ${catHtml}
+    </div>
+  `;
+  el.querySelectorAll('[data-jump]').forEach(li=>{
+    li.addEventListener('click', ()=>{
+      document.querySelector('nav.tabs button[data-tab="search"]').click();
+      const inp = document.getElementById('searchInput');
+      inp.value = li.dataset.jump;
+      inp.dispatchEvent(new Event('input'));
+    });
+  });
+}
+
+// ============================================================
+// SEARCH
+// ============================================================
+async function populateSearchCategories(){
+  const index = await getIndex();
+  const sel = document.getElementById('searchCategory');
+  const cur = sel.value;
+  const periods = await Promise.all(index.map(p => getPeriod(p.key)));
+  const cats = new Set();
+  periods.forEach(period => { if(period) period.items.forEach(i => cats.add(i.category || 'Ukategorisert')); });
+  sel.innerHTML = '<option value="">Alle kategoriar</option>' + [...cats].sort().map(c=>`<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join('');
+  sel.value = cur || '';
+}
+document.getElementById('searchCategory').addEventListener('change', ()=> runSearch(document.getElementById('searchInput').value));
+document.getElementById('searchSort').addEventListener('change', ()=> runSearch(document.getElementById('searchInput').value));
+
+function sparklineSVG(values){
+  if(values.length < 2) return '';
+  const w=110, h=30, pad=3;
+  const min = Math.min(...values), max = Math.max(...values);
+  const range = (max - min) || 1;
+  const pts = values.map((v,i)=>{
+    const x = pad + (i/(values.length-1)) * (w-2*pad);
+    const y = h - pad - ((v-min)/range) * (h-2*pad);
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(' ');
+  const lastUp = values[values.length-1] >= values[0];
+  return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline points="${pts}" fill="none" stroke="${lastUp?'#2F5D50':'#AE4534'}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
+}
+
+let searchDebounce;
+document.getElementById('searchInput').addEventListener('input', e=>{
+  clearTimeout(searchDebounce);
+  searchDebounce = setTimeout(()=> runSearch(e.target.value), 220);
+});
+
+async function runSearch(query){
+  const el = document.getElementById('searchResults');
+  query = query.trim().toLowerCase();
+  const catFilter = document.getElementById('searchCategory').value;
+  const sortMode = document.getElementById('searchSort').value;
+  if(!query && !catFilter){ el.innerHTML = '<div class="empty"><div class="glyph">🔍</div>Søk opp ei vare, eller vel ein kategori.</div>'; return; }
+
+  const index = await getIndex();
+  if(!index.length){ el.innerHTML = '<div class="empty">Ingen periodar er importerte enno.</div>'; return; }
+  const onlyOnePeriod = index.length < 2;
+
+  el.innerHTML = '<div class="empty"><span class="spin"></span>Hentar data …</div>';
+  const periods = await Promise.all(index.map(p => getPeriod(p.key)));
+
+  const groups = new Map();
+  for(let idx = 0; idx < index.length; idx++){
+    const p = index[idx];
+    const period = periods[idx];
+    if(!period) continue;
+    for(const item of period.items){
+      if(query && !item.name.toLowerCase().includes(query) && !(item.code||'').toLowerCase().includes(query)) continue;
+      if(catFilter && (item.category||'Ukategorisert') !== catFilter) continue;
+      const key = productKey(item);
+      if(!groups.has(key)) groups.set(key, { name: item.name, code: item.code, category: item.category, rows: [] });
+      groups.get(key).rows.push({ year: p.year, week: p.week, antall: item.antall, belop: item.belop });
+    }
+  }
+  if(!groups.size){ el.innerHTML = '<div class="empty">Fann ingen varer som matchar.</div>'; return; }
+
+  let groupList = [...groups.values()];
+  groupList.forEach(g => g.rows.sort((a,b)=> a.year-b.year || a.week-b.week));
+  if(sortMode === 'antall'){
+    groupList.sort((a,b)=> (b.rows[b.rows.length-1].antall) - (a.rows[a.rows.length-1].antall));
+  } else if(sortMode === 'prisendring'){
+    const bigChange = g => {
+      if(g.rows.length<2) return 0;
+      const last = g.rows[g.rows.length-1], prev = g.rows[g.rows.length-2];
+      const pct = pctChange(prev.belop/prev.antall, last.belop/last.antall);
+      return pct===null ? 0 : Math.abs(pct);
+    };
+    groupList.sort((a,b)=> bigChange(b) - bigChange(a));
+  } else {
+    groupList.sort((a,b)=> a.name.localeCompare(b.name, 'nb'));
+  }
+
+  searchFullList = groupList;
+  searchShown = SEARCH_PAGE_SIZE;
+  renderSearchList(onlyOnePeriod);
+}
+
+let searchFullList = [];
+let searchShown = 0;
+const SEARCH_PAGE_SIZE = 100;
+
+function renderSearchList(onlyOnePeriod){
+  const el = document.getElementById('searchResults');
+  const total = searchFullList.length;
+  const visible = searchFullList.slice(0, searchShown);
+
+  let html = onlyOnePeriod ? '<p class="muted" style="margin-top:0;">Du har berre importert éin periode enno, så prosentendring kan ikkje visast før du importerer fleire veker.</p>' : '';
+  html += `<p class="muted" style="margin-top:0;">${total} vare${total===1?'':'r'} funne${total>visible.length ? ` — viser dei ${visible.length} fyrste` : ''}.</p>`;
+  for(const g of visible){
+    const prisSeries = g.rows.map(r => r.belop / r.antall);
+    const rowsHtml = g.rows.map((r,i) => {
+      const prev = i>0 ? g.rows[i-1] : null;
+      const pris = r.belop / r.antall;
+      let deltaHtml = '<span class="pill">—</span>';
+      if(prev) deltaHtml = deltaBadge(pctChange(prev.belop/prev.antall, pris));
+      return `<tr><td>Veke ${r.week}, ${r.year}</td><td class="num">${fmtNum(r.antall)}</td>
+        <td class="num">${fmtKr(r.belop)}</td><td class="num">${fmtKr(pris)}</td><td class="num">${deltaHtml}</td></tr>`;
+    }).join('');
+    html += `<div class="product-card">
+      <div class="product-head">
+        <strong>${escapeHtml(g.name)}</strong>
+        <span>${g.category ? `<span class="pill">${escapeHtml(g.category)}</span>` : ''} ${g.code ? `<span class="pill">${escapeHtml(g.code)}</span>` : ''}</span>
+      </div>
+      <div class="sparkwrap">${sparklineSVG(prisSeries)}<span class="muted">Prisutvikling over tid</span></div>
+      <table><thead><tr><th>Periode</th><th class="num">Tal seld</th><th class="num">Beløp</th><th class="num">Pris/stk</th><th class="num">Endring</th></tr></thead>
+      <tbody>${rowsHtml}</tbody></table>
+    </div>`;
+  }
+  if(total > visible.length){
+    html += `<div style="text-align:center;margin-top:6px;"><button class="ghost" id="searchShowMore">Vis ${Math.min(SEARCH_PAGE_SIZE, total-visible.length)} til (${total-visible.length} gjenstår)</button></div>`;
+  }
+  el.innerHTML = html;
+  const moreBtn = document.getElementById('searchShowMore');
+  if(moreBtn) moreBtn.addEventListener('click', ()=>{ searchShown += SEARCH_PAGE_SIZE; renderSearchList(onlyOnePeriod); });
+}
+
+// ============================================================
+// COMPARE
+// ============================================================
+let lastCompareRows = [];
+let compareSort = { field: null, dir: -1 };
+
+async function renderCompareSelectors(){
+  const index = await getIndex();
+  const base = document.getElementById('cmpBase'), others = document.getElementById('cmpOthers');
+  if(!index.length){
+    base.innerHTML=''; others.innerHTML='';
+    document.getElementById('cmpResults').innerHTML = '<div class="empty">Ingen periodar er importerte enno.</div>';
+    return;
+  }
+  const label = p => `Veke ${p.week}, ${p.year}`;
+  base.innerHTML = index.map(p => `<option value="${p.key}">${label(p)}</option>`).join('');
+  others.innerHTML = index.map(p => `<label><input type="checkbox" value="${p.key}"> ${label(p)}</label>`).join('');
+  const defaultCmp = findDefaultComparison(index, index[0].key);
+  if(defaultCmp){ const cb = others.querySelector(`input[value="${defaultCmp}"]`); if(cb) cb.checked = true; }
+  base.onchange = updateCompare;
+  others.querySelectorAll('input').forEach(cb => cb.addEventListener('change', updateCompare));
+  updateCompare();
+}
+document.getElementById('cmpFilter').addEventListener('input', ()=> updateCompare());
+document.getElementById('cmpOnlyChanged').addEventListener('change', ()=> updateCompare());
+document.getElementById('cmpExport').addEventListener('click', ()=>{
+  if(!lastCompareRows.length){ toast('Ingen data å eksportera enno.'); return; }
+  csvDownload('krambua-samanlikning.csv', lastCompareRows);
+});
+
+async function updateCompare(){
+  const base = document.getElementById('cmpBase').value;
+  const checked = Array.from(document.getElementById('cmpOthers').querySelectorAll('input:checked')).map(c=>c.value);
+  const el = document.getElementById('cmpResults');
+  const allIndex = await getIndex();
+  if(allIndex.length < 2){
+    el.innerHTML = '<div class="empty">Du har berre importert éin periode så langt. Importer minst éi veke til for å få samanlikning.</div>';
+    lastCompareRows = []; return;
+  }
+  if(!base || !checked.length){
+    el.innerHTML = '<div class="empty">Vel minst éin periode å samanlikna med hovudperioden.</div>';
+    lastCompareRows = []; return;
+  }
+  const filterQ = document.getElementById('cmpFilter').value.trim().toLowerCase();
+  const onlyChanged = document.getElementById('cmpOnlyChanged').checked;
+
+  el.innerHTML = '<div class="empty"><span class="spin"></span>Hentar data …</div>';
+  const [basePeriod, fetchedOthers] = await Promise.all([
+    getPeriod(base),
+    Promise.all(checked.map(key => getPeriod(key)))
+  ]);
+  const otherPeriods = [];
+  checked.forEach((key, i) => { const p = fetchedOthers[i]; if(p) otherPeriods.push({ key, year: p.year, week: p.week, items: p.items }); });
+  if(!basePeriod){ el.innerHTML = '<div class="empty">Fann ikkje hovudperioden.</div>'; return; }
+
+  const baseMap = new Map();
+  for(const it of basePeriod.items) baseMap.set(productKey(it), it);
+
+  let rows = [];
+  for(const [key, item] of baseMap){
+    if(filterQ && !item.name.toLowerCase().includes(filterQ)) continue;
+    const basePris = item.belop / item.antall;
+    const cells = otherPeriods.map(op => {
+      const match = op.items.find(i => productKey(i) === key);
+      if(!match) return { empty:true };
+      const otherPris = match.belop / match.antall;
+      return { antall: match.antall, pris: otherPris, antallPct: pctChange(match.antall, item.antall), prisPct: pctChange(otherPris, basePris) };
+    });
+    const hasChange = cells.some(c => !c.empty && ((c.prisPct!==null && Math.abs(c.prisPct)>0.05) || (c.antallPct!==null && Math.abs(c.antallPct)>0.05)));
+    if(onlyChanged && !hasChange) continue;
+    rows.push({ name: item.name, category: item.category, antall: item.antall, pris: basePris, cells });
+  }
+
+  if(compareSort.field){
+    rows.sort((a,b)=>{
+      const av = compareSort.field==='name' ? a.name.toLowerCase() : (a.cells[0] ? (a.cells[0][compareSort.field] ?? -Infinity) : -Infinity);
+      const bv = compareSort.field==='name' ? b.name.toLowerCase() : (b.cells[0] ? (b.cells[0][compareSort.field] ?? -Infinity) : -Infinity);
+      if(av < bv) return -1*compareSort.dir; if(av > bv) return 1*compareSort.dir; return 0;
+    });
+  }
+
+  if(!rows.length){ el.innerHTML = '<div class="empty">Ingen varer å visa (evt. juster filter/kryssboks).</div>'; lastCompareRows=[]; return; }
+
+  const headCells = otherPeriods.map(op => `<th class="num" colspan="4">Veke ${op.week}, ${op.year}</th>`).join('');
+  const arrow = f => compareSort.field===f ? (compareSort.dir===1?' ↑':' ↓') : '';
+  const subHead = otherPeriods.map((op,i)=> i===0
+    ? `<th class="num">Tal seld</th><th class="num sortable" data-sort="antallPct">Δ tal${arrow('antallPct')}</th><th class="num">Pris/stk</th><th class="num sortable" data-sort="prisPct">Δ pris${arrow('prisPct')}</th>`
+    : `<th class="num">Tal seld</th><th class="num">Δ tal</th><th class="num">Pris/stk</th><th class="num">Δ pris</th>`
+  ).join('');
+
+  const bodyRows = rows.map(r => {
+    const dataCells = r.cells.map(c => c.empty
+      ? `<td class="num pill">–</td><td class="num pill">ikkje seld</td><td class="num pill">–</td><td class="num pill">–</td>`
+      : `<td class="num">${fmtNum(c.antall)}</td><td class="num">${deltaBadge(c.antallPct)}</td><td class="num">${fmtKr(c.pris)}</td><td class="num">${deltaBadge(c.prisPct)}</td>`
+    ).join('');
+    return `<tr><td class="name">${escapeHtml(r.name)}</td><td class="num">${fmtNum(r.antall)}</td><td class="num">${fmtKr(r.pris)}</td>${dataCells}</tr>`;
+  }).join('');
+
+  el.innerHTML = `<div style="overflow-x:auto;"><table>
+    <thead>
+      <tr><th class="sortable" data-sort="name">Vare${arrow('name')}</th><th class="num" colspan="2">Hovudperiode</th>${headCells}</tr>
+      <tr><th></th><th class="num">Tal seld</th><th class="num">Pris/stk</th>${subHead}</tr>
+    </thead>
+    <tbody>${bodyRows}</tbody>
+  </table></div>`;
+
+  el.querySelectorAll('th.sortable').forEach(th=>{
+    th.addEventListener('click', ()=>{
+      const f = th.dataset.sort;
+      compareSort.dir = (compareSort.field===f) ? -compareSort.dir : -1;
+      compareSort.field = f;
+      updateCompare();
+    });
+  });
+
+  // build CSV export snapshot
+  const csvHead = ['Vare','Tal (hovudperiode)','Pris (hovudperiode)'];
+  otherPeriods.forEach(op => csvHead.push(`Tal V${op.week}/${op.year}`, `Δ tal %`, `Pris V${op.week}/${op.year}`, `Δ pris %`));
+  const csvRows = [csvHead];
+  rows.forEach(r => {
+    const row = [r.name, r.antall, r.pris.toFixed(2)];
+    r.cells.forEach(c => {
+      if(c.empty) row.push('', '', '', '');
+      else row.push(c.antall, c.antallPct===null?'':c.antallPct.toFixed(1), c.pris.toFixed(2), c.prisPct===null?'':c.prisPct.toFixed(1));
+    });
+    csvRows.push(row);
+  });
+  lastCompareRows = csvRows;
+}
+
+// ============================================================
+// ÅR (årstotalar — åtskild frå veke-/månadsperiodane)
+// ============================================================
+const CATCHALL_LABELS = {
+  '100000':'Diverse','100003':'Kiosk 15%','100004':'Aviser','100005':'Telekort','100006':'Fiskeutstyr',
+  '100007':'Jernvarer','100008':'Diesel Liter','100009':'Bensin Liter','100010':'Kolon',
+  '100011':'Kolon 15%','100012':'Tobakk','100013':'Kiosk','100014':'Olje','100015':'Båtutstyr',
+  '100016':'Maling','100017':'Batteri','100018':'Alkohol','100019':'Farga Diesel liter','100020':'Kai Leige',
+  '100021':'Gass','100022':'Bil Rekv','100024':'Pant','100025':'Kreditt','100026':'Bingo',
+};
+const CATEGORY_GROUPS = [
+  ['Sigarettar (merkevarer)', ['prince ','marlboro','kent ','salem','lucky strike','petterøe','tiedemann','camel','winston']],
+  ['Snus', ['skruf','general ','oliver twist','epok']],
+  ['Is (Hennig Olsen/Sørlandsis)', ['hennig olsen','hennig ol','hennig oln','sørlandsis']],
+  ['Brus/drikke', ['cola ','coca cola','pepsi','fanta','sprite','powerade','solo ','bonaqua','urge','farris','monster ','red bull','burn ','telemark','mack ','pippi','julebrus','fuzetea']],
+  ['Fiskeutstyr (enkeltvarer)', ['sølvkroken','skarven','mustad','jig','sluk','pirken','stingsilda','møresilda','søvik','atomsilda','kinetic','biscay']],
+  ['Maling/beis (enkeltvarer)', ['gjøco','jotun','quick bengalack','herregård','herrgård','seajet','hammerite','møreroyal','møre royal']],
+  ['Godteri/snop', ['gum','pop ','gummi','sour','millions','trolli','fini','brynhild','knatter','astrokid']],
+  ['Bil/motorolje/kjemi', ['helix','shell','mobil ','crc ','turtle wax','ngk','motip','advance']],
+];
+function computeYearBreakdown(yearObj){
+  let total = 0, kreditt = 0;
+  const catchall = new Map();
+  const groups = new Map();
+  const productAgg = new Map();
+  for(const it of yearObj.items){
+    total += it.belop;
+    const label = it.code ? CATCHALL_LABELS[it.code] : null;
+    if(label){
+      if(!catchall.has(label)) catchall.set(label, 0);
+      catchall.set(label, catchall.get(label) + it.belop);
+      if(label === 'Kreditt') kreditt += it.belop;
+      continue;
+    }
+    const key = productKey(it);
+    if(!productAgg.has(key)) productAgg.set(key, { name: it.name, antall: 0, belop: 0 });
+    const a = productAgg.get(key); a.antall += it.antall; a.belop += it.belop;
+    const nameLow = it.name.toLowerCase();
+    for(const [glabel, keywords] of CATEGORY_GROUPS){
+      if(keywords.some(kw => nameLow.includes(kw))){
+        if(!groups.has(glabel)) groups.set(glabel, {belop:0, count:0});
+        const g = groups.get(glabel); g.belop += it.belop; g.count++;
+        break;
+      }
+    }
+  }
+  const top = [...productAgg.values()].sort((a,b)=> b.belop - a.belop);
+  return { total, kreditt, catchall, groups, top };
+}
+
+let yearIndexCache = null;
+async function getYearsIndex(force){
+  if(yearIndexCache && !force) return yearIndexCache;
+  const idx = await getJSON('years-index', []);
+  idx.sort((a,b)=> b.year - a.year);
+  yearIndexCache = idx;
+  return idx;
+}
+const yearCache = new Map();
+async function getYear(key){
+  if(yearCache.has(key)) return yearCache.get(key);
+  const y = await getJSON('year:' + key, null);
+  yearCache.set(key, y);
+  return y;
+}
+function invalidateYearCache(key){ if(key) yearCache.delete(key); else yearCache.clear(); yearIndexCache = null; }
+
+let pendingYearParse = null;
+const yearDropzone = document.getElementById('yearDropzone');
+const yearFileInput = document.getElementById('yearFileInput');
+yearDropzone.addEventListener('click', ()=> yearFileInput.click());
+yearDropzone.addEventListener('dragover', e=>{ e.preventDefault(); yearDropzone.classList.add('drag'); });
+yearDropzone.addEventListener('dragleave', ()=> yearDropzone.classList.remove('drag'));
+yearDropzone.addEventListener('drop', e=>{ e.preventDefault(); yearDropzone.classList.remove('drag'); if(e.dataTransfer.files[0]) handleYearFile(e.dataTransfer.files[0]); });
+yearFileInput.addEventListener('change', e=>{ if(e.target.files[0]) handleYearFile(e.target.files[0]); });
+
+async function handleYearFile(file){
+  document.getElementById('ydz-label').innerHTML = '<span class="spin"></span>Les og tolkar PDF …';
+  try{
+    const lines = await extractLines(file);
+    const items = parseStatistikkLines(lines);
+    const range = findDateRange(lines);
+    let year = new Date().getFullYear();
+    if(range){ year = parseNorwegianDate(range.from).getFullYear(); }
+    if(!items.length){ toast('Fann ingen varelinjer i denne PDF-en. Sjekk at det er rett filtype.'); return; }
+    pendingYearParse = { items, range };
+    document.getElementById('ryYear').value = year;
+    document.getElementById('ryRange').value = range ? `${range.from} – ${range.to}` : 'ikkje funne';
+    document.getElementById('rySummary').textContent =
+      `${items.length} varelinjer tolka, sum kr ${fmtKr(items.reduce((a,i)=>a+i.belop,0))}.`;
+    document.getElementById('yearReviewCard').style.display = 'block';
+    document.getElementById('yearReviewCard').scrollIntoView({behavior:'smooth', block:'nearest'});
+  }catch(err){
+    console.error(err); toast('Klarte ikkje å lesa PDF-en. Prøv igjen.');
+  }finally{
+    document.getElementById('ydz-label').textContent = 'Slepp årsstatistikk-PDF her, eller trykk for å velja fil';
+    yearFileInput.value = '';
+  }
+}
+document.getElementById('yearCancelBtn').addEventListener('click', ()=>{
+  pendingYearParse = null; document.getElementById('yearReviewCard').style.display = 'none';
+});
+document.getElementById('yearSaveBtn').addEventListener('click', async ()=>{
+  if(!pendingYearParse) return;
+  try{
+    const year = parseInt(document.getElementById('ryYear').value, 10);
+    if(!year){ toast('Fyll ut år.'); return; }
+    const key = String(year);
+    const index = await getYearsIndex();
+    const existing = index.find(y => y.key === key);
+    if(existing){
+      const ok = await askConfirm(`År ${year} er alt lagra. Vil du overskriva det?`);
+      if(!ok) return;
+    }
+    const yearData = { year, range: pendingYearParse.range, importedAt: new Date().toISOString(), items: pendingYearParse.items };
+    await setJSON('year:' + key, yearData);
+    invalidateYearCache(key);
+    const newIndex = index.filter(y => y.key !== key);
+    newIndex.push({ key, year, range: pendingYearParse.range, itemCount: pendingYearParse.items.length, importedAt: yearData.importedAt });
+    newIndex.sort((a,b)=> b.year - a.year);
+    await setJSON('years-index', newIndex);
+    toast(`År ${year} lagra (${pendingYearParse.items.length} varelinjer).`);
+    pendingYearParse = null;
+    document.getElementById('yearReviewCard').style.display = 'none';
+    renderYearTab();
+  }catch(err){
+    console.error(err);
+    if(isRateLimit(err)) toast('For mange lagringskall på kort tid. Vent litt og prøv igjen.');
+    else toast('Klarte ikkje å lagra året. Prøv igjen.');
+  }
+});
+
+async function renderYearsList(){
+  const index = await getYearsIndex();
+  const el = document.getElementById('yearsList');
+  if(!index.length){ el.innerHTML = '<div class="empty">Ingen år lagra enno.</div>'; return; }
+  el.innerHTML = index.map(y => `
+    <div class="period-item">
+      <div><div class="name">${y.year}</div><div class="meta">${y.itemCount} varelinjer${y.range ? ' · ' + y.range.from + '–' + y.range.to : ''}</div></div>
+      <button class="ghost small" data-delyear="${y.key}">Slett</button>
+    </div>`).join('');
+  el.querySelectorAll('[data-delyear]').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const key = btn.dataset.delyear;
+      const ok = await askConfirm(`Slette år ${key} permanent?`);
+      if(!ok) return;
+      try{
+        await S.delete('year:' + key);
+        const index2 = await getYearsIndex(true);
+        await setJSON('years-index', index2.filter(y => y.key !== key));
+        invalidateYearCache(key);
+        toast(`År ${key} sletta.`);
+        renderYearTab();
+      }catch(err){ console.error(err); toast('Klarte ikkje å sletta.'); }
+    });
+  });
+}
+
+let selectedYears = [];
+async function renderYearPicker(){
+  const index = await getYearsIndex();
+  const el = document.getElementById('yearPicker');
+  if(!index.length){ el.innerHTML = ''; return; }
+  selectedYears = selectedYears.filter(k => index.some(y => y.key === k));
+  if(!selectedYears.length && index.length) selectedYears = [index[0].key];
+  el.innerHTML = index.map(y => `
+    <label><input type="checkbox" data-yearpick="${y.key}" ${selectedYears.includes(y.key) ? 'checked' : ''}> ${y.year}</label>
+  `).join('');
+  el.querySelectorAll('[data-yearpick]').forEach(cb=>{
+    cb.addEventListener('change', ()=>{
+      const key = cb.dataset.yearpick;
+      if(cb.checked){
+        selectedYears.push(key);
+        if(selectedYears.length > 2){ selectedYears.shift(); }
+      }else{
+        selectedYears = selectedYears.filter(k => k !== key);
+      }
+      renderYearPicker();
+      renderYearResults();
+    });
+  });
+}
+
+function catbarRows(map, total){
+  return [...map.entries()].sort((a,b)=> b[1]-a[1]).map(([label, val])=>{
+    const w = total ? Math.max(0, Math.min(100, Math.abs(val)/total*100)) : 0;
+    return `<div class="catbar-row"><div class="cname">${escapeHtml(label)}</div>
+      <div class="catbar-track"><div class="catbar-fill" style="width:${w}%;"></div></div>
+      <div class="catbar-val">${fmtKr(val)} kr (${total ? (val/total*100).toFixed(1) : '0.0'}%)</div></div>`;
+  }).join('');
+}
+
+async function renderYearResults(){
+  const el = document.getElementById('yearResults');
+  if(!selectedYears.length){ el.innerHTML = '<div class="empty">Vel minst eitt år over.</div>'; return; }
+  const objs = await Promise.all(selectedYears.map(k => getYear(k)));
+  if(objs.some(o => !o)){ el.innerHTML = '<div class="empty">Fann ikkje data for eitt eller fleire av desse åra.</div>'; return; }
+
+  if(objs.length === 1){
+    const y = objs[0];
+    const b = computeYearBreakdown(y);
+    const brutto = b.total - b.kreditt;
+    el.innerHTML = `
+      <div class="card">
+        <h2>Årssamandrag ${y.year}</h2>
+        <div class="kpi-row">
+          <div class="kpi"><div class="label">Netto omsetning</div><div class="value">${fmtKr(b.total)} kr</div></div>
+          <div class="kpi"><div class="label">Kreditt (fakturert seinare)</div><div class="value">${fmtKr(Math.abs(b.kreditt))} kr</div></div>
+          <div class="kpi"><div class="label">Brutto varesal</div><div class="value">${fmtKr(brutto)} kr</div></div>
+        </div>
+      </div>
+      <div class="card"><h2>Samlekodar</h2>${catbarRows(b.catchall, b.total)}</div>
+      <div class="card"><h2>Kategoriar (einskildvarer)</h2>${catbarRows(new Map([...b.groups].map(([k,v])=>[k,v.belop])), b.total)}</div>
+      <div class="card"><h2>Topp 20 einskildvarer</h2>
+        <table><thead><tr><th>Vare</th><th class="num">Tal seld</th><th class="num">Beløp</th></tr></thead>
+        <tbody>${b.top.slice(0,20).map(p=>`<tr><td class="name">${escapeHtml(p.name)}</td><td class="num">${fmtNum(p.antall)}</td><td class="num">${fmtKr(p.belop)}</td></tr>`).join('')}</tbody></table>
+      </div>`;
+    return;
+  }
+
+  // two years selected — older first
+  const [a, b] = objs[0].year <= objs[1].year ? objs : [objs[1], objs[0]];
+  const sa = computeYearBreakdown(a), sb = computeYearBreakdown(b);
+  const bruttoA = sa.total - sa.kreditt, bruttoB = sb.total - sb.kreditt;
+  const diffTotal = sb.total - sa.total;
+  const pctTotal = sa.total ? (diffTotal/sa.total*100) : null;
+
+  function cmpRows(mapA, mapB){
+    const keys = new Set([...mapA.keys(), ...mapB.keys()]);
+    return [...keys].sort((k1,k2)=> (mapB.get(k2)||0) - (mapB.get(k1)||0)).map(k=>{
+      const va = mapA.get(k)||0, vb = mapB.get(k)||0, diff = vb-va;
+      const pct = pctChange(va, vb);
+      return `<tr><td class="name">${escapeHtml(k)}</td><td class="num">${fmtKr(va)}</td><td class="num">${fmtKr(vb)}</td>
+        <td class="num">${diff>=0?'+':''}${fmtKr(diff)}</td><td class="num">${deltaBadge(pct)}</td></tr>`;
+    }).join('');
+  }
+
+  const productsA = new Map(sa.top.map(p=>[p.name, p.belop]));
+  const productsB = new Map(sb.top.map(p=>[p.name, p.belop]));
+  const commonNames = [...productsA.keys()].filter(n => productsB.has(n));
+  const movers = commonNames.map(n => ({name:n, a:productsA.get(n), b:productsB.get(n), diff: productsB.get(n)-productsA.get(n)}));
+  const moversUp = [...movers].sort((x,y)=>y.diff-x.diff).slice(0,15);
+  const moversDown = [...movers].sort((x,y)=>x.diff-y.diff).slice(0,15);
+  function moverList(list){
+    return `<ul class="mover-list">${list.map(m=>`<li><span class="mname">${escapeHtml(m.name)}</span><span class="delta ${m.diff>=0?'up':'down'}">${m.diff>=0?'+':''}${fmtKr(m.diff)} kr</span></li>`).join('')}</ul>`;
+  }
+
+  el.innerHTML = `
+    <div class="card">
+      <h2>Samanlikning ${a.year} → ${b.year}</h2>
+      <div class="kpi-row">
+        <div class="kpi"><div class="label">Netto ${a.year}</div><div class="value">${fmtKr(sa.total)} kr</div></div>
+        <div class="kpi"><div class="label">Netto ${b.year}</div><div class="value">${fmtKr(sb.total)} kr</div>
+          <div class="delta">${deltaBadge(pctTotal)}</div></div>
+        <div class="kpi"><div class="label">Brutto ${a.year}</div><div class="value">${fmtKr(bruttoA)} kr</div></div>
+        <div class="kpi"><div class="label">Brutto ${b.year}</div><div class="value">${fmtKr(bruttoB)} kr</div></div>
+      </div>
+    </div>
+    <div class="card"><h2>Samlekodar, år mot år</h2>
+      <table><thead><tr><th>Samlekode</th><th class="num">${a.year}</th><th class="num">${b.year}</th><th class="num">Endring</th><th class="num">%</th></tr></thead>
+      <tbody>${cmpRows(sa.catchall, sb.catchall)}</tbody></table>
+    </div>
+    <div class="card"><h2>Kategoriar, år mot år</h2>
+      <table><thead><tr><th>Kategori</th><th class="num">${a.year}</th><th class="num">${b.year}</th><th class="num">Endring</th><th class="num">%</th></tr></thead>
+      <tbody>${cmpRows(new Map([...sa.groups].map(([k,v])=>[k,v.belop])), new Map([...sb.groups].map(([k,v])=>[k,v.belop])))}</tbody></table>
+    </div>
+    <div class="card">
+      <h2>Størst vekst/nedgang blant varer i begge år</h2>
+      <div class="mover-grid">
+        <div><h3 style="font-family:var(--display);font-size:.85rem;">Størst vekst</h3>${moverList(moversUp)}</div>
+        <div><h3 style="font-family:var(--display);font-size:.85rem;">Størst nedgang</h3>${moverList(moversDown)}</div>
+      </div>
+    </div>`;
+}
+
+async function renderYearTab(){
+  await renderYearsList();
+  await renderYearPicker();
+  await renderYearResults();
+}
+
+async function exportYearsData(){
+  try{
+    const yearsIndex = await getYearsIndex(true);
+    const years = {};
+    for(const y of yearsIndex){ years[y.key] = await getYear(y.key); }
+    const payload = { exportedAt: new Date().toISOString(), yearsIndex, years };
+    const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `krambua-arsdata-backup-${new Date().toISOString().slice(0,10)}.json`;
+    document.body.appendChild(a); a.click(); a.remove();
+    toast(`Eksporterte ${yearsIndex.length} år.`);
+  }catch(err){
+    console.error(err);
+    toast('Klarte ikkje å eksportera årsdata.');
+  }
+}
+async function importYearsDataFile(file){
+  try{
+    const text = await file.text();
+    const data = JSON.parse(text);
+    if(!data.yearsIndex){ toast('Fila inneheld ikkje gjenkjennelege årsdata.'); return; }
+    let count = 0;
+    const existingIdx = await getYearsIndex(true);
+    const mergedIdx = [...existingIdx];
+    for(const y of data.yearsIndex){
+      const yearData = data.years && data.years[y.key];
+      if(!yearData) continue;
+      await setJSON('year:' + y.key, yearData);
+      invalidateYearCache(y.key);
+      const i = mergedIdx.findIndex(x => x.key === y.key);
+      if(i >= 0) mergedIdx[i] = y; else mergedIdx.push(y);
+      count++;
+    }
+    mergedIdx.sort((a,b)=> b.year - a.year);
+    await setJSON('years-index', mergedIdx);
+    yearIndexCache = null;
+    toast(`Importerte ${count} år.`);
+    renderYearTab();
+  }catch(err){
+    console.error(err);
+    toast('Klarte ikkje å lesa denne fila — er det ein gyldig årsdata-backup?');
+  }
+}
+document.getElementById('exportYearsBtn').addEventListener('click', exportYearsData);
+document.getElementById('importYearsBtn').addEventListener('click', ()=> document.getElementById('importYearsFile').click());
+document.getElementById('importYearsFile').addEventListener('change', e=>{
+  if(e.target.files[0]) importYearsDataFile(e.target.files[0]);
+  e.target.value = '';
+});
+
+// ---------- init ----------
+checkStorageAvailable();
+renderPeriodsList();
+renderDashboardSelectors();
+
+// ---------- PWA: installer-app-knapp + service worker ----------
+if('serviceWorker' in navigator){
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('service-worker.js').catch(err => console.error('Service worker feila:', err));
+  });
+}
+let deferredInstallPrompt = null;
+window.addEventListener('beforeinstallprompt', e => {
+  e.preventDefault();
+  deferredInstallPrompt = e;
+  document.getElementById('installBtn').style.display = 'inline-block';
+});
+document.getElementById('installBtn').addEventListener('click', async () => {
+  if(!deferredInstallPrompt) return;
+  deferredInstallPrompt.prompt();
+  await deferredInstallPrompt.userChoice;
+  deferredInstallPrompt = null;
+  document.getElementById('installBtn').style.display = 'none';
+});
+window.addEventListener('appinstalled', () => {
+  document.getElementById('installBtn').style.display = 'none';
+  toast('Installert! Du finn Krambua-appen på heimeskjermen no.');
+});
+// iOS Safari has no beforeinstallprompt — show a static instruction hint instead
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone = window.matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+if(isIOS && !isStandalone){
+  document.getElementById('iosInstallHint').style.display = 'block';
+}
+</script>
+</body>
+</html>
