@@ -192,6 +192,7 @@
     <button data-tab="year">År</button>
     <button data-tab="purchases">Varebestillingar</button>
     <button data-tab="varelager">Varelager</button>
+    <button data-tab="rapport">Rapport</button>
   </nav>
 
   <!-- DASHBOARD -->
@@ -408,6 +409,32 @@
       </div>
       <div style="margin-top:12px;"><button class="primary" id="lagerFormSave">Lagre kopling</button></div>
     </div>
+  </section>
+
+  <!-- RAPPORT -->
+  <section class="panel" id="panel-rapport">
+    <div class="card">
+      <h2>Rapport: kjøpt vs. selt</h2>
+      <p class="sub">Vel periodetype og periode for å sjå kva som er kjøpt inn frå leverandørar og kva som er selt i kassa (PCK) i den perioden. Trykk «Skriv ut rapport» for ei papirvenleg utskrift.</p>
+      <div class="row">
+        <div>
+          <label class="field">Periodetype</label>
+          <select id="rapportType">
+            <option value="veke">Veke</option>
+            <option value="manad">Månad</option>
+            <option value="ar">År</option>
+          </select>
+        </div>
+        <div style="flex:2;">
+          <label class="field">Periode</label>
+          <select id="rapportPeriod"></select>
+        </div>
+      </div>
+      <div class="btnrow" style="margin-top:10px;">
+        <button class="ghost" id="rapportPrintBtn">🖨️ Skriv ut rapport</button>
+      </div>
+    </div>
+    <div id="rapportResults"><div class="empty"><div class="glyph">🧾</div>Vel ein periode over for å sjå rapporten.</div></div>
   </section>
 </div>
 <div id="toast"></div>
@@ -639,6 +666,7 @@ document.querySelectorAll('nav.tabs button').forEach(btn=>{
     if(btn.dataset.tab==='year') renderYearTab();
     if(btn.dataset.tab==='purchases') renderPurchasesTab();
     if(btn.dataset.tab==='varelager') renderVarelagerTab();
+    if(btn.dataset.tab==='rapport') renderRapportTab();
   });
 });
 
@@ -1887,6 +1915,9 @@ function renderPurchaseCard(p){
     <div class="purch-meta">${fmtPurchDate(p.dato)} · ${escapeHtml(p.kildeEpost||'ukjend avsendar')}</div>
     ${linesHtml}
     ${p.notat ? `<div class="purch-notat">${escapeHtml(p.notat)}</div>` : ''}
+    <div class="btnrow" style="margin-top:10px;">
+      <button class="ghost small" data-delpurch="${escapeHtml(p.id||'')}">Slett bestilling</button>
+    </div>
   </div>`;
 }
 
@@ -1916,6 +1947,31 @@ function updatePurchasesView(){
   }
   el.innerHTML = `<p class="muted" style="margin-top:0;">${filtered.length} bestilling${filtered.length===1?'':'ar'} vist.</p>` +
     filtered.map(renderPurchaseCard).join('');
+  wireDeletePurchaseButtons(el);
+}
+function wireDeletePurchaseButtons(el){
+  el.querySelectorAll('[data-delpurch]').forEach(btn=>{
+    btn.addEventListener('click', async ()=>{
+      const id = btn.dataset.delpurch;
+      if(!id){ toast('Fann ikkje ID for denne bestillinga.'); return; }
+      const ok = await askConfirm('Slette denne bestillinga permanent? Dette kan ikkje angras.');
+      if(!ok) return;
+      if(!getStoredToken()){ showTokenGate(''); return; }
+      btn.disabled = true;
+      try{
+        const list = await getPurchases(true);
+        const newList = list.filter(p => p.id !== id);
+        await S.set('purchases-index', JSON.stringify(newList, null, 2));
+        invalidatePurchasesCache();
+        toast('Bestilling sletta.');
+        renderPurchasesTab();
+      }catch(err){
+        console.error(err);
+        if(isRateLimit(err)) showRateLimitBanner(); else toast('Klarte ikkje å sletta: ' + err.message);
+        btn.disabled = false;
+      }
+    });
+  });
 }
 document.getElementById('purchSearch').addEventListener('input', ()=> updatePurchasesView());
 document.getElementById('purchLeverandorFilter').addEventListener('change', ()=> updatePurchasesView());
@@ -2067,6 +2123,201 @@ document.getElementById('lagerFormSave').addEventListener('click', async () => {
   }finally{
     btn.disabled = false;
   }
+});
+
+// ============================================================
+// RAPPORT (kjøpt vs. selt, per veke / månad / år — for utskrift)
+// ============================================================
+const NYNORSK_MANADER = ['januar','februar','mars','april','mai','juni','juli','august','september','oktober','november','desember'];
+let rapportCurrentPeriods = [];
+
+function rapportBuildWeekOptions(pckWeeks){
+  return pckWeeks.slice().sort((a,b)=> (b.fraDato||'').localeCompare(a.fraDato||'')).map(w => ({
+    value: 'veke:' + w.fraDato + '_' + w.tilDato,
+    label: `${w.veke||'Veke'} (${fmtPurchDate(w.fraDato)} – ${fmtPurchDate(w.tilDato)})`,
+    from: w.fraDato, to: w.tilDato,
+  }));
+}
+function rapportBuildMonthOptions(pckWeeks){
+  const map = new Map();
+  for(const w of pckWeeks){
+    if(!w.fraDato) continue;
+    const ym = w.fraDato.slice(0,7);
+    if(!map.has(ym)) map.set(ym, true);
+  }
+  return [...map.keys()].sort((a,b)=> b.localeCompare(a)).map(ym => {
+    const [y,m] = ym.split('-');
+    const from = ym + '-01';
+    const lastDay = new Date(Number(y), Number(m), 0).getDate();
+    const to = ym + '-' + String(lastDay).padStart(2,'0');
+    return { value: 'manad:' + ym, label: `${NYNORSK_MANADER[Number(m)-1]} ${y}`, from, to };
+  });
+}
+function rapportBuildYearOptions(pckWeeks){
+  const years = new Set();
+  for(const w of pckWeeks){ if(w.fraDato) years.add(w.fraDato.slice(0,4)); }
+  return [...years].sort((a,b)=> b.localeCompare(a)).map(y => ({
+    value: 'ar:' + y, label: y, from: y + '-01-01', to: y + '-12-31',
+  }));
+}
+
+async function rapportPopulatePeriods(){
+  const type = document.getElementById('rapportType').value;
+  const pckWeeks = await getPckSalesWeekly();
+  let options;
+  if(type === 'veke') options = rapportBuildWeekOptions(pckWeeks);
+  else if(type === 'manad') options = rapportBuildMonthOptions(pckWeeks);
+  else options = rapportBuildYearOptions(pckWeeks);
+  const sel = document.getElementById('rapportPeriod');
+  rapportCurrentPeriods = options;
+  if(!options.length){
+    sel.innerHTML = '<option value="">Ingen PCK-sal registrert enno</option>';
+    return;
+  }
+  sel.innerHTML = options.map(o => `<option value="${escapeHtml(o.value)}">${escapeHtml(o.label)}</option>`).join('');
+}
+
+function rapportFindSelectedPeriod(){
+  const sel = document.getElementById('rapportPeriod');
+  return rapportCurrentPeriods.find(o => o.value === sel.value) || null;
+}
+
+async function computeRapportData(period){
+  const [koplingar, purchases, pckWeeks] = await Promise.all([getVareKopling(), getPurchases(), getPckSalesWeekly()]);
+  const { from, to } = period;
+  const purchasesInRange = purchases.filter(p => p.dato && p.dato >= from && p.dato <= to);
+  const weeksInRange = pckWeeks.filter(w => w.fraDato && w.fraDato <= to && (w.tilDato||w.fraDato) >= from);
+
+  const seltMap = new Map();
+  for(const w of weeksInRange){
+    for(const v of (w.varer||[])){
+      const key = v.varenummer || v.navn;
+      const cur = seltMap.get(key) || { varenummer: v.varenummer, navn: v.navn, antall: 0, belop: 0 };
+      cur.antall += Number(v.antall) || 0;
+      cur.belop += Number(v.belop) || 0;
+      seltMap.set(key, cur);
+    }
+  }
+
+  const confirmed = koplingar.filter(k => k.status === 'stadfesta');
+  const kopla = confirmed.map(k => {
+    const faktor = Number(k.einingarPerInnkjopseining) || 1;
+    let kjoptEiningar = 0;
+    for(const p of purchasesInRange){
+      for(const v of (p.varelinjer||[])){
+        const matchNavn = k.leverandorVarenamn && v.varenavn && v.varenavn.trim().toLowerCase() === k.leverandorVarenamn.trim().toLowerCase();
+        const matchArtnr = k.leverandorArtikkelnummer && v.artikkelnummer && v.artikkelnummer === k.leverandorArtikkelnummer;
+        if(matchNavn || matchArtnr) kjoptEiningar += Number(v.antall) || 0;
+      }
+    }
+    kjoptEiningar = kjoptEiningar * faktor;
+    const seltRad = seltMap.get(k.pckVarenummer);
+    const seltEiningar = seltRad ? seltRad.antall : 0;
+    return {
+      navn: k.pckNavn || k.leverandorVarenamn || 'Ukjend vare',
+      kjoptEiningar: Math.round(kjoptEiningar*100)/100,
+      seltEiningar: Math.round(seltEiningar*100)/100,
+      balanse: Math.round((kjoptEiningar-seltEiningar)*100)/100,
+    };
+  }).sort((a,b)=> a.navn.localeCompare(b.navn,'nb'));
+
+  const seltRader = [...seltMap.values()].sort((a,b)=> (a.navn||'').localeCompare(b.navn||'','nb'));
+  const seltTotalBelop = seltRader.reduce((s,r)=> s+r.belop, 0);
+  const seltTotalAntall = seltRader.reduce((s,r)=> s+r.antall, 0);
+
+  return { from, to, purchasesInRange, seltRader, kopla, seltTotalBelop, seltTotalAntall };
+}
+
+function rapportRenderHtml(data, periodLabel){
+  const purchRows = data.purchasesInRange.length
+    ? data.purchasesInRange.map(p => `<tr>
+        <td>${fmtPurchDate(p.dato)}</td>
+        <td>${escapeHtml(p.leverandor||'—')}</td>
+        <td>${p.varedetaljerMangler ? '<em>Varedetaljar manglar</em>' : (p.varelinjer||[]).map(v=>`${escapeHtml(v.varenavn||'')} (${v.antall!=null?fmtNum(v.antall):'—'} ${escapeHtml(v.enhet||'')})`).join('<br>')}</td>
+      </tr>`).join('')
+    : '<tr><td colspan="3"><em>Ingen bestillingar registrert i denne perioden.</em></td></tr>';
+
+  const seltRows = data.seltRader.length
+    ? data.seltRader.map(r => `<tr><td>${escapeHtml(r.varenummer||'—')}</td><td>${escapeHtml(r.navn||'—')}</td><td class="num">${fmtNum(Math.round(r.antall*100)/100)}</td><td class="num">${fmtKr(r.belop)}</td></tr>`).join('')
+    : '<tr><td colspan="4"><em>Ingen PCK-sal registrert i denne perioden.</em></td></tr>';
+
+  const koplaRows = data.kopla.length
+    ? data.kopla.map(r => `<tr><td>${escapeHtml(r.navn)}</td><td class="num">${fmtNum(r.kjoptEiningar)}</td><td class="num">${fmtNum(r.seltEiningar)}</td><td class="num${r.balanse<0?' neg':''}">${fmtNum(r.balanse)}</td></tr>`).join('')
+    : '<tr><td colspan="4"><em>Ingen stadfesta vare-koplingar enno.</em></td></tr>';
+
+  return `
+    <div class="card">
+      <h2>Kjøpt inn: bestillingar frå leverandørar</h2>
+      <p class="sub" style="margin-top:0;">${escapeHtml(periodLabel)} (${fmtPurchDate(data.from)} – ${fmtPurchDate(data.to)})</p>
+      <table><thead><tr><th>Dato</th><th>Leverandør</th><th>Varer</th></tr></thead><tbody>${purchRows}</tbody></table>
+    </div>
+    <div class="card">
+      <h2>Selt i kassa (PCK)</h2>
+      <p class="sub" style="margin-top:0;">Totalt ${fmtNum(Math.round(data.seltTotalAntall*100)/100)} stk selt, for ${fmtKr(data.seltTotalBelop)} kr.</p>
+      <table><thead><tr><th>Varenr.</th><th>Vare</th><th class="num">Antall</th><th class="num">Beløp</th></tr></thead><tbody>${seltRows}</tbody></table>
+    </div>
+    <div class="card">
+      <h2>Kjøpt vs. selt for kopla varer</h2>
+      <p class="sub" style="margin-top:0;">Berre varer med stadfesta vare-kopling (Varelager-fana) kan sammenliknast direkte. Kjøpt/selt er i PCK-sal-einingar.</p>
+      <table><thead><tr><th>Vare</th><th class="num">Kjøpt</th><th class="num">Selt</th><th class="num">Differanse</th></tr></thead><tbody>${koplaRows}</tbody></table>
+    </div>`;
+}
+
+async function renderRapportTab(){
+  await rapportPopulatePeriods();
+  await rapportShowResults();
+}
+
+async function rapportShowResults(){
+  const el = document.getElementById('rapportResults');
+  const period = rapportFindSelectedPeriod();
+  if(!period){
+    el.innerHTML = '<div class="empty"><div class="glyph">🧾</div>Ingen periode å visa enno — importer PCK-vekesal fyrst (sjå Varelager-fana / automatisk oppdatering).</div>';
+    return;
+  }
+  el.innerHTML = '<div class="empty"><span class="spin"></span>Hentar data …</div>';
+  const data = await computeRapportData(period);
+  const sel = document.getElementById('rapportPeriod');
+  const label = sel.selectedOptions[0] ? sel.selectedOptions[0].textContent : '';
+  el.innerHTML = rapportRenderHtml(data, label);
+}
+
+document.getElementById('rapportType').addEventListener('change', async () => {
+  await rapportPopulatePeriods();
+  await rapportShowResults();
+});
+document.getElementById('rapportPeriod').addEventListener('change', () => rapportShowResults());
+
+document.getElementById('rapportPrintBtn').addEventListener('click', async () => {
+  const period = rapportFindSelectedPeriod();
+  if(!period){ toast('Vel ein periode fyrst.'); return; }
+  const sel = document.getElementById('rapportPeriod');
+  const periodLabel = sel.selectedOptions[0] ? sel.selectedOptions[0].textContent : '';
+  const data = await computeRapportData(period);
+  const bodyHtml = rapportRenderHtml(data, periodLabel);
+  const win = window.open('', '_blank');
+  if(!win){ toast('Nettlesaren blokkerte utskriftsvindauget — tillat sprettoppvindauge for denne sida.'); return; }
+  win.document.write(`<!DOCTYPE html><html lang="nn"><head><meta charset="UTF-8"><title>Rapport – ${escapeHtml(periodLabel)} – Krambua</title>
+    <style>
+      body{font-family:Arial,Helvetica,sans-serif;color:#20303D;margin:24px;}
+      h1{font-size:1.3rem;margin-bottom:2px;}
+      h2{font-size:1.05rem;margin:22px 0 6px;}
+      .sub{color:#5B6B72;font-size:.85rem;margin:0 0 8px;}
+      table{width:100%;border-collapse:collapse;margin-top:6px;font-size:.85rem;}
+      th,td{border:1px solid #CFC9B8;padding:5px 8px;text-align:left;vertical-align:top;}
+      td.num, th.num{text-align:right;}
+      .neg{color:#AE4534;font-weight:600;}
+      .card{margin-bottom:18px;}
+      @media print{ body{margin:8mm;} }
+    </style>
+  </head><body>
+    <h1>Krambua Bensin &amp; Storkiosk — Rapport</h1>
+    <div class="sub">Skrive ut ${new Date().toLocaleDateString('nb-NO')}</div>
+    ${bodyHtml}
+  </body></html>`);
+  win.document.close();
+  win.focus();
+  setTimeout(()=>{ win.print(); }, 300);
 });
 
 // ---------- init ----------
