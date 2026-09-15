@@ -1,224 +1,32 @@
 [
-    {
-        "id": "2026-09-14-cocacola",
-        "leverandor": "Coca-Cola Europacific Partners Norge AS",
-        "dato": "2026-09-14",
-        "kildeEpost": "NOREPLY@cokecce.com",
-        "referansenummer": "0131580155",
-        "varedetaljerMangler": false,
-        "varelinjer": [
-            {
-                "varenavn": "COCA-COLA 500MLNRF X24 ND",
-                "antall": 2,
-                "enhet": "KS",
-                "artikkelnummer": "473228"
-            }
-        ],
-        "status": "Motteke",
-        "notat": ""
-    },
-    {
-        "id": "2026-09-14-asko",
-        "leverandor": "ASKO Rogaland",
-        "dato": "2026-09-14",
-        "kildeEpost": "edi@norgesgruppen.no",
-        "referansenummer": "4880920",
-        "varedetaljerMangler": false,
-        "varelinjer": [
-            {
-                "varenavn": "Pommes Frites Riflet 180gx70stk Frionor (1 ESK Å 12,6KG)",
-                "antall": 1,
-                "enhet": "ESK",
-                "artikkelnummer": "5222609"
-            },
-            {
-                "varenavn": "Softis-Mix Frossen 9,5L Hennig- Olsen (1 BX Å 9,5L)",
-                "antall": 2,
-                "enhet": "BX",
-                "artikkelnummer": "2494466"
-            },
-            {
-                "varenavn": "S-Märke Hallonsura 80g Candy People (18 POS Å 80G)",
-                "antall": 1,
-                "enhet": "POS",
-                "artikkelnummer": "5192000"
-            },
-            {
-                "varenavn": "Hamburger Original 33X160g (1 ESK Å 5,28KG)",
-                "antall": 1,
-                "enhet": "ESK",
-                "artikkelnummer": "4690798"
-            },
-            {
-                "varenavn": "Peanøtter Original 275g Polly (24 POS Å 275G)",
-                "antall": 1,
-                "enhet": "POS",
-                "artikkelnummer": "6108443"
-            },
-            {
-                "varenavn": "Oppvaskbørste 1stk First Price (24 STK Å 1STK)",
-                "antall": 1,
-                "enhet": "STK",
-                "artikkelnummer": "3239886"
-            },
-            {
-                "varenavn": "Skalle Cool Hallon Skum 90g Bubs (12 POS Å 90G)",
-                "antall": 1,
-                "enhet": "POS",
-                "artikkelnummer": "5353016"
-            },
-            {
-                "varenavn": "Billampe 64210 H7-Eco 1Bl Osram (10 PK Å 1STK)",
-                "antall": 1,
-                "enhet": "PK",
-                "artikkelnummer": "6500672"
-            },
-            {
-                "varenavn": "Gummihansker Str L Aquatex (12 POS Å 1PAR)",
-                "antall": 1,
-                "enhet": "POS",
-                "artikkelnummer": "2232056"
-            },
-            {
-                "varenavn": "Panini Chorizo 200g (1 ESK Å 10STK)",
-                "antall": 1,
-                "enhet": "ESK",
-                "artikkelnummer": "1590140"
-            },
-            {
-                "varenavn": "Panini m/Kylling & Pesto 180g (17 STK Å 180G)",
-                "antall": 1,
-                "enhet": "STK",
-                "artikkelnummer": "4744199"
-            },
-            {
-                "varenavn": "S-Marke Supersure 80g Jamtgott (18 POS Å 80G)",
-                "antall": 1,
-                "enhet": "POS",
-                "artikkelnummer": "4188702"
-            },
-            {
-                "varenavn": "Turtle Wax Carnauba Wash&Wax 500ml (6 FL Å 500ML)",
-                "antall": 1,
-                "enhet": "FL",
-                "artikkelnummer": "5460217"
-            },
-            {
-                "varenavn": "Billampe 7528 (10 STK Å 1STK)",
-                "antall": 1,
-                "enhet": "STK",
-                "artikkelnummer": "1220086"
-            },
-            {
-                "varenavn": "Skruf Sw No65 Fresh Freeze S6 (5 BX Å 17,3G)",
-                "antall": 1,
-                "enhet": "BX",
-                "artikkelnummer": "6351548"
-            },
-            {
-                "varenavn": "Supermix Smågodt 220g Brynild (20 POS Å 220G)",
-                "antall": 1,
-                "enhet": "POS",
-                "artikkelnummer": "6552541"
-            },
-            {
-                "varenavn": "Tiedemanns Rød Mix Nr.2 44g (5 PK Å 44G)",
-                "antall": 1,
-                "enhet": "PK",
-                "artikkelnummer": "6045850"
-            },
-            {
-                "varenavn": "Tiedemanns Rød Mix Nr.3 44g (5 PK Å 44G)",
-                "antall": 2,
-                "enhet": "PK",
-                "artikkelnummer": "6045587"
-            },
-            {
-                "varenavn": "Engangshanske Nitril L Pf Magic Touch (10 STK Å 100STK)",
-                "antall": 1,
-                "enhet": "STK",
-                "artikkelnummer": "2101491"
-            },
-            {
-                "varenavn": "Epoxylim 25ml Gorilla Glue (6 STK Å 25ML)",
-                "antall": 1,
-                "enhet": "STK",
-                "artikkelnummer": "5377809"
-            },
-            {
-                "varenavn": "Billampe 7506 (10 STK Å 1STK)",
-                "antall": 1,
-                "enhet": "STK",
-                "artikkelnummer": "1220052"
-            },
-            {
-                "varenavn": "Skjærefjøl Hvit 50X35cm Plast Exxent (5 ESK Å 1STK)",
-                "antall": 1,
-                "enhet": "ESK",
-                "artikkelnummer": "3365988"
-            },
-            {
-                "varenavn": "Otrivin Nesespray Voksen 1Mg 10ml (10 PK Å 10ML)",
-                "antall": 1,
-                "enhet": "PK",
-                "artikkelnummer": "6692586"
-            },
-            {
-                "varenavn": "Pepsi Max 0,5L fl (24 FL Å 0,5L)",
-                "antall": 1,
-                "enhet": "FL",
-                "artikkelnummer": "5101167"
-            },
-            {
-                "varenavn": "Epok No21 Freeze 7 (5 BX Å 15,4G)",
-                "antall": 2,
-                "enhet": "BX",
-                "artikkelnummer": "6043525"
-            },
-            {
-                "varenavn": "Hamburgerbrød Chicago 90g Hatting (1 ESK Å 48STK)",
-                "antall": 1,
-                "enhet": "ESK",
-                "artikkelnummer": "4517488"
-            },
-            {
-                "varenavn": "Epok No7 Freeze 5 (5 BX Å 15,4G)",
-                "antall": 1,
-                "enhet": "BX",
-                "artikkelnummer": "6043459"
-            },
-            {
-                "varenavn": "Epok No5 Tropic Breeze 2 (5 BX Å 15,4G)",
-                "antall": 1,
-                "enhet": "BX",
-                "artikkelnummer": "6043442"
-            },
-            {
-                "varenavn": "Turtle Wax Clean-Up Wipes 24stk (6 PK Å 24STK)",
-                "antall": 1,
-                "enhet": "PK",
-                "artikkelnummer": "6013056"
-            },
-            {
-                "varenavn": "Sikringer 16A 4stk Osram (10 PK Å 4STK)",
-                "antall": 1,
-                "enhet": "PK",
-                "artikkelnummer": "5919972"
-            }
-        ],
-        "status": "Bestilt",
-        "notat": "Ordrebekreftelse (ikkje enno levert — leveringsdato 16.09.2026). Ordrenummer ASKO (portal): 41206014, EDI-referanse frå e-post: 4880920, kundereferanse: AN-41206014. Henta frå ASKO sin bestillingsportal (Kristoffer lasta ned ordrebekreftelsen sjølv) — meir nøyaktig enn den zooma PDF-en frå e-posten. «Antall» er talet på innkjøpseiningar (ESK/PK/BX/STK/POS/FL) bestilt; pakningsinnhaldet (t.d. «48STK» eller «5,28KG») står i parentes i varenamnet, og talet FØR eininga (t.d. «48» i «1 ESK Å 48STK») er talet på sals-einingar per innkjøpseining — sjå og data/asko-produktkatalog i prosjektet for ein samla oversikt over faste ASKO-varer. Skjærefjøl Hvit (3365988) vart bestilt som brote pakning (0 heile + 1 brote), sett til antall:1 her. For å få dette inn i Varelager-fana må kvar vare koplast manuelt i Varelager-fana med rett «einingar per innkjøpseining»-faktor, slik det alt er gjort for Coca-Cola."
-    },
-    {
-        "id": "2026-09-09-asko",
-        "leverandor": "ASKO Rogaland",
-        "dato": "2026-09-09",
-        "kildeEpost": "noreply@asko.no",
-        "referansenummer": "",
-        "varedetaljerMangler": true,
-        "kolliantall": 2,
-        "varelinjer": [],
-        "status": "Levert",
-        "notat": "E-post fra ASKO er berre ein leveringskvittering (kolli/pall-niva, SSCC-kodar), ikkje ei vareliste med tal per produkt. Faktisk bestilt varemengde ligg i ASKO sin bestillingsportal, ikkje i e-posten."
-    }
+  {
+    "id": "2026-09-14-cocacola",
+    "leverandor": "Coca-Cola Europacific Partners Norge AS",
+    "dato": "2026-09-14",
+    "kildeEpost": "NOREPLY@cokecce.com",
+    "referansenummer": "0131580155",
+    "varedetaljerMangler": false,
+    "varelinjer": [
+      {
+        "varenavn": "COCA-COLA 500MLNRF X24 ND",
+        "antall": 2,
+        "enhet": "KS",
+        "artikkelnummer": "473228"
+      }
+    ],
+    "status": "Motteke",
+    "notat": ""
+  },
+  {
+    "id": "2026-09-09-asko",
+    "leverandor": "ASKO Rogaland",
+    "dato": "2026-09-09",
+    "kildeEpost": "noreply@asko.no",
+    "referansenummer": "",
+    "varedetaljerMangler": true,
+    "kolliantall": 2,
+    "varelinjer": [],
+    "status": "Levert",
+    "notat": "E-post fra ASKO er berre ein leveringskvittering (kolli/pall-niva, SSCC-kodar), ikkje ei vareliste med tal per produkt. Faktisk bestilt varemengde ligg i ASKO sin bestillingsportal, ikkje i e-posten."
+  }
 ]
