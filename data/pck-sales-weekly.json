@@ -1,0 +1,1307 @@
+[
+    {
+          "veke": "2026-W37",
+          "fraDato": "2026-09-08",
+          "tilDato": "2026-09-15",
+          "kilde": "min.pckasse.no, rapporten \"Varer\" (articles.aspx), henta periode for periode (kl 10:00-10:00, helg slått saman)",
+          "belopInklMva": true,
+          "varer": [
+                  {
+                            "varenummer": "105554",
+                            "navn": "Fast leigeavtale Knapphus",
+                            "antall": 1.0,
+                            "belop": 14737.5
+                  },
+                  {
+                            "varenummer": "105555",
+                            "navn": "Kompensasjon drivstoff",
+                            "antall": 12353.37,
+                            "belop": 8153.22
+                  },
+                  {
+                            "varenummer": "105553",
+                            "navn": "Fast leigeavtale toalett",
+                            "antall": 1.0,
+                            "belop": 6332.25
+                  },
+                  {
+                            "varenummer": "103658",
+                            "navn": "Tiedemann Rød 3",
+                            "antall": 4.0,
+                            "belop": 1548.0
+                  },
+                  {
+                            "varenummer": "100235",
+                            "navn": "Prince White",
+                            "antall": 6.0,
+                            "belop": 1152.0
+                  },
+                  {
+                            "varenummer": "100234",
+                            "navn": "Prince Red",
+                            "antall": 5.0,
+                            "belop": 960.0
+                  },
+                  {
+                            "varenummer": "105251",
+                            "navn": "Kaffe enkel",
+                            "antall": 27.0,
+                            "belop": 810.0
+                  },
+                  {
+                            "varenummer": "104813",
+                            "navn": "pilkesnøre",
+                            "antall": 4.0,
+                            "belop": 796.0
+                  },
+                  {
+                            "varenummer": "103662",
+                            "navn": "Tiedemann Rød 2",
+                            "antall": 2.0,
+                            "belop": 774.0
+                  },
+                  {
+                            "varenummer": "103407",
+                            "navn": "Petterøe`s original 3",
+                            "antall": 2.0,
+                            "belop": 774.0
+                  },
+                  {
+                            "varenummer": "100243",
+                            "navn": "Petterøe`s Lys Blå",
+                            "antall": 3.0,
+                            "belop": 591.0
+                  },
+                  {
+                            "varenummer": "104981",
+                            "navn": "Alkylatbensin 4T",
+                            "antall": 2.0,
+                            "belop": 578.0
+                  },
+                  {
+                            "varenummer": "105249",
+                            "navn": "Milkshake",
+                            "antall": 7.0,
+                            "belop": 553.0
+                  },
+                  {
+                            "varenummer": "105193",
+                            "navn": "Gjøco Alle rom 2,7l Base A",
+                            "antall": 1.0,
+                            "belop": 549.0
+                  },
+                  {
+                            "varenummer": "104705",
+                            "navn": "Stabelhengsle 31 cm",
+                            "antall": 1.0,
+                            "belop": 509.0
+                  },
+                  {
+                            "varenummer": "9788269289312",
+                            "navn": "Trond Ove Alvseike Etne",
+                            "antall": 1.0,
+                            "belop": 490.0
+                  },
+                  {
+                            "varenummer": "103532",
+                            "navn": "sluksett øret 7g/12g",
+                            "antall": 2.0,
+                            "belop": 458.0
+                  },
+                  {
+                            "varenummer": "104664",
+                            "navn": "Gjøco Rå Linolja 4L",
+                            "antall": 1.0,
+                            "belop": 429.0
+                  },
+                  {
+                            "varenummer": "101904",
+                            "navn": "Gjøco Vegg10 INTERIØR Base A 2,7l",
+                            "antall": 1.0,
+                            "belop": 419.0
+                  },
+                  {
+                            "varenummer": "105163",
+                            "navn": "Biscay storm 14cm",
+                            "antall": 2.0,
+                            "belop": 418.0
+                  },
+                  {
+                            "varenummer": "104774",
+                            "navn": "Biscay Storm Sardine BIW",
+                            "antall": 2.0,
+                            "belop": 418.0
+                  },
+                  {
+                            "varenummer": "103161",
+                            "navn": "Mobil Sagkjedolje 4l",
+                            "antall": 1.0,
+                            "belop": 399.0
+                  },
+                  {
+                            "varenummer": "100245",
+                            "navn": "Petterøe`s Original",
+                            "antall": 2.0,
+                            "belop": 394.0
+                  },
+                  {
+                            "varenummer": "7391846104018",
+                            "navn": "mora fiskekniv",
+                            "antall": 1.0,
+                            "belop": 366.0
+                  },
+                  {
+                            "varenummer": "105250",
+                            "navn": "Slurp",
+                            "antall": 7.0,
+                            "belop": 343.0
+                  },
+                  {
+                            "varenummer": "104167",
+                            "navn": "Siberia rød slim",
+                            "antall": 3.0,
+                            "belop": 339.0
+                  },
+                  {
+                            "varenummer": "105172",
+                            "navn": "Stanley Bikksaks",
+                            "antall": 1.0,
+                            "belop": 339.0
+                  },
+                  {
+                            "varenummer": "102931",
+                            "navn": "Motip Contact cleaner",
+                            "antall": 2.0,
+                            "belop": 338.0
+                  },
+                  {
+                            "varenummer": "103728",
+                            "navn": "Pelikankrok m/øye 11x120",
+                            "antall": 2.0,
+                            "belop": 318.0
+                  },
+                  {
+                            "varenummer": "104027",
+                            "navn": "Industribøtte 20L",
+                            "antall": 4.0,
+                            "belop": 316.0
+                  },
+                  {
+                            "varenummer": "104994",
+                            "navn": "Carlube DFI 2-stroke Marine oil 1l",
+                            "antall": 1.0,
+                            "belop": 289.0
+                  },
+                  {
+                            "varenummer": "104644",
+                            "navn": "Penselsett Go 3stk",
+                            "antall": 4.0,
+                            "belop": 280.0
+                  },
+                  {
+                            "varenummer": "101151",
+                            "navn": "Tec7 hvit",
+                            "antall": 1.0,
+                            "belop": 269.0
+                  },
+                  {
+                            "varenummer": "101190",
+                            "navn": "RELEKTA101 Byggskum500ml",
+                            "antall": 1.0,
+                            "belop": 259.0
+                  },
+                  {
+                            "varenummer": "104842",
+                            "navn": "Fl sagkjede rund 4,5mm",
+                            "antall": 2.0,
+                            "belop": 258.0
+                  },
+                  {
+                            "varenummer": "7340130711272",
+                            "navn": "Lastestramme",
+                            "antall": 2.0,
+                            "belop": 258.0
+                  },
+                  {
+                            "varenummer": "104952",
+                            "navn": "Alkylatbensin 2-TAKT",
+                            "antall": 1.0,
+                            "belop": 249.0
+                  },
+                  {
+                            "varenummer": "100563",
+                            "navn": "Dieseltilsetning Alron 0,5l",
+                            "antall": 1.0,
+                            "belop": 239.0
+                  },
+                  {
+                            "varenummer": "105219",
+                            "navn": "Grillkull 2,5 kg",
+                            "antall": 2.0,
+                            "belop": 238.0
+                  },
+                  {
+                            "varenummer": "7044610876665",
+                            "navn": "Frus Eple og kiwi 0.5L",
+                            "antall": 6.0,
+                            "belop": 234.0
+                  },
+                  {
+                            "varenummer": "102421",
+                            "navn": "Hennig Olsen SANDWICH Fløteis med toffeesmak",
+                            "antall": 8.0,
+                            "belop": 232.0
+                  },
+                  {
+                            "varenummer": "103699",
+                            "navn": "Epok No7 Freeze5",
+                            "antall": 2.0,
+                            "belop": 230.0
+                  },
+                  {
+                            "varenummer": "101909",
+                            "navn": "Gjøco Våtrom 25 INTERIØR Base A 0,68l",
+                            "antall": 1.0,
+                            "belop": 229.0
+                  },
+                  {
+                            "varenummer": "104597",
+                            "navn": "Hurtiglader veggadapter",
+                            "antall": 1.0,
+                            "belop": 229.0
+                  },
+                  {
+                            "varenummer": "104933",
+                            "navn": "Lampeledning 10m",
+                            "antall": 1.0,
+                            "belop": 229.0
+                  },
+                  {
+                            "varenummer": "104137",
+                            "navn": "Siberia Rød 16gr",
+                            "antall": 2.0,
+                            "belop": 226.0
+                  },
+                  {
+                            "varenummer": "100221",
+                            "navn": "Skruf fresh xtra stark white slim S4",
+                            "antall": 2.0,
+                            "belop": 226.0
+                  },
+                  {
+                            "varenummer": "100028",
+                            "navn": "Red Bull 250ml",
+                            "antall": 7.0,
+                            "belop": 224.0
+                  },
+                  {
+                            "varenummer": "102727",
+                            "navn": "Red Bull 473ml",
+                            "antall": 4.0,
+                            "belop": 220.0
+                  },
+                  {
+                            "varenummer": "102443",
+                            "navn": "Hennig Olsen DAIM BALLTOP",
+                            "antall": 5.0,
+                            "belop": 220.0
+                  },
+                  {
+                            "varenummer": "101466",
+                            "navn": "Sølvkroken Jensen Sild Twin s/b 60gr",
+                            "antall": 1.0,
+                            "belop": 209.0
+                  },
+                  {
+                            "varenummer": "103295",
+                            "navn": "Tyttebærkrok Hekle",
+                            "antall": 3.0,
+                            "belop": 207.0
+                  },
+                  {
+                            "varenummer": "100038",
+                            "navn": "Coca Cola Uten Sukker",
+                            "antall": 3.0,
+                            "belop": 207.0
+                  },
+                  {
+                            "varenummer": "5707549274026",
+                            "navn": "Kinetic fiskeharpe",
+                            "antall": 1.0,
+                            "belop": 199.0
+                  },
+                  {
+                            "varenummer": "103108",
+                            "navn": "Støvmaske 3M m/ventil 3pk",
+                            "antall": 1.0,
+                            "belop": 199.0
+                  },
+                  {
+                            "varenummer": "101311",
+                            "navn": "Jordan Basic Mallerrullesett 18cm",
+                            "antall": 1.0,
+                            "belop": 199.0
+                  },
+                  {
+                            "varenummer": "102404",
+                            "navn": "Jordan Ultimate Presisjon inn/ute 50mm",
+                            "antall": 1.0,
+                            "belop": 199.0
+                  },
+                  {
+                            "varenummer": "101461",
+                            "navn": "Sølvkroken Jensen Sild Twin s/b 40gr",
+                            "antall": 1.0,
+                            "belop": 199.0
+                  },
+                  {
+                            "varenummer": "104170",
+                            "navn": "Frostvæske blå 1l",
+                            "antall": 2.0,
+                            "belop": 198.0
+                  },
+                  {
+                            "varenummer": "105018",
+                            "navn": "Monster Energy Ultra",
+                            "antall": 4.0,
+                            "belop": 196.0
+                  },
+                  {
+                            "varenummer": "54035157",
+                            "navn": "Powerade lemon zero sugar",
+                            "antall": 4.0,
+                            "belop": 196.0
+                  },
+                  {
+                            "varenummer": "100240",
+                            "navn": "Kent Surround",
+                            "antall": 1.0,
+                            "belop": 192.0
+                  },
+                  {
+                            "varenummer": "101157",
+                            "navn": "Relekta101 Brannakryl 310ml",
+                            "antall": 1.0,
+                            "belop": 189.0
+                  },
+                  {
+                            "varenummer": "4042448361431",
+                            "navn": "precision mask outdoor",
+                            "antall": 1.0,
+                            "belop": 189.0
+                  },
+                  {
+                            "varenummer": "104312",
+                            "navn": "Turtle wax Textile Cleaner&Protector",
+                            "antall": 1.0,
+                            "belop": 189.0
+                  },
+                  {
+                            "varenummer": "103260",
+                            "navn": "Pepsi max 0,5l",
+                            "antall": 4.0,
+                            "belop": 176.0
+                  },
+                  {
+                            "varenummer": "100044",
+                            "navn": "Coca Cola Uten sukker 0,5l",
+                            "antall": 4.0,
+                            "belop": 176.0
+                  },
+                  {
+                            "varenummer": "104525",
+                            "navn": "Hugos",
+                            "antall": 1.0,
+                            "belop": 165.0
+                  },
+                  {
+                            "varenummer": "7070379922008",
+                            "navn": "båtvask",
+                            "antall": 1.0,
+                            "belop": 159.0
+                  },
+                  {
+                            "varenummer": "102094",
+                            "navn": "Turtle Wax Clearvue rain clear 300ml",
+                            "antall": 1.0,
+                            "belop": 157.0
+                  },
+                  {
+                            "varenummer": "104449",
+                            "navn": "Snkers 2 pk",
+                            "antall": 4.0,
+                            "belop": 156.0
+                  },
+                  {
+                            "varenummer": "101459",
+                            "navn": "Sølvkroken Jensen Sild Twin sølv 60g",
+                            "antall": 1.0,
+                            "belop": 156.0
+                  },
+                  {
+                            "varenummer": "104779",
+                            "navn": "Søvik Torsken Bla/glitter 200gr",
+                            "antall": 1.0,
+                            "belop": 149.0
+                  },
+                  {
+                            "varenummer": "103444",
+                            "navn": "mønster punch",
+                            "antall": 3.0,
+                            "belop": 147.0
+                  },
+                  {
+                            "varenummer": "102941",
+                            "navn": "Mønster Juiced",
+                            "antall": 3.0,
+                            "belop": 147.0
+                  },
+                  {
+                            "varenummer": "103527",
+                            "navn": "Sagkjedeolje 1l",
+                            "antall": 1.0,
+                            "belop": 142.0
+                  },
+                  {
+                            "varenummer": "103405",
+                            "navn": "Gjøco Lettsparkel",
+                            "antall": 2.0,
+                            "belop": 138.0
+                  },
+                  {
+                            "varenummer": "104992",
+                            "navn": "Spylervæske",
+                            "antall": 2.0,
+                            "belop": 138.0
+                  },
+                  {
+                            "varenummer": "103915",
+                            "navn": "Jordan Vegg og tak 10 cm",
+                            "antall": 2.0,
+                            "belop": 138.0
+                  },
+                  {
+                            "varenummer": "102728",
+                            "navn": "WD 40 200ml",
+                            "antall": 1.0,
+                            "belop": 136.0
+                  },
+                  {
+                            "varenummer": "102442",
+                            "navn": "Hennig Olsen BIG DEAL Karamell",
+                            "antall": 3.0,
+                            "belop": 132.0
+                  },
+                  {
+                            "varenummer": "104656",
+                            "navn": "Lommelykt Led zoom",
+                            "antall": 1.0,
+                            "belop": 130.0
+                  },
+                  {
+                            "varenummer": "105039",
+                            "navn": "Tilhenger adapter 7-13 Pol",
+                            "antall": 1.0,
+                            "belop": 129.0
+                  },
+                  {
+                            "varenummer": "10553",
+                            "navn": "Drikke/brus",
+                            "antall": 3.0,
+                            "belop": 120.0
+                  },
+                  {
+                            "varenummer": "104419",
+                            "navn": "First price Tøyvask",
+                            "antall": 1.0,
+                            "belop": 119.0
+                  },
+                  {
+                            "varenummer": "100515",
+                            "navn": "Telesokken Raggsokk Str.39-42",
+                            "antall": 1.0,
+                            "belop": 119.0
+                  },
+                  {
+                            "varenummer": "101562",
+                            "navn": "Skarven Supreme 2pk 100m 0,25 5kg",
+                            "antall": 1.0,
+                            "belop": 119.0
+                  },
+                  {
+                            "varenummer": "4013142124509",
+                            "navn": "Kip Lerretstape sølv 50mm x 50m",
+                            "antall": 1.0,
+                            "belop": 119.0
+                  },
+                  {
+                            "varenummer": "102819",
+                            "navn": "Minirull 10cm Bunnstoff og metall",
+                            "antall": 2.0,
+                            "belop": 118.0
+                  },
+                  {
+                            "varenummer": "103777",
+                            "navn": "Kims chips Salt Crunch",
+                            "antall": 2.0,
+                            "belop": 118.0
+                  },
+                  {
+                            "varenummer": "7045570043227",
+                            "navn": "Bensinkanne rød 5L",
+                            "antall": 1.0,
+                            "belop": 115.0
+                  },
+                  {
+                            "varenummer": "103765",
+                            "navn": "Epok No5 Tropic Breeze 2",
+                            "antall": 1.0,
+                            "belop": 115.0
+                  },
+                  {
+                            "varenummer": "103675",
+                            "navn": "Epok No 1 Ice blue",
+                            "antall": 1.0,
+                            "belop": 115.0
+                  },
+                  {
+                            "varenummer": "104136",
+                            "navn": "Epok No 2 Artc Blue 2",
+                            "antall": 1.0,
+                            "belop": 115.0
+                  },
+                  {
+                            "varenummer": "104238",
+                            "navn": "Epok No 21 Freeze 7",
+                            "antall": 1.0,
+                            "belop": 115.0
+                  },
+                  {
+                            "varenummer": "102725",
+                            "navn": "Malerrull Jordan ultimat 18cm",
+                            "antall": 1.0,
+                            "belop": 115.0
+                  },
+                  {
+                            "varenummer": "104175",
+                            "navn": "Hennig Olsen Creme Deluxe",
+                            "antall": 3.0,
+                            "belop": 114.0
+                  },
+                  {
+                            "varenummer": "103320",
+                            "navn": "Snackis",
+                            "antall": 3.0,
+                            "belop": 114.0
+                  },
+                  {
+                            "varenummer": "7330196004715",
+                            "navn": "Skruf Super white No55 Fresh S5",
+                            "antall": 1.0,
+                            "belop": 113.0
+                  },
+                  {
+                            "varenummer": "100222",
+                            "navn": "Skruf fresh white slim S2",
+                            "antall": 1.0,
+                            "belop": 113.0
+                  },
+                  {
+                            "varenummer": "104914",
+                            "navn": "Skruf Super White No52 Fresh S2",
+                            "antall": 1.0,
+                            "belop": 113.0
+                  },
+                  {
+                            "varenummer": "104918",
+                            "navn": "jAPANSPARKEL 100MM",
+                            "antall": 1.0,
+                            "belop": 109.0
+                  },
+                  {
+                            "varenummer": "105004",
+                            "navn": "Møbelfilt 22mm",
+                            "antall": 2.0,
+                            "belop": 108.0
+                  },
+                  {
+                            "varenummer": "7311250082795",
+                            "navn": "General Classic No4 Portion",
+                            "antall": 1.0,
+                            "belop": 106.0
+                  },
+                  {
+                            "varenummer": "103823",
+                            "navn": "Hennig Olsen Krone non stop",
+                            "antall": 3.0,
+                            "belop": 105.0
+                  },
+                  {
+                            "varenummer": "100230",
+                            "navn": "Rizla enkel",
+                            "antall": 5.0,
+                            "belop": 100.0
+                  },
+                  {
+                            "varenummer": "101403",
+                            "navn": "Jordan Pensel Vindu 15mm",
+                            "antall": 1.0,
+                            "belop": 99.0
+                  },
+                  {
+                            "varenummer": "102030",
+                            "navn": "Gjøco Kraft vask 1l",
+                            "antall": 1.0,
+                            "belop": 99.0
+                  },
+                  {
+                            "varenummer": "102025",
+                            "navn": "Gjøco Pensel rens 1l",
+                            "antall": 1.0,
+                            "belop": 99.0
+                  },
+                  {
+                            "varenummer": "103075",
+                            "navn": "Bremsevæske dot.4 0,5l",
+                            "antall": 1.0,
+                            "belop": 99.0
+                  },
+                  {
+                            "varenummer": "4895154358437",
+                            "navn": "Ladekabel usb c",
+                            "antall": 1.0,
+                            "belop": 99.0
+                  },
+                  {
+                            "varenummer": "102814",
+                            "navn": "Juiced Mønster",
+                            "antall": 2.0,
+                            "belop": 98.0
+                  },
+                  {
+                            "varenummer": "102313",
+                            "navn": "Kims French Fries 90 g",
+                            "antall": 2.0,
+                            "belop": 98.0
+                  },
+                  {
+                            "varenummer": "100063",
+                            "navn": "Melkerull",
+                            "antall": 2.0,
+                            "belop": 98.0
+                  },
+                  {
+                            "varenummer": "100069",
+                            "navn": "Troika 66g",
+                            "antall": 3.0,
+                            "belop": 96.0
+                  },
+                  {
+                            "varenummer": "7039988066749",
+                            "navn": "Kosteskaft 23mm x 180cm",
+                            "antall": 1.0,
+                            "belop": 95.0
+                  },
+                  {
+                            "varenummer": "103154",
+                            "navn": "Bostik Trelim ute 0,75l",
+                            "antall": 1.0,
+                            "belop": 89.0
+                  },
+                  {
+                            "varenummer": "4042448361417",
+                            "navn": "Tesa maskeringstape outdoor 19mmx50m",
+                            "antall": 1.0,
+                            "belop": 89.0
+                  },
+                  {
+                            "varenummer": "105165",
+                            "navn": "Murerskje",
+                            "antall": 1.0,
+                            "belop": 89.0
+                  },
+                  {
+                            "varenummer": "105113",
+                            "navn": "Sandpapir 240",
+                            "antall": 1.0,
+                            "belop": 89.0
+                  },
+                  {
+                            "varenummer": "103747",
+                            "navn": "Harpelodd 300gr rød",
+                            "antall": 1.0,
+                            "belop": 89.0
+                  },
+                  {
+                            "varenummer": "102918",
+                            "navn": "Repsils Hooning&Sitron",
+                            "antall": 1.0,
+                            "belop": 89.0
+                  },
+                  {
+                            "varenummer": "105168",
+                            "navn": "Spesial Spinner 6g SGRD",
+                            "antall": 1.0,
+                            "belop": 89.0
+                  },
+                  {
+                            "varenummer": "100036",
+                            "navn": "Sprite Lemon/lime 0,5 l",
+                            "antall": 2.0,
+                            "belop": 88.0
+                  },
+                  {
+                            "varenummer": "105139",
+                            "navn": "Sandpapir ø115mm Ass 40/120/240",
+                            "antall": 1.0,
+                            "belop": 85.0
+                  },
+                  {
+                            "varenummer": "104465",
+                            "navn": "Monster Ultrla Peach keen",
+                            "antall": 2.0,
+                            "belop": 83.3
+                  },
+                  {
+                            "varenummer": "105252",
+                            "navn": "Kaffe dobbel",
+                            "antall": 2.0,
+                            "belop": 80.0
+                  },
+                  {
+                            "varenummer": "105551",
+                            "navn": "Vask/tørk/dusj",
+                            "antall": 2.0,
+                            "belop": 80.0
+                  },
+                  {
+                            "varenummer": "100229",
+                            "navn": "Rizla dobbel",
+                            "antall": 2.0,
+                            "belop": 80.0
+                  },
+                  {
+                            "varenummer": "5704947004330",
+                            "navn": "Gorilla lerretstape svart 25mm",
+                            "antall": 1.0,
+                            "belop": 79.0
+                  },
+                  {
+                            "varenummer": "7071031050190",
+                            "navn": "Rød Latex Gummislange Ø6 mm 2 mtr",
+                            "antall": 1.0,
+                            "belop": 79.0
+                  },
+                  {
+                            "varenummer": "102924",
+                            "navn": "White spirit Gjøco 1L",
+                            "antall": 1.0,
+                            "belop": 79.0
+                  },
+                  {
+                            "varenummer": "101202",
+                            "navn": "Stanley Knivblad 18mm",
+                            "antall": 1.0,
+                            "belop": 79.0
+                  },
+                  {
+                            "varenummer": "100576",
+                            "navn": "Tennvæske Blåtind 1L",
+                            "antall": 1.0,
+                            "belop": 79.0
+                  },
+                  {
+                            "varenummer": "100796",
+                            "navn": "Gatekost Rød nylonbust 30 cm",
+                            "antall": 1.0,
+                            "belop": 79.0
+                  },
+                  {
+                            "varenummer": "104710",
+                            "navn": "Japp 60gr",
+                            "antall": 2.0,
+                            "belop": 78.0
+                  },
+                  {
+                            "varenummer": "4262393722341",
+                            "navn": "Mega spray candy bringebær",
+                            "antall": 2.0,
+                            "belop": 78.0
+                  },
+                  {
+                            "varenummer": "103244",
+                            "navn": "Hennig Olse Creme Ekte pistasj",
+                            "antall": 2.0,
+                            "belop": 76.0
+                  },
+                  {
+                            "varenummer": "102783",
+                            "navn": "Trolli Burger",
+                            "antall": 3.0,
+                            "belop": 75.0
+                  },
+                  {
+                            "varenummer": "100767",
+                            "navn": "Stikkontaktboks 7-polet med Gummitetning",
+                            "antall": 1.0,
+                            "belop": 75.0
+                  },
+                  {
+                            "varenummer": "102423",
+                            "navn": "Hennig Olsen MELKESJOKOLADE Sjokoladeis med Freia melkesjokolade",
+                            "antall": 2.0,
+                            "belop": 72.0
+                  },
+                  {
+                            "varenummer": "7071031000799",
+                            "navn": "skarven hempe nr. 1",
+                            "antall": 2.0,
+                            "belop": 70.0
+                  },
+                  {
+                            "varenummer": "105053",
+                            "navn": "Probuilder Urmakesett",
+                            "antall": 1.0,
+                            "belop": 69.0
+                  },
+                  {
+                            "varenummer": "104742",
+                            "navn": "Malerrull inne Grov",
+                            "antall": 1.0,
+                            "belop": 69.0
+                  },
+                  {
+                            "varenummer": "102944",
+                            "navn": "Murborsett 4del",
+                            "antall": 1.0,
+                            "belop": 69.0
+                  },
+                  {
+                            "varenummer": "104782",
+                            "navn": "swivel size8",
+                            "antall": 1.0,
+                            "belop": 69.0
+                  },
+                  {
+                            "varenummer": "103924",
+                            "navn": "Wipes Clean up",
+                            "antall": 1.0,
+                            "belop": 69.0
+                  },
+                  {
+                            "varenummer": "103754",
+                            "navn": "Hennig Olsen SOLO",
+                            "antall": 2.0,
+                            "belop": 66.0
+                  },
+                  {
+                            "varenummer": "104810",
+                            "navn": "jighead 10g",
+                            "antall": 1.0,
+                            "belop": 65.0
+                  },
+                  {
+                            "varenummer": "103561",
+                            "navn": "Tyttebærkrok 5pk",
+                            "antall": 1.0,
+                            "belop": 65.0
+                  },
+                  {
+                            "varenummer": "8711347005635",
+                            "navn": "Brake Cleaner",
+                            "antall": 1.0,
+                            "belop": 62.0
+                  },
+                  {
+                            "varenummer": "4042448434241",
+                            "navn": "Tesa Tesa Elektrotape 15 mm x 10 m",
+                            "antall": 3.0,
+                            "belop": 60.0
+                  },
+                  {
+                            "varenummer": "100293",
+                            "navn": "Mentos fruit",
+                            "antall": 3.0,
+                            "belop": 60.0
+                  },
+                  {
+                            "varenummer": "5996071642711",
+                            "navn": "sweet power s.p.ray",
+                            "antall": 2.0,
+                            "belop": 60.0
+                  },
+                  {
+                            "varenummer": "101733",
+                            "navn": "X krok MFT messingfarget 12stk",
+                            "antall": 1.0,
+                            "belop": 59.0
+                  },
+                  {
+                            "varenummer": "7039317008631",
+                            "navn": "Kims salt og pepper",
+                            "antall": 1.0,
+                            "belop": 59.0
+                  },
+                  {
+                            "varenummer": "104658",
+                            "navn": "Bagasjestrikk 80 cm",
+                            "antall": 1.0,
+                            "belop": 59.0
+                  },
+                  {
+                            "varenummer": "101167",
+                            "navn": "MAX Japansparkel 4stk",
+                            "antall": 1.0,
+                            "belop": 59.0
+                  },
+                  {
+                            "varenummer": "104991",
+                            "navn": "Kims Mexican Fiesta",
+                            "antall": 1.0,
+                            "belop": 59.0
+                  },
+                  {
+                            "varenummer": "104285",
+                            "navn": "Pringles Paprika",
+                            "antall": 1.0,
+                            "belop": 59.0
+                  },
+                  {
+                            "varenummer": "100611",
+                            "navn": "Safari",
+                            "antall": 1.0,
+                            "belop": 59.0
+                  },
+                  {
+                            "varenummer": "102919",
+                            "navn": "Vekk i morgen halstabletter",
+                            "antall": 1.0,
+                            "belop": 59.0
+                  },
+                  {
+                            "varenummer": "100115",
+                            "navn": "Fisherman`sFriend Raspberry",
+                            "antall": 2.0,
+                            "belop": 56.0
+                  },
+                  {
+                            "varenummer": "100074",
+                            "navn": "Stratos 42g",
+                            "antall": 2.0,
+                            "belop": 50.0
+                  },
+                  {
+                            "varenummer": "100753",
+                            "navn": "1Lighter",
+                            "antall": 2.0,
+                            "belop": 50.0
+                  },
+                  {
+                            "varenummer": "100129",
+                            "navn": "Extra White Sweet Mint",
+                            "antall": 2.0,
+                            "belop": 50.0
+                  },
+                  {
+                            "varenummer": "104852",
+                            "navn": "Klesrulle",
+                            "antall": 1.0,
+                            "belop": 49.0
+                  },
+                  {
+                            "varenummer": "105207",
+                            "navn": "Energizer Max AAA 6pack",
+                            "antall": 1.0,
+                            "belop": 49.0
+                  },
+                  {
+                            "varenummer": "104199",
+                            "navn": "Cogate Sensation White",
+                            "antall": 1.0,
+                            "belop": 49.0
+                  },
+                  {
+                            "varenummer": "5701181817498",
+                            "navn": "Fleirfarga Klovn slikkepinne 75g",
+                            "antall": 1.0,
+                            "belop": 49.0
+                  },
+                  {
+                            "varenummer": "100303",
+                            "navn": "Idun Tomatketchup",
+                            "antall": 1.0,
+                            "belop": 49.0
+                  },
+                  {
+                            "varenummer": "102293",
+                            "navn": "Powerade Mountain Blast",
+                            "antall": 1.0,
+                            "belop": 49.0
+                  },
+                  {
+                            "varenummer": "104874",
+                            "navn": "Gullpenger i nett",
+                            "antall": 1.0,
+                            "belop": 45.0
+                  },
+                  {
+                            "varenummer": "102466",
+                            "navn": "Kinder Maxi 21gr",
+                            "antall": 3.0,
+                            "belop": 45.0
+                  },
+                  {
+                            "varenummer": "7041011014115",
+                            "navn": "Hennig Olsen Monaka",
+                            "antall": 1.0,
+                            "belop": 44.0
+                  },
+                  {
+                            "varenummer": "104325",
+                            "navn": "Fanta orange 0,5l",
+                            "antall": 1.0,
+                            "belop": 44.0
+                  },
+                  {
+                            "varenummer": "4000177032732",
+                            "navn": "Capri-Sun Orange",
+                            "antall": 2.0,
+                            "belop": 40.0
+                  },
+                  {
+                            "varenummer": "7041011311115",
+                            "navn": "Hennig Olsen snackis sjokokaramell",
+                            "antall": 1.0,
+                            "belop": 40.0
+                  },
+                  {
+                            "varenummer": "101732",
+                            "navn": "Billedhempe MFT messing 10stk",
+                            "antall": 1.0,
+                            "belop": 39.0
+                  },
+                  {
+                            "varenummer": "105056",
+                            "navn": "Bliw Håndsåpe",
+                            "antall": 1.0,
+                            "belop": 39.0
+                  },
+                  {
+                            "varenummer": "105206",
+                            "navn": "Energizer 2032 Lithum",
+                            "antall": 1.0,
+                            "belop": 39.0
+                  },
+                  {
+                            "varenummer": "103510",
+                            "navn": "Ricola Original",
+                            "antall": 1.0,
+                            "belop": 39.0
+                  },
+                  {
+                            "varenummer": "8590311103498",
+                            "navn": "Dino egg",
+                            "antall": 1.0,
+                            "belop": 39.0
+                  },
+                  {
+                            "varenummer": "5904310231374",
+                            "navn": "XXL Gumetro",
+                            "antall": 1.0,
+                            "belop": 39.0
+                  },
+                  {
+                            "varenummer": "101214",
+                            "navn": "Rawlink Stakefjær",
+                            "antall": 1.0,
+                            "belop": 39.0
+                  },
+                  {
+                            "varenummer": "100040",
+                            "navn": "Coca cola Original Taste 330ml",
+                            "antall": 1.0,
+                            "belop": 38.0
+                  },
+                  {
+                            "varenummer": "100041",
+                            "navn": "Coca Cola Uten sukker",
+                            "antall": 1.0,
+                            "belop": 38.0
+                  },
+                  {
+                            "varenummer": "7041011235114",
+                            "navn": "Hennig Olsen Creme choc'o brownie",
+                            "antall": 1.0,
+                            "belop": 38.0
+                  },
+                  {
+                            "varenummer": "102437",
+                            "navn": "Hennig Olsen CREME Lakris",
+                            "antall": 1.0,
+                            "belop": 38.0
+                  },
+                  {
+                            "varenummer": "104764",
+                            "navn": "Hennig Olsen Creme Rosso",
+                            "antall": 1.0,
+                            "belop": 38.0
+                  },
+                  {
+                            "varenummer": "104763",
+                            "navn": "Hennig Olsen Oreo",
+                            "antall": 1.0,
+                            "belop": 38.0
+                  },
+                  {
+                            "varenummer": "103262",
+                            "navn": "Hennig Olsen Soft shake sjokolade124g",
+                            "antall": 1.0,
+                            "belop": 38.0
+                  },
+                  {
+                            "varenummer": "100608",
+                            "navn": "Pant meg igjen Telemark Sport 500ml",
+                            "antall": 1.0,
+                            "belop": 38.0
+                  },
+                  {
+                            "varenummer": "102905",
+                            "navn": "DOC Mentol",
+                            "antall": 1.0,
+                            "belop": 36.0
+                  },
+                  {
+                            "varenummer": "100302",
+                            "navn": "Idun Pølsesennep",
+                            "antall": 1.0,
+                            "belop": 36.0
+                  },
+                  {
+                            "varenummer": "104733",
+                            "navn": "Mini Mix Søt",
+                            "antall": 1.0,
+                            "belop": 35.0
+                  },
+                  {
+                            "varenummer": "7315870270310",
+                            "navn": "Wunder-baum Pina Colada",
+                            "antall": 1.0,
+                            "belop": 34.0
+                  },
+                  {
+                            "varenummer": "103821",
+                            "navn": "Hennig olsen Kroneis Jordbær",
+                            "antall": 1.0,
+                            "belop": 32.0
+                  },
+                  {
+                            "varenummer": "5904917031230",
+                            "navn": "Key Car Pop",
+                            "antall": 1.0,
+                            "belop": 32.0
+                  },
+                  {
+                            "varenummer": "104248",
+                            "navn": "Tvix Xtra",
+                            "antall": 1.0,
+                            "belop": 32.0
+                  },
+                  {
+                            "varenummer": "104760",
+                            "navn": "Hennig Olsen Idyll",
+                            "antall": 1.0,
+                            "belop": 31.0
+                  },
+                  {
+                            "varenummer": "102420",
+                            "navn": "Hennig Olsen SOMMERIS Appelsinsorbet",
+                            "antall": 1.0,
+                            "belop": 31.0
+                  },
+                  {
+                            "varenummer": "101288",
+                            "navn": "Engangsinnlegg malebrett10cm",
+                            "antall": 2.0,
+                            "belop": 30.0
+                  },
+                  {
+                            "varenummer": "105222",
+                            "navn": "Brynhild Knatter Frukt",
+                            "antall": 1.0,
+                            "belop": 29.0
+                  },
+                  {
+                            "varenummer": "100312",
+                            "navn": "Plastfolie",
+                            "antall": 1.0,
+                            "belop": 29.0
+                  },
+                  {
+                            "varenummer": "101290",
+                            "navn": "Engangsinnlegg malebrett 18cm",
+                            "antall": 1.0,
+                            "belop": 25.0
+                  },
+                  {
+                            "varenummer": "100075",
+                            "navn": "Lion Choco 2 pack",
+                            "antall": 1.0,
+                            "belop": 25.0
+                  },
+                  {
+                            "varenummer": "6416868512014",
+                            "navn": "Sandpapir våtslip 600",
+                            "antall": 1.0,
+                            "belop": 25.0
+                  },
+                  {
+                            "varenummer": "102418",
+                            "navn": "Hennig Olsen Friskis Jordbær&Appelsin",
+                            "antall": 1.0,
+                            "belop": 23.0
+                  },
+                  {
+                            "varenummer": "100500",
+                            "navn": "Såpe bobbler",
+                            "antall": 1.0,
+                            "belop": 20.0
+                  },
+                  {
+                            "varenummer": "100283",
+                            "navn": "Gomp Myke Fruktpastiller",
+                            "antall": 1.0,
+                            "belop": 15.0
+                  },
+                  {
+                            "varenummer": "5011061181091",
+                            "navn": "Mega sour gum rope",
+                            "antall": 1.0,
+                            "belop": 12.0
+                  },
+                  {
+                            "varenummer": "105085",
+                            "navn": "Unicon Pearl Gum8681015034505",
+                            "antall": 2.0,
+                            "belop": 10.0
+                  },
+                  {
+                            "varenummer": "105084",
+                            "navn": "Boom Vampyr",
+                            "antall": 1.0,
+                            "belop": 5.0
+                  },
+                  {
+                            "varenummer": "104821",
+                            "navn": "Møre Royal Eksklusiv Terrasselje Klar",
+                            "antall": 0.0,
+                            "belop": 0.0
+                  },
+                  {
+                            "varenummer": "100025",
+                            "navn": "Kreditt",
+                            "antall": -1.0,
+                            "belop": -226.0
+                  }
+          ]
+    }
+]
