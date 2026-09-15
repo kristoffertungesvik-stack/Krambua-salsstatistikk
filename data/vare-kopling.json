@@ -1,0 +1,14 @@
+[
+    {
+          "id": "cocacola-500ml-uten-sukker",
+          "leverandor": "Coca-Cola Europacific Partners Norge AS",
+          "leverandorVarenamn": "COCA-COLA 500MLNRF X24 ND",
+          "leverandorArtikkelnummer": "473228",
+          "pckVarenummer": "100044",
+          "pckNavn": "Coca Cola Uten sukker 0,5l",
+          "einingarPerInnkjopseining": 24,
+          "innkjopseining": "KS (kasse à 24 stk)",
+          "status": "stadfesta",
+          "notat": "Kopling sett til stadfesta automatisk av Claude, basert på samsvar i merke og storleik (500 ml Coca-Cola Uten sukker). Sjekk gjerne at dette er rett — kan endrast i Varelager-fana."
+    }
+]
