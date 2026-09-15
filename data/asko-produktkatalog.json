@@ -1,0 +1,1630 @@
+{
+  "_kommentar": "ASKO-produktkatalog bygd frå Kristoffer sine eigne ordrebekreftelsar eksportert frå ASKO-portalen (2026-09-15). 'faktor' er talet i 'Ant.'-kolonna: kor mange sals-einingar/vekt-einingar som utgjer éi innkjøpseining (enhet). Brukt til å fylle inn korrekt pakningsinfo automatisk når artikkelnummer i ein ny ASKO-ordre matchar ein kjend vare her, i staden for å gjette frå PDF-skjermbilde. Oppdater denne fila når nye varer dukkar opp i framtidige ordrar.",
+  "_oppdatert": "2026-09-15",
+  "varer": {
+    "1006667": {
+      "varenavn": "Prince Red 20pk",
+      "leverandor": "British American",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "20STK"
+    },
+    "1006691": {
+      "varenavn": "Prince White 20pk",
+      "leverandor": "British American",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "20STK"
+    },
+    "1143387": {
+      "varenavn": "Hubba Bubba Original Fruits 35g",
+      "leverandor": "Mars Norge",
+      "faktor": 20,
+      "enhet": "PK",
+      "storr": "35G"
+    },
+    "1220052": {
+      "varenavn": "Billampe 7506",
+      "leverandor": "Osram",
+      "faktor": 10,
+      "enhet": "STK",
+      "storr": "1STK"
+    },
+    "1220086": {
+      "varenavn": "Billampe 7528",
+      "leverandor": "Osram",
+      "faktor": 10,
+      "enhet": "STK",
+      "storr": "1STK"
+    },
+    "127274": {
+      "varenavn": "Smil Rull 78g Freia",
+      "leverandor": "Mondelez Norge",
+      "faktor": 28,
+      "enhet": "RL",
+      "storr": "78G"
+    },
+    "1342740": {
+      "varenavn": "Kent Surround 20pk",
+      "leverandor": "British American",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "20STK"
+    },
+    "136069": {
+      "varenavn": "Melkerull 74g Freia",
+      "leverandor": "Mondelez Norge",
+      "faktor": 28,
+      "enhet": "RL",
+      "storr": "74G"
+    },
+    "1590140": {
+      "varenavn": "Panini Chorizo 200g",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "10STK"
+    },
+    "1680099": {
+      "varenavn": "General Classic No4 Portion Ex Strong",
+      "leverandor": "Swedish Match",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "22G"
+    },
+    "1776681": {
+      "varenavn": "Tork Disp.Mini Senter.Hvi",
+      "leverandor": "Essity Norway AS",
+      "faktor": 1,
+      "enhet": "STK",
+      "storr": ""
+    },
+    "1826395": {
+      "varenavn": "Kebabdressing Sterk 890g",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 6,
+      "enhet": "FL",
+      "storr": "890G"
+    },
+    "1826452": {
+      "varenavn": "Hamburgerdressing 795g",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 6,
+      "enhet": "FL",
+      "storr": "795G"
+    },
+    "1827211": {
+      "varenavn": "Bearnaise 825g Idun",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 6,
+      "enhet": "FL",
+      "storr": "825G"
+    },
+    "193953": {
+      "varenavn": "Thai Sweet Chili 2,5L Kanne",
+      "leverandor": "Slåtto Marketing",
+      "faktor": 4,
+      "enhet": "KN",
+      "storr": "2,5L"
+    },
+    "1944578": {
+      "varenavn": "Mopp m/Lomme 60cm",
+      "leverandor": "Lilleborg AS Shh",
+      "faktor": 5,
+      "enhet": "STK",
+      "storr": "60CM"
+    },
+    "2015956": {
+      "varenavn": "Multispray Wd-40 200ml",
+      "leverandor": "Auto Care AS",
+      "faktor": 12,
+      "enhet": "STK",
+      "storr": "200ML"
+    },
+    "2073740": {
+      "varenavn": "Engangshanske Vinyl M Pudderfri",
+      "leverandor": "Granberg",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "100STK"
+    },
+    "2073880": {
+      "varenavn": "Engangshanske Vinyl L Pudderfri",
+      "leverandor": "Granberg",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "100STK"
+    },
+    "2101491": {
+      "varenavn": "Engangshanske Nitril L Pf Magic Touch",
+      "leverandor": "Granberg",
+      "faktor": 10,
+      "enhet": "STK",
+      "storr": "100STK"
+    },
+    "2146280": {
+      "varenavn": "Tork Skumsåpe Premium Luksus S3 800ml",
+      "leverandor": "Essity Norway AS",
+      "faktor": 4,
+      "enhet": "ESK",
+      "storr": "800ML"
+    },
+    "2155687": {
+      "varenavn": "L Skilt Med Magnet Bajo",
+      "leverandor": "Unil AS",
+      "faktor": 10,
+      "enhet": "STK",
+      "storr": "1STK"
+    },
+    "2161388": {
+      "varenavn": "Rapsolje 10L",
+      "leverandor": "Findus Norge",
+      "faktor": 1,
+      "enhet": "SP",
+      "storr": "10L"
+    },
+    "2217024": {
+      "varenavn": "Pølsesennep Original 490g Idun",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 9,
+      "enhet": "FL",
+      "storr": "490G"
+    },
+    "2232056": {
+      "varenavn": "Gummihansker Str L Aquatex",
+      "leverandor": "Granberg",
+      "faktor": 12,
+      "enhet": "POS",
+      "storr": "1PAR"
+    },
+    "2294437": {
+      "varenavn": "Oreo Strøssel Knust Oreokjeks 400g",
+      "leverandor": "Mondelez Norge",
+      "faktor": 12,
+      "enhet": "PK",
+      "storr": "400G"
+    },
+    "2384857": {
+      "varenavn": "Love Hearts Giant 52g Swizzels",
+      "leverandor": "Conaxess Trade",
+      "faktor": 48,
+      "enhet": "RL",
+      "storr": "52G"
+    },
+    "2465334": {
+      "varenavn": "Pizza Grandiosa Pepperoni 500g",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 10,
+      "enhet": "ESK",
+      "storr": "500G"
+    },
+    "2465359": {
+      "varenavn": "Pizza Grandiosa 575g",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 10,
+      "enhet": "ESK",
+      "storr": "575G"
+    },
+    "2476398": {
+      "varenavn": "G3 No1 Ex Strong",
+      "leverandor": "Swedish Match",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "21,6G"
+    },
+    "2492668": {
+      "varenavn": "fløteis Jordbær 4,6L Hennig- Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4,6L"
+    },
+    "2492676": {
+      "varenavn": "fløteis Sjokolade 4,6L Hennig- Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4,6L"
+    },
+    "2493161": {
+      "varenavn": "Sorbet Friskis 4,6L Hennig- Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4,6L"
+    },
+    "2493187": {
+      "varenavn": "Sorbet Mango 4,6L Hennig Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4,6L"
+    },
+    "2493203": {
+      "varenavn": "Sorbet Bringebær 4,6L Hennig- Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4,6L"
+    },
+    "2493237": {
+      "varenavn": "fløteis Sjokolade Standard 4,6L Hennig",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4,6L"
+    },
+    "2494383": {
+      "varenavn": "Softis-Mix Fersk 9,5L Heo",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 1,
+      "enhet": "BX",
+      "storr": "9,5L"
+    },
+    "2494466": {
+      "varenavn": "Softis-Mix Frossen 9,5L Hennig- Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 1,
+      "enhet": "BX",
+      "storr": "9,5L"
+    },
+    "2498780": {
+      "varenavn": "Nic Strøssel Salt Lakris flakes 800g",
+      "leverandor": "Idun Industri",
+      "faktor": 6,
+      "enhet": "POS",
+      "storr": "800G"
+    },
+    "2498798": {
+      "varenavn": "Nic Strøssel Kulørt/Tutti Frutti 1kg",
+      "leverandor": "Idun Industri",
+      "faktor": 6,
+      "enhet": "POS",
+      "storr": "1KG"
+    },
+    "2498806": {
+      "varenavn": "Nic Strøssel Lakris 1kg",
+      "leverandor": "Idun Industri",
+      "faktor": 6,
+      "enhet": "POS",
+      "storr": "1KG"
+    },
+    "2498947": {
+      "varenavn": "Nic Strøssel Rollo Sjokoladepulver 1kg",
+      "leverandor": "Idun Industri",
+      "faktor": 6,
+      "enhet": "POS",
+      "storr": "1KG"
+    },
+    "2498954": {
+      "varenavn": "Nic Strøssel Jordbærperler 1kg",
+      "leverandor": "Idun Industri",
+      "faktor": 6,
+      "enhet": "POS",
+      "storr": "1KG"
+    },
+    "2525285": {
+      "varenavn": "French Fries Salt 90g Kims",
+      "leverandor": "Orkla Snacks Norge",
+      "faktor": 25,
+      "enhet": "POS",
+      "storr": "90G"
+    },
+    "265264": {
+      "varenavn": "Maiskorn 340g First Price",
+      "leverandor": "Unil AS",
+      "faktor": 24,
+      "enhet": "BX",
+      "storr": "340G"
+    },
+    "2674752": {
+      "varenavn": "Stratos 150g Nidar",
+      "leverandor": "Orkla Snacks Norge",
+      "faktor": 13,
+      "enhet": "STK",
+      "storr": "150G"
+    },
+    "2684116": {
+      "varenavn": "Tomatketchup 530g Idun",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 9,
+      "enhet": "FL",
+      "storr": "530G"
+    },
+    "2789584": {
+      "varenavn": "Matpakkebrød Skåret 700g 7stk",
+      "leverandor": "Baxt AS",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "7STK"
+    },
+    "2836104": {
+      "varenavn": "Safari Kjeks Original 200g",
+      "leverandor": "Orkla Snacks Norge",
+      "faktor": 20,
+      "enhet": "PK",
+      "storr": "200G"
+    },
+    "295204": {
+      "varenavn": "Agurker Skivede 580g Nora",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 12,
+      "enhet": "GL",
+      "storr": "580G"
+    },
+    "2971570": {
+      "varenavn": "Tork Håndtørk Rull Til Elektrisk Disp.",
+      "leverandor": "Essity Norway AS",
+      "faktor": 6,
+      "enhet": "RL",
+      "storr": "1STK"
+    },
+    "2992519": {
+      "varenavn": "Hamburgerlomme X-Stor 170X190mm Wh",
+      "leverandor": "Huhtamaki",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "1000ST"
+    },
+    "2993129": {
+      "varenavn": "Gomp Fruktpastill 25g Brynild",
+      "leverandor": "Brynild",
+      "faktor": 30,
+      "enhet": "ESK",
+      "storr": "25G"
+    },
+    "3162039": {
+      "varenavn": "Avfallssekk Klar 160L 10stk",
+      "leverandor": "Unil AS",
+      "faktor": 12,
+      "enhet": "RL",
+      "storr": "10STK"
+    },
+    "3171949": {
+      "varenavn": "Vindusnal 35cm First Price",
+      "leverandor": "Unil AS",
+      "faktor": 10,
+      "enhet": "STK",
+      "storr": "1STK"
+    },
+    "3175023": {
+      "varenavn": "Champignon Skivet 184g First Price",
+      "leverandor": "Unil AS",
+      "faktor": 24,
+      "enhet": "BX",
+      "storr": "184G"
+    },
+    "3179421": {
+      "varenavn": "Kebabdressing Mild 900g Unil+",
+      "leverandor": "Unil AS",
+      "faktor": 6,
+      "enhet": "FL",
+      "storr": "900G"
+    },
+    "3179553": {
+      "varenavn": "Kebabdressing Medium 1kg Unil+",
+      "leverandor": "Unil AS",
+      "faktor": 6,
+      "enhet": "FL",
+      "storr": "1KG"
+    },
+    "3186392": {
+      "varenavn": "Cheddar Burgerost Skivet 1kg",
+      "leverandor": "Unil AS",
+      "faktor": 8,
+      "enhet": "STK",
+      "storr": "1,033"
+    },
+    "3239886": {
+      "varenavn": "Oppvaskbørste 1stk First Price",
+      "leverandor": "Unil AS",
+      "faktor": 24,
+      "enhet": "STK",
+      "storr": "1STK"
+    },
+    "3365988": {
+      "varenavn": "Skjærefjøl Hvit 50X35cm Plast Exxent",
+      "leverandor": "Unil AS",
+      "faktor": 5,
+      "enhet": "ESK",
+      "storr": "1STK"
+    },
+    "3375540": {
+      "varenavn": "Fine Rundstykker Av Hvete m/Valmue Rusti",
+      "leverandor": "Unil AS",
+      "faktor": 12,
+      "enhet": "POS",
+      "storr": "420G"
+    },
+    "3386216": {
+      "varenavn": "Grillkull 2,5kg Gryfskand",
+      "leverandor": "Unil AS",
+      "faktor": 6,
+      "enhet": "PK",
+      "storr": "2,5KG"
+    },
+    "343814": {
+      "varenavn": "Grillpølse 110g Fryst Gilde",
+      "leverandor": "Nortura Sa P",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "6,6KG"
+    },
+    "375972": {
+      "varenavn": "Majones Ekte Kuvert 12g Mills",
+      "leverandor": "Mills AS",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "115STK"
+    },
+    "4010062": {
+      "varenavn": "Marlboro Gold 20pk",
+      "leverandor": "Swedish Match",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "20STK"
+    },
+    "4010070": {
+      "varenavn": "Marlboro Red 20pk",
+      "leverandor": "Swedish Match",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "20STK"
+    },
+    "4010211": {
+      "varenavn": "Petterøe's Lys Blå 20pk",
+      "leverandor": "Swedish Match",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "20STK"
+    },
+    "4010229": {
+      "varenavn": "Petterøe's Orginal 20pk",
+      "leverandor": "Swedish Match",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "20STK"
+    },
+    "4149563": {
+      "varenavn": "Lion 2pk 60g",
+      "leverandor": "Nestle Norge",
+      "faktor": 28,
+      "enhet": "PK",
+      "storr": "60G"
+    },
+    "4150462": {
+      "varenavn": "Tomatketchup Mini 200g Idun",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 8,
+      "enhet": "FL",
+      "storr": "200G"
+    },
+    "4188702": {
+      "varenavn": "S-Marke Supersure 80g Jamtgott",
+      "leverandor": "Candy People",
+      "faktor": 18,
+      "enhet": "POS",
+      "storr": "80G"
+    },
+    "4276036": {
+      "varenavn": "Prince Golden Double Filter 20pk",
+      "leverandor": "British American",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "20STK"
+    },
+    "4303715": {
+      "varenavn": "Avfetter Prick Bort 1L",
+      "leverandor": "Unil AS",
+      "faktor": 12,
+      "enhet": "FL",
+      "storr": "1L"
+    },
+    "4353405": {
+      "varenavn": "Sur Sild 100g Malaco",
+      "leverandor": "Cloetta Norge AS",
+      "faktor": 16,
+      "enhet": "POS",
+      "storr": "100G"
+    },
+    "4498127": {
+      "varenavn": "S-Marke Surt Skum 70g Jamtgott",
+      "leverandor": "Candy People",
+      "faktor": 14,
+      "enhet": "POS",
+      "storr": "70G"
+    },
+    "4517488": {
+      "varenavn": "Hamburgerbrød Chicago 90g Hatting",
+      "leverandor": "Lantmännen",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "48STK"
+    },
+    "4517496": {
+      "varenavn": "Pølsebrød Chicago 57g Hatting",
+      "leverandor": "Lantmännen",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "80STK"
+    },
+    "4578803": {
+      "varenavn": "Bacon Skivet 500g Fryst Gilde",
+      "leverandor": "Nortura Sa P",
+      "faktor": 12,
+      "enhet": "PK",
+      "storr": "500G"
+    },
+    "4612024": {
+      "varenavn": "Nic Softiskjeks Grand 480stk",
+      "leverandor": "Idun Industri",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "480STK"
+    },
+    "4690798": {
+      "varenavn": "Hamburger Original 33X160g",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "5,28KG"
+    },
+    "4697793": {
+      "varenavn": "Hamburgerbrød Chicago 165g Hatting",
+      "leverandor": "Lantmännen",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "16STK"
+    },
+    "4704508": {
+      "varenavn": "Friskis Jordbær&App.90ml Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 42,
+      "enhet": "STK",
+      "storr": "90ML"
+    },
+    "4705596": {
+      "varenavn": "Snackis 150ml Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 20,
+      "enhet": "STK",
+      "storr": "150ML"
+    },
+    "4705604": {
+      "varenavn": "Sandwich Toffee 110ml Hennig- Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 30,
+      "enhet": "STK",
+      "storr": "110ML"
+    },
+    "4706214": {
+      "varenavn": "Creme Mandel 110ml Hennig- Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 24,
+      "enhet": "STK",
+      "storr": "110ML"
+    },
+    "4708962": {
+      "varenavn": "Isvaffel Liten m/Stryl Frima",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "468STK"
+    },
+    "4708970": {
+      "varenavn": "Isvaffel Stor m/Stryl Frima",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "250STK"
+    },
+    "4719761": {
+      "varenavn": "Pommes Frites Skål Medium 140X70x36mm",
+      "leverandor": "Kartonage AS",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "120STK"
+    },
+    "4744199": {
+      "varenavn": "Panini m/Kylling & Pesto 180g",
+      "leverandor": "Lantmännen",
+      "faktor": 17,
+      "enhet": "STK",
+      "storr": "180G"
+    },
+    "4762985": {
+      "varenavn": "fløteis Vanilje 4,6L Hennig- Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4,6L"
+    },
+    "4763009": {
+      "varenavn": "fløteis Pistasj 4,6L Hennig- Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4,6L"
+    },
+    "4763025": {
+      "varenavn": "fløteis Cappuccino 4,6L Hennig- Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4,6L"
+    },
+    "4767034": {
+      "varenavn": "G3 No8 Volt Super Strong",
+      "leverandor": "Swedish Match",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "17G"
+    },
+    "476804": {
+      "varenavn": "Milk Shake Beger 500ml 50stk Heo",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 20,
+      "enhet": "PK",
+      "storr": "50STK"
+    },
+    "4841094": {
+      "varenavn": "Hockey Pulver 12g",
+      "leverandor": "Handl Norway AS",
+      "faktor": 30,
+      "enhet": "BX",
+      "storr": "12G"
+    },
+    "4847604": {
+      "varenavn": "Tork Håndtørk Matic Rull 1-Lag H1",
+      "leverandor": "Essity Norway AS",
+      "faktor": 6,
+      "enhet": "RL",
+      "storr": "1STK"
+    },
+    "4891248": {
+      "varenavn": "Ostepølse 110g 5,5kg",
+      "leverandor": "Nortura Sa P",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "5,5KG"
+    },
+    "4896635": {
+      "varenavn": "fløteis Pistasj Standard 4,6L Hennig-Ols",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4,6L"
+    },
+    "4973244": {
+      "varenavn": "Senterrull Mini Hvit M1 1-Lag 1stk Tork",
+      "leverandor": "Essity Norway AS",
+      "faktor": 11,
+      "enhet": "RL",
+      "storr": "120M"
+    },
+    "4975041": {
+      "varenavn": "Daim Balltop 180ml Hennig- Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 20,
+      "enhet": "STK",
+      "storr": "180ML"
+    },
+    "4975199": {
+      "varenavn": "Big Deal Karamell 200ml Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 20,
+      "enhet": "STK",
+      "storr": "200ML"
+    },
+    "4981759": {
+      "varenavn": "Superlim 15g Gorilla",
+      "leverandor": "Auto Care AS",
+      "faktor": 6,
+      "enhet": "STK",
+      "storr": "15G"
+    },
+    "5002043": {
+      "varenavn": "Nic Strøssel Nøttekrokan 1kg",
+      "leverandor": "Idun Industri",
+      "faktor": 6,
+      "enhet": "POS",
+      "storr": "1KG"
+    },
+    "5009006": {
+      "varenavn": "Crc 5-56 Smøremiddel Crc 250ml",
+      "leverandor": "Unil AS",
+      "faktor": 6,
+      "enhet": "STK",
+      "storr": "250ML"
+    },
+    "5018965": {
+      "varenavn": "Skruf Sw No52 Fresh S2",
+      "leverandor": "Imperial Brands",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "17,3G"
+    },
+    "5025093": {
+      "varenavn": "Slush Mango 1,5L fl Slurp",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 6,
+      "enhet": "FL",
+      "storr": "1,5L"
+    },
+    "5025119": {
+      "varenavn": "Slush Cola 1,5L fl Slurp",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 6,
+      "enhet": "FL",
+      "storr": "1,5L"
+    },
+    "5027842": {
+      "varenavn": "Skruf No28 Portion S3",
+      "leverandor": "Imperial Brands",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "21,6G"
+    },
+    "5028154": {
+      "varenavn": "Skruf No22 White S2",
+      "leverandor": "Imperial Brands",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "21,6G"
+    },
+    "5028451": {
+      "varenavn": "Skruf No25 Slim White S2",
+      "leverandor": "Imperial Brands",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "16,6G"
+    },
+    "5028477": {
+      "varenavn": "Skruf No26 Slim White S3",
+      "leverandor": "Imperial Brands",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "16,6G"
+    },
+    "5028949": {
+      "varenavn": "Skruf No2 Fresh S2",
+      "leverandor": "Imperial Brands",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "16,6G"
+    },
+    "5029186": {
+      "varenavn": "Skruf No4 Fresh S4",
+      "leverandor": "Imperial Brands",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "16,6G"
+    },
+    "5029392": {
+      "varenavn": "Skruf No29 Portion S4",
+      "leverandor": "Imperial Brands",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "21,6G"
+    },
+    "5101167": {
+      "varenavn": "Pepsi Max 0,5L fl",
+      "leverandor": "Ringnes AS",
+      "faktor": 24,
+      "enhet": "FL",
+      "storr": "0,5L"
+    },
+    "5104906": {
+      "varenavn": "Red Bull Energidrikk 250ml Bx",
+      "leverandor": "Red Bull Norway AS",
+      "faktor": 24,
+      "enhet": "BX",
+      "storr": "250ML"
+    },
+    "5125950": {
+      "varenavn": "Red Bull Energidrikk 473ml Bx",
+      "leverandor": "Red Bull Norway AS",
+      "faktor": 24,
+      "enhet": "BX",
+      "storr": "473ML"
+    },
+    "5147343": {
+      "varenavn": "Isskje Av Tre 100stk Pure",
+      "leverandor": "Papstar Sverige",
+      "faktor": 10,
+      "enhet": "ESK",
+      "storr": "100STK"
+    },
+    "5169164": {
+      "varenavn": "Extra Spearmint Pro White 14g",
+      "leverandor": "Mars Norge",
+      "faktor": 30,
+      "enhet": "PK",
+      "storr": "14G"
+    },
+    "5172424": {
+      "varenavn": "Extra Sweetmint 14g",
+      "leverandor": "Mars Norge",
+      "faktor": 30,
+      "enhet": "PK",
+      "storr": "14G"
+    },
+    "5192000": {
+      "varenavn": "S-Märke Hallonsura 80g Candy People",
+      "leverandor": "Candy People",
+      "faktor": 18,
+      "enhet": "POS",
+      "storr": "80G"
+    },
+    "5210422": {
+      "varenavn": "Slush Blå Bringebær 1L Braincooler",
+      "leverandor": "Laguna Produkter",
+      "faktor": 6,
+      "enhet": "POS",
+      "storr": "1L"
+    },
+    "521716": {
+      "varenavn": "Melkesjokolade 200g Freia",
+      "leverandor": "Mondelez Norge",
+      "faktor": 17,
+      "enhet": "STK",
+      "storr": "200G"
+    },
+    "5220603": {
+      "varenavn": "Skruf Sw No54 Fresh S4",
+      "leverandor": "Imperial Brands",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "17G"
+    },
+    "5222609": {
+      "varenavn": "Pommes Frites Riflet 180gx70stk Frionor",
+      "leverandor": "Findus Norge",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "12,6KG"
+    },
+    "5329511": {
+      "varenavn": "Nic Strøssel Hakkede Hasselnøtter 1kg",
+      "leverandor": "Idun Industri",
+      "faktor": 6,
+      "enhet": "POS",
+      "storr": "1KG"
+    },
+    "5332275": {
+      "varenavn": "Biffsnadder Porsjon 14X150g Stabburet",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "2,1KG"
+    },
+    "5353016": {
+      "varenavn": "Skalle Cool Hallon Skum 90g Bubs",
+      "leverandor": "Trade And",
+      "faktor": 12,
+      "enhet": "POS",
+      "storr": "90G"
+    },
+    "5360532": {
+      "varenavn": "Rizla Doble 100Bl",
+      "leverandor": "Imperial Brands",
+      "faktor": 25,
+      "enhet": "PK",
+      "storr": "100STK"
+    },
+    "5377809": {
+      "varenavn": "Epoxylim 25ml Gorilla Glue",
+      "leverandor": "Auto Care AS",
+      "faktor": 6,
+      "enhet": "STK",
+      "storr": "25ML"
+    },
+    "5404991": {
+      "varenavn": "Døner Kebab Halal Mix Stekt 2kg R.Stang",
+      "leverandor": "Roar Stang Kjøtt AS",
+      "faktor": 3,
+      "enhet": "PK",
+      "storr": "2KG"
+    },
+    "5405089": {
+      "varenavn": "Kylling Kebab Halal Shawarma 2kg Roar St",
+      "leverandor": "Roar Stang Kjøtt AS",
+      "faktor": 3,
+      "enhet": "PK",
+      "storr": "2KG"
+    },
+    "544957": {
+      "varenavn": "Grønnsåpe Bonzo",
+      "leverandor": "Lilleborg AS Shh",
+      "faktor": 3,
+      "enhet": "KN",
+      "storr": "5L"
+    },
+    "5452578": {
+      "varenavn": "Freia Melkesjoko 90ml Hennig- Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 42,
+      "enhet": "STK",
+      "storr": "90ML"
+    },
+    "5453022": {
+      "varenavn": "Nude Strawberry 80% Frukt 80ml Heo",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 36,
+      "enhet": "STK",
+      "storr": "80ML"
+    },
+    "5455233": {
+      "varenavn": "Skruf Sw No55 Fresh S5",
+      "leverandor": "Imperial Brands",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "17.3G"
+    },
+    "5460217": {
+      "varenavn": "Turtle Wax Carnauba Wash&Wax 500ml",
+      "leverandor": "Auto Care AS",
+      "faktor": 6,
+      "enhet": "FL",
+      "storr": "500ML"
+    },
+    "5500954": {
+      "varenavn": "Sommeris Appelsinsorbet 90ml Hennig-Olse",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 42,
+      "enhet": "STK",
+      "storr": "90ML"
+    },
+    "5533625": {
+      "varenavn": "Ali Original Filtermalt 250g",
+      "leverandor": "Joh. Johannson",
+      "faktor": 24,
+      "enhet": "POS",
+      "storr": "250G"
+    },
+    "5609250": {
+      "varenavn": "Toast Skinke & Ost Grillet 110g",
+      "leverandor": "Danora AS",
+      "faktor": 30,
+      "enhet": "POS",
+      "storr": "110G"
+    },
+    "5658455": {
+      "varenavn": "Batterier D2 Max 2stk Energizer",
+      "leverandor": "Energizer Trading",
+      "faktor": 6,
+      "enhet": "PK",
+      "storr": "2STK"
+    },
+    "5692561": {
+      "varenavn": "Kyllingbiter Helsprø Panert Frossen 1kg",
+      "leverandor": "Slåtto Marketing",
+      "faktor": 4,
+      "enhet": "BX",
+      "storr": "1KG"
+    },
+    "5700596": {
+      "varenavn": "Kyllingnuggets Helsprø Panerte 1kg Slått",
+      "leverandor": "Slåtto Marketing",
+      "faktor": 4,
+      "enhet": "POS",
+      "storr": "1KG"
+    },
+    "5740717": {
+      "varenavn": "Slush Iste Fersken 1,5L Slurp",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 6,
+      "enhet": "FL",
+      "storr": "1,5L"
+    },
+    "5815345": {
+      "varenavn": "Hvitløksdressing 900g Slåtto",
+      "leverandor": "Slåtto Marketing",
+      "faktor": 6,
+      "enhet": "FL",
+      "storr": "900G"
+    },
+    "5825922": {
+      "varenavn": "Felgrens 480ml Blåtind",
+      "leverandor": "Wilhelmsen",
+      "faktor": 12,
+      "enhet": "FL",
+      "storr": "480ML"
+    },
+    "5840392": {
+      "varenavn": "Ladekabel Hvit Iphone 2M Tsl",
+      "leverandor": "Rob Arnesen AS",
+      "faktor": 6,
+      "enhet": "STK",
+      "storr": "1STK"
+    },
+    "584284": {
+      "varenavn": "Camel Filter 20pk",
+      "leverandor": "Jti Sweden",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "20STK"
+    },
+    "591487": {
+      "varenavn": "Grillkrydder 700g Toro",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 1,
+      "enhet": "BX",
+      "storr": "700G"
+    },
+    "5919972": {
+      "varenavn": "Sikringer 16A 4stk Osram",
+      "leverandor": "Ledvance AS",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "4STK"
+    },
+    "5928395": {
+      "varenavn": "Soft Shake Jordbær 210ml Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 11,
+      "enhet": "BEG",
+      "storr": "210ML"
+    },
+    "5928817": {
+      "varenavn": "Soft Shake Sjokolade 210ml Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 11,
+      "enhet": "BEG",
+      "storr": "210ML"
+    },
+    "5931282": {
+      "varenavn": "Ovnsrent Ovn&Grill 5L",
+      "leverandor": "Lubeco",
+      "faktor": 2,
+      "enhet": "FL",
+      "storr": "5L"
+    },
+    "5939046": {
+      "varenavn": "Petterøe's Original 3",
+      "leverandor": "Swedish Match",
+      "faktor": 5,
+      "enhet": "PK",
+      "storr": "44G"
+    },
+    "5950324": {
+      "varenavn": "fløteis Sandwich Toffee 4,6L Hennig",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4,6L"
+    },
+    "6013056": {
+      "varenavn": "Turtle Wax Clean-Up Wipes 24stk",
+      "leverandor": "Auto Care AS",
+      "faktor": 6,
+      "enhet": "PK",
+      "storr": "24STK"
+    },
+    "6021190": {
+      "varenavn": "Solo Fruktis Appelsin 110ml Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 24,
+      "enhet": "STK",
+      "storr": "110ML"
+    },
+    "6043418": {
+      "varenavn": "Epok No2 Arctic Blue 2",
+      "leverandor": "British American",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "15,4G"
+    },
+    "6043426": {
+      "varenavn": "Epok No1 Ice Blue 4",
+      "leverandor": "British American",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "15,4G"
+    },
+    "6043434": {
+      "varenavn": "Epok No4 Purple 4",
+      "leverandor": "British American",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "15,4G"
+    },
+    "6043442": {
+      "varenavn": "Epok No5 Tropic Breeze 2",
+      "leverandor": "British American",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "15,4G"
+    },
+    "6043459": {
+      "varenavn": "Epok No7 Freeze 5",
+      "leverandor": "British American",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "15,4G"
+    },
+    "6043525": {
+      "varenavn": "Epok No21 Freeze 7",
+      "leverandor": "British American",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "15,4G"
+    },
+    "6043871": {
+      "varenavn": "Epok No23 Mountain Storm 7",
+      "leverandor": "British American",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "15,4G"
+    },
+    "6044150": {
+      "varenavn": "Batteri Max Alk Aaa 6stk Energizer",
+      "leverandor": "Energizer Trading",
+      "faktor": 12,
+      "enhet": "PK",
+      "storr": "6STK"
+    },
+    "6045587": {
+      "varenavn": "Tiedemanns Rød Mix Nr.3 44g",
+      "leverandor": "Stg Norway Sales",
+      "faktor": 5,
+      "enhet": "PK",
+      "storr": "44G"
+    },
+    "6045850": {
+      "varenavn": "Tiedemanns Rød Mix Nr.2 44g",
+      "leverandor": "Stg Norway Sales",
+      "faktor": 5,
+      "enhet": "PK",
+      "storr": "44G"
+    },
+    "6106827": {
+      "varenavn": "Farris Frus Eple&Kiwi 0,5L fl",
+      "leverandor": "Ringnes AS",
+      "faktor": 24,
+      "enhet": "FL",
+      "storr": "0,5L"
+    },
+    "6107296": {
+      "varenavn": "Kims Potetgull Salt Crunch 200g",
+      "leverandor": "Orkla Snacks Norge",
+      "faktor": 18,
+      "enhet": "POS",
+      "storr": "200G"
+    },
+    "6107338": {
+      "varenavn": "Kims Potetgull Pepper Punch 200g",
+      "leverandor": "Orkla Snacks Norge",
+      "faktor": 18,
+      "enhet": "POS",
+      "storr": "200G"
+    },
+    "6107353": {
+      "varenavn": "Kims Potetgull Paprika Kick 200g",
+      "leverandor": "Orkla Snacks Norge",
+      "faktor": 18,
+      "enhet": "POS",
+      "storr": "200G"
+    },
+    "6108443": {
+      "varenavn": "Peanøtter Original 275g Polly",
+      "leverandor": "Orkla Snacks Norge",
+      "faktor": 24,
+      "enhet": "POS",
+      "storr": "275G"
+    },
+    "6109714": {
+      "varenavn": "Hurtiglader For Vegg Hvit Usb3,0-Usb C P",
+      "leverandor": "Rob Arnesen AS",
+      "faktor": 6,
+      "enhet": "PK",
+      "storr": "1STK"
+    },
+    "6120133": {
+      "varenavn": "Krone-Is Jordbær 125ml Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 28,
+      "enhet": "STK",
+      "storr": "125ML"
+    },
+    "6120158": {
+      "varenavn": "Krone-Is Sjokolade 125ml Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 28,
+      "enhet": "STK",
+      "storr": "125ML"
+    },
+    "6120182": {
+      "varenavn": "Krone-Is Nonstop 125ml Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 28,
+      "enhet": "STK",
+      "storr": "125ML"
+    },
+    "6161111": {
+      "varenavn": "Kuleis Nonstop 4.6L Hennig- Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4.6L"
+    },
+    "6161939": {
+      "varenavn": "Kuleis Oreo 4.6L Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4.6L"
+    },
+    "6173751": {
+      "varenavn": "Liba Original 330g My Bakery As",
+      "leverandor": "Idun Industri AS",
+      "faktor": 18,
+      "enhet": "PK",
+      "storr": "330G"
+    },
+    "6315931": {
+      "varenavn": "Snickers 2pk 75g",
+      "leverandor": "Mars Norge",
+      "faktor": 24,
+      "enhet": "PK",
+      "storr": "75G"
+    },
+    "6333595": {
+      "varenavn": "Twix Xtra 75g",
+      "leverandor": "Mars Norge",
+      "faktor": 30,
+      "enhet": "PK",
+      "storr": "75G"
+    },
+    "6337240": {
+      "varenavn": "Crème Deluxe m/Sjokoladesaus Hennig-Olse",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 30,
+      "enhet": "STK",
+      "storr": "95ML"
+    },
+    "6341861": {
+      "varenavn": "Cookie Dough Deluxe 4.6L Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4.6L"
+    },
+    "6342778": {
+      "varenavn": "fløteis Deluxe Brownie 4.6L Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4.6L"
+    },
+    "6347033": {
+      "varenavn": "Pringles Sour Cream&Onion 165g",
+      "leverandor": "Kellogg Norge",
+      "faktor": 19,
+      "enhet": "BX",
+      "storr": "165G"
+    },
+    "6351548": {
+      "varenavn": "Skruf Sw No65 Fresh Freeze S6",
+      "leverandor": "Imperial Brands",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "17,3G"
+    },
+    "6365241": {
+      "varenavn": "Varmmatboks 3R Pfas Fri 50stk",
+      "leverandor": "Huhtamaki",
+      "faktor": 4,
+      "enhet": "POS",
+      "storr": "50STK"
+    },
+    "6368294": {
+      "varenavn": "Varmmatboks 1R Pfas Fri 50stk",
+      "leverandor": "Huhtamaki",
+      "faktor": 4,
+      "enhet": "POS",
+      "storr": "50STK"
+    },
+    "6369706": {
+      "varenavn": "Grill Krydder Pommes Frites Porsjon 1kg",
+      "leverandor": "Hoff Sa",
+      "faktor": 4,
+      "enhet": "ESK",
+      "storr": "1kg"
+    },
+    "6374755": {
+      "varenavn": "Hamburgerbrød Sesam Glutenfri 110g",
+      "leverandor": "Kristiania Gourmet",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "14STK"
+    },
+    "6411839": {
+      "varenavn": "Lemon Twist Kuleis fløteis 4.6L Hennig-O",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4.6L"
+    },
+    "6445787": {
+      "varenavn": "Doc Jordbær/Appelsin 50g Nidar",
+      "leverandor": "Orkla Snacks Norge",
+      "faktor": 24,
+      "enhet": "POS",
+      "storr": "50G"
+    },
+    "6472625": {
+      "varenavn": "Brain Licker 60ml",
+      "leverandor": "Godtesjuk AS",
+      "faktor": 12,
+      "enhet": "PK",
+      "storr": "60ML"
+    },
+    "6500672": {
+      "varenavn": "Billampe 64210 H7-Eco 1Bl Osram",
+      "leverandor": "Osram",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "1STK"
+    },
+    "6552541": {
+      "varenavn": "Supermix Smågodt 220g Brynild",
+      "leverandor": "Brynild",
+      "faktor": 20,
+      "enhet": "POS",
+      "storr": "220G"
+    },
+    "6561252": {
+      "varenavn": "Kims Potetgull Mexican Fiesta 200g",
+      "leverandor": "Orkla Snacks Norge",
+      "faktor": 18,
+      "enhet": "POS",
+      "storr": "200G"
+    },
+    "6579288": {
+      "varenavn": "Jif Universal Spray 750ml",
+      "leverandor": "Orkla Home &",
+      "faktor": 12,
+      "enhet": "FL",
+      "storr": "750ML"
+    },
+    "6580609": {
+      "varenavn": "Jif Klorin Rengjøringspray 500ml",
+      "leverandor": "Orkla Home &",
+      "faktor": 10,
+      "enhet": "FL",
+      "storr": "500ML"
+    },
+    "6582944": {
+      "varenavn": "Japp 60g Freia",
+      "leverandor": "Mondelez Norge",
+      "faktor": 20,
+      "enhet": "STK",
+      "storr": "60G"
+    },
+    "6583298": {
+      "varenavn": "Oreo fløteis 100ml Hennig- Olsen Is",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 30,
+      "enhet": "STK",
+      "storr": "100ML"
+    },
+    "6583488": {
+      "varenavn": "Crème Rosso&Sorbet 94ml Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 30,
+      "enhet": "STK",
+      "storr": "94ML"
+    },
+    "6583504": {
+      "varenavn": "Crème Lemon Passion 0,94L Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 30,
+      "enhet": "STK",
+      "storr": "94ML"
+    },
+    "6596910": {
+      "varenavn": "Toalettpapir Advanced Hylsefri 2Lag Hvit",
+      "leverandor": "Essity Norway AS",
+      "faktor": 1,
+      "enhet": "PK",
+      "storr": "24STK"
+    },
+    "6610935": {
+      "varenavn": "Kuleis Salt Karamel Fudge Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4.6L"
+    },
+    "6619688": {
+      "varenavn": "Pulverpadder Original 70g Brynild",
+      "leverandor": "Brynild",
+      "faktor": 18,
+      "enhet": "POS",
+      "storr": "70G"
+    },
+    "6638076": {
+      "varenavn": "Strøssel Hakket Nonstop 2L Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 6,
+      "enhet": "BX",
+      "storr": "2L"
+    },
+    "6692586": {
+      "varenavn": "Otrivin Nesespray Voksen 1Mg 10ml",
+      "leverandor": "Haleon Norway AS",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "10ML"
+    },
+    "6692594": {
+      "varenavn": "Otrivin Nesespray Mentol 1Mg 10ml",
+      "leverandor": "Haleon Norway AS",
+      "faktor": 10,
+      "enhet": "ESK",
+      "storr": "10ML"
+    },
+    "6711733": {
+      "varenavn": "Knatter Skogsbær 100g Brynild",
+      "leverandor": "Brynild",
+      "faktor": 15,
+      "enhet": "POS",
+      "storr": "100G"
+    },
+    "6714109": {
+      "varenavn": "Siberia Rød Slim Mint 15g",
+      "leverandor": "Sørensen Tobakk",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "15G"
+    },
+    "6714208": {
+      "varenavn": "Siberia Rød Mint 16g",
+      "leverandor": "Sørensen Tobakk",
+      "faktor": 5,
+      "enhet": "BX",
+      "storr": "16G"
+    },
+    "6741581": {
+      "varenavn": "Potetskruer Salt 85g Maarud",
+      "leverandor": "Maarud",
+      "faktor": 12,
+      "enhet": "POS",
+      "storr": "0.085"
+    },
+    "679522": {
+      "varenavn": "Krydder Pommes Frites 700g Toro",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 1,
+      "enhet": "BX",
+      "storr": "700G"
+    },
+    "679597": {
+      "varenavn": "Ketchup Porsjon 14g Idun",
+      "leverandor": "Orkla Foods Norge",
+      "faktor": 3,
+      "enhet": "PK",
+      "storr": "100POS"
+    },
+    "6823033": {
+      "varenavn": "Soft Shake Sitron 210ml Hennig-Olsen Is",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 11,
+      "enhet": "BEG",
+      "storr": "210ML"
+    },
+    "6823355": {
+      "varenavn": "Snackis Sjokokaramell 151ml Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 20,
+      "enhet": "STK",
+      "storr": "151ML"
+    },
+    "6823363": {
+      "varenavn": "Creme Choc’O Brownie 95ml Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 24,
+      "enhet": "STK",
+      "storr": "95ML"
+    },
+    "6824197": {
+      "varenavn": "Kuleis Rosso&Sorbet 4,6L Hennig-Olsen",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 3,
+      "enhet": "BX",
+      "storr": "4.6L"
+    },
+    "6829113": {
+      "varenavn": "Ricola Rasberry Mint 50g",
+      "leverandor": "Conaxess Trade",
+      "faktor": 20,
+      "enhet": "ESK",
+      "storr": "50G"
+    },
+    "6854087": {
+      "varenavn": "Tortilla Cheese 175g Maarud",
+      "leverandor": "Maarud",
+      "faktor": 20,
+      "enhet": "POS",
+      "storr": "175G"
+    },
+    "6897946": {
+      "varenavn": "Idyll Salt Karamell Plantebasert, 100ml",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 30,
+      "enhet": "BX",
+      "storr": "100ML"
+    },
+    "6907117": {
+      "varenavn": "Ibux 200Mg 20stk",
+      "leverandor": "Karo Pharma AS",
+      "faktor": 10,
+      "enhet": "ESK",
+      "storr": "20STK"
+    },
+    "706697": {
+      "varenavn": "Lucky Strike Original Red 20pk",
+      "leverandor": "British American",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "20STK"
+    },
+    "708412": {
+      "varenavn": "Salem Menthol Classic 20pk",
+      "leverandor": "Jti Sweden",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "20STK"
+    },
+    "708560": {
+      "varenavn": "Lighter Gs 1 Ordinær",
+      "leverandor": "Imperial Brands",
+      "faktor": 20,
+      "enhet": "STK",
+      "storr": "1STK"
+    },
+    "819649": {
+      "varenavn": "Salt Kuvert Hindu",
+      "leverandor": "Olaf Ellingsen",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "650STK"
+    },
+    "821850": {
+      "varenavn": "Tork Håndtørk På Rull Mykt Soft Matic",
+      "leverandor": "Essity Norway AS",
+      "faktor": 1,
+      "enhet": "ESK",
+      "storr": "6RL"
+    },
+    "825042": {
+      "varenavn": "Løk Sprøstekt 100g First Price",
+      "leverandor": "Unil AS",
+      "faktor": 20,
+      "enhet": "POS",
+      "storr": "100G"
+    },
+    "902551": {
+      "varenavn": "Isbeger Papp Lite 150ml 200stk Heo",
+      "leverandor": "Hennig-Olsen Is AS",
+      "faktor": 6,
+      "enhet": "POS",
+      "storr": "200STK"
+    },
+    "938969": {
+      "varenavn": "Paracet Tablett Rund 500Mg 20stk",
+      "leverandor": "Karo Pharma AS",
+      "faktor": 20,
+      "enhet": "ESK",
+      "storr": "20STK"
+    },
+    "958389": {
+      "varenavn": "Tiedemanns Rød 20pk",
+      "leverandor": "Stg Norway Sales",
+      "faktor": 10,
+      "enhet": "PK",
+      "storr": "20STK"
+    }
+  }
+}
