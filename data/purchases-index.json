@@ -208,17 +208,5 @@
     ],
     "status": "Bekrefta",
     "notat": "Netto 15773,80 / Mva 3282,45 / Totalsum 19056,25 kr (frå ordrebekreftelse-PDF)."
-  },
-  {
-    "id": "2026-09-09-asko",
-    "leverandor": "ASKO Rogaland",
-    "dato": "2026-09-09",
-    "kildeEpost": "noreply@asko.no",
-    "referansenummer": "",
-    "varedetaljerMangler": true,
-    "kolliantall": 2,
-    "varelinjer": [],
-    "status": "Levert",
-    "notat": "E-post fra ASKO er berre ein leveringskvittering (kolli/pall-niva, SSCC-kodar), ikkje ei vareliste med tal per produkt. Faktisk bestilt varemengde ligg i ASKO sin bestillingsportal, ikkje i e-posten."
   }
 ]
