@@ -18,6 +18,198 @@
     "notat": ""
   },
   {
+    "id": "2026-09-14-asko",
+    "leverandor": "ASKO Rogaland",
+    "dato": "2026-09-14",
+    "kildeEpost": "edi@norgesgruppen.no",
+    "referansenummer": "AN-41206014 / 4880920",
+    "varedetaljerMangler": false,
+    "varelinjer": [
+      {
+        "varenavn": "Hamburgerbrød Chicago 90g Hatting (1 ESK à 48STK)",
+        "antall": 1,
+        "enhet": "ESK",
+        "artikkelnummer": "4517488"
+      },
+      {
+        "varenavn": "Hamburger Original 33X160g (1 ESK à 5,28KG)",
+        "antall": 1,
+        "enhet": "ESK",
+        "artikkelnummer": "4690798"
+      },
+      {
+        "varenavn": "Epoxylim 25ml Gorilla Glue (6 STK à 25ML)",
+        "antall": 1,
+        "enhet": "STK",
+        "artikkelnummer": "5377809"
+      },
+      {
+        "varenavn": "Engangshanske Nitril L Pf Magic Touch (10 PK à 100STK)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "2101491"
+      },
+      {
+        "varenavn": "Oppvaskbørste 1stk First Price (24 STK à 1STK)",
+        "antall": 1,
+        "enhet": "STK",
+        "artikkelnummer": "3239886"
+      },
+      {
+        "varenavn": "Panini m/Kylling & Pesto 180g (17 STK à 180G)",
+        "antall": 1,
+        "enhet": "STK",
+        "artikkelnummer": "4744199"
+      },
+      {
+        "varenavn": "Panini Chorizo 200g (1 ESK à 10STK)",
+        "antall": 1,
+        "enhet": "ESK",
+        "artikkelnummer": "1590140"
+      },
+      {
+        "varenavn": "Pepsi Max 0,5L fl (24 FL à 0,5L)",
+        "antall": 1,
+        "enhet": "FL",
+        "artikkelnummer": "5101167"
+      },
+      {
+        "varenavn": "Sikringer 16A 4stk Osram (10 PK à 4STK)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "5919972"
+      },
+      {
+        "varenavn": "Billampe 64210 H7-Eco 1Bl Osram (10 STK à 1STK)",
+        "antall": 1,
+        "enhet": "STK",
+        "artikkelnummer": "6500672"
+      },
+      {
+        "varenavn": "Billampe 7528 (10 STK à 1STK)",
+        "antall": 1,
+        "enhet": "STK",
+        "artikkelnummer": "1220086"
+      },
+      {
+        "varenavn": "Billampe 7506 (10 STK à 1STK)",
+        "antall": 1,
+        "enhet": "STK",
+        "artikkelnummer": "1220052"
+      },
+      {
+        "varenavn": "Softis-Mix Frossen 9,5L Hennig-Olsen (1 BX à 9,5L)",
+        "antall": 2,
+        "enhet": "BX",
+        "artikkelnummer": "2494466"
+      },
+      {
+        "varenavn": "Turtle Wax Carnauba Wash&Wax 500ml (6 FL à 500ML)",
+        "antall": 1,
+        "enhet": "FL",
+        "artikkelnummer": "5460217"
+      },
+      {
+        "varenavn": "Turtle Wax Clean-Up Wipes 24stk (6 PK à 24STK)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "6013056"
+      },
+      {
+        "varenavn": "Pommes Frites Riflet 180gx70stk Frionor (1 ESK à 12,6KG)",
+        "antall": 1,
+        "enhet": "ESK",
+        "artikkelnummer": "5222609"
+      },
+      {
+        "varenavn": "Skalle Cool Hallon Skum 90g Bubs (12 POS à 90G)",
+        "antall": 1,
+        "enhet": "POS",
+        "artikkelnummer": "5353016"
+      },
+      {
+        "varenavn": "S-Märke Hallonsura 80g Candy People (18 POS à 80G)",
+        "antall": 1,
+        "enhet": "POS",
+        "artikkelnummer": "5192000"
+      },
+      {
+        "varenavn": "S-Marke Supersure 80g Jamtgott (18 POS à 80G)",
+        "antall": 1,
+        "enhet": "POS",
+        "artikkelnummer": "4188702"
+      },
+      {
+        "varenavn": "Peanøtter Original 275g Polly (24 POS à 275G)",
+        "antall": 1,
+        "enhet": "POS",
+        "artikkelnummer": "6108443"
+      },
+      {
+        "varenavn": "Supermix Smågodt 220g Brynild (20 POS à 220G)",
+        "antall": 1,
+        "enhet": "POS",
+        "artikkelnummer": "6552541"
+      },
+      {
+        "varenavn": "Gummihansker Str L Aquatex (12 POS à 1PAR)",
+        "antall": 1,
+        "enhet": "POS",
+        "artikkelnummer": "2232056"
+      },
+      {
+        "varenavn": "Skruf Sw No65 Fresh Freeze S6 (5 BX à 17,3G)",
+        "antall": 2,
+        "enhet": "BX",
+        "artikkelnummer": "6351548"
+      },
+      {
+        "varenavn": "Epok No21 Freeze 7 (5 BX à 15,4G)",
+        "antall": 2,
+        "enhet": "BX",
+        "artikkelnummer": "6043525"
+      },
+      {
+        "varenavn": "Epok No7 Freeze 5 (5 BX à 15,4G)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "6043459"
+      },
+      {
+        "varenavn": "Epok No5 Tropic Breeze 2 (5 BX à 15,4G)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "6043442"
+      },
+      {
+        "varenavn": "Otrivin Nesespray Voksen 1mg 10ml (10 PK à 10ML)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "6692586"
+      },
+      {
+        "varenavn": "Tiedemanns Rød Mix Nr.2 44g (5 PK à 44G)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "6045850"
+      },
+      {
+        "varenavn": "Tiedemanns Rød Mix Nr.3 44g (5 PK à 44G)",
+        "antall": 2,
+        "enhet": "PK",
+        "artikkelnummer": "6045587"
+      },
+      {
+        "varenavn": "Skjærefjøl Hvit 50X35cm Plast Exxent (5 ESK à 1STK)",
+        "antall": 1,
+        "enhet": "ESK",
+        "artikkelnummer": "3365988"
+      }
+    ],
+    "status": "Bekrefta",
+    "notat": "Netto 15773,80 / Mva 3282,45 / Totalsum 19056,25 kr (frå ordrebekreftelse-PDF)."
+  },
+  {
     "id": "2026-09-09-asko",
     "leverandor": "ASKO Rogaland",
     "dato": "2026-09-09",
