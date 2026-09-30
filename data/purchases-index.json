@@ -198,6 +198,204 @@
     "notat": "Ordrebekreftelsen kom i to versjonar (kl 14:22 og 14:49 same dag); siste versjon er brukt. Linja for isskje av tre (5147343) vart delvis kansellert av ASKO (opphavleg tal 3, 2 vart kansellert, 1 stadfesta) - talet i denne lista er det stadfesta/leverte talet."
   },
   {
+    "id": "2026-09-28-cocacola",
+    "leverandor": "Coca-Cola Europacific Partners Norge AS",
+    "dato": "2026-09-28",
+    "kildeEpost": "NOREPLY@cokecce.com",
+    "referansenummer": "131577690",
+    "varedetaljerMangler": false,
+    "varelinjer": [
+      {
+        "varenavn": "CC ZERO SUGAR 500MLNRP X24",
+        "antall": 1,
+        "enhet": "KS",
+        "artikkelnummer": "472426"
+      },
+      {
+        "varenavn": "MONSTER MONARCH 500MLCAN X24",
+        "antall": 1,
+        "enhet": "KS",
+        "artikkelnummer": "283272"
+      }
+    ],
+    "status": "Motteke",
+    "notat": ""
+  },
+  {
+    "id": "2026-09-28-asko",
+    "leverandor": "ASKO Rogaland",
+    "dato": "2026-09-28",
+    "kildeEpost": "edi@norgesgruppen.no",
+    "referansenummer": "AN-41259210 / 5002575",
+    "varedetaljerMangler": false,
+    "varelinjer": [
+      {
+        "varenavn": "Isskje Av Tre 100stk Pure (10 ESK à 100STK)",
+        "antall": 1,
+        "enhet": "ESK",
+        "artikkelnummer": "5147343"
+      },
+      {
+        "varenavn": "Grillkull 2,5kg Gryfskand (6 PK à 2,5KG)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "3386216"
+      },
+      {
+        "varenavn": "G3 No1 Ex Strong (5 BX à 21,6G)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "2476398"
+      },
+      {
+        "varenavn": "Skruf Sw No62 Bjørnebær S2 (5 BX à 17,3G)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "5366091"
+      },
+      {
+        "varenavn": "Skruf Sw No52 Fresh S2 (5 BX à 17,3G)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "5018965"
+      },
+      {
+        "varenavn": "Skruf No2 Fresh S2 (5 BX à 16,6G)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "5028949"
+      },
+      {
+        "varenavn": "Epok No21 Freeze 7 (5 BX à 15,4G)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "6043525"
+      },
+      {
+        "varenavn": "Epok No2 Arctic Blue 2 (5 BX à 15,4G)",
+        "antall": 2,
+        "enhet": "BX",
+        "artikkelnummer": "6043418"
+      },
+      {
+        "varenavn": "Epok No7 Freeze 5 (5 BX à 15,4G)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "6043459"
+      },
+      {
+        "varenavn": "Epok No1 Ice Blue 4 (5 BX à 15,4G)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "6043426"
+      },
+      {
+        "varenavn": "Hurtiglader For Vegg Hvit Usb3,0-Usb C P (6 PK à 1STK)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "6109714"
+      },
+      {
+        "varenavn": "Lypsyl Aloe Vera 4,2g (12 PK à 4,2G)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "1688565"
+      },
+      {
+        "varenavn": "fløteis Vanilje 4,6L Hennig- Olsen (3 BX à 4,6L)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "4762985"
+      },
+      {
+        "varenavn": "Maiskorn 340g First Price (24 BX à 340G)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "265264"
+      },
+      {
+        "varenavn": "Champignon Skivet 184g First Price (24 BX à 184G)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "3175023"
+      },
+      {
+        "varenavn": "Tomatketchup 530g Idun (9 FL à 530G)",
+        "antall": 1,
+        "enhet": "FL",
+        "artikkelnummer": "2684116"
+      },
+      {
+        "varenavn": "Kebabdressing Mild 900g Unil+ (6 FL à 900G)",
+        "antall": 1,
+        "enhet": "FL",
+        "artikkelnummer": "3179421"
+      },
+      {
+        "varenavn": "Kebabdressing Medium 1kg Unil+ (6 FL à 1KG)",
+        "antall": 1,
+        "enhet": "FL",
+        "artikkelnummer": "3179553"
+      },
+      {
+        "varenavn": "Varmmatboks 3R Pfas Fri 50stk (4 POS à 50STK)",
+        "antall": 1,
+        "enhet": "POS",
+        "artikkelnummer": "6365241"
+      },
+      {
+        "varenavn": "Snickers 2pk 75g (24 PK à 75G)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "6315931"
+      },
+      {
+        "varenavn": "Bearnaise 825g Idun (6 FL à 825G)",
+        "antall": 1,
+        "enhet": "FL",
+        "artikkelnummer": "1827211"
+      },
+      {
+        "varenavn": "fløteis Deluxe Brownie 4.6L Hennig-Olsen (3 BX à 4.6L)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "6342778"
+      },
+      {
+        "varenavn": "Hamburgerdressing 795g (6 FL à 795G)",
+        "antall": 6,
+        "enhet": "FL",
+        "artikkelnummer": "1826452"
+      },
+      {
+        "varenavn": "Kuleis Oreo 4.6L Hennig-Olsen (3 BX à 4.6L)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "6161939"
+      },
+      {
+        "varenavn": "Engangshanske Vinyl L Pudderfri (10 PK à 100STK)",
+        "antall": 10,
+        "enhet": "PK",
+        "artikkelnummer": "2073880"
+      },
+      {
+        "varenavn": "Biffsnadder Porsjon 14X150g Stabburet (1 ESK à 2,1KG)",
+        "antall": 1,
+        "enhet": "ESK",
+        "artikkelnummer": "5332275"
+      },
+      {
+        "varenavn": "Pepsi Max 0,5L fl (24 FL à 0,5L)",
+        "antall": 2,
+        "enhet": "FL",
+        "artikkelnummer": "5101167"
+      }
+    ],
+    "status": "Motteke",
+    "notat": "Ordrebekreftelsen kom i to versjonar (kl 14:22 og 14:49 same dag); siste versjon er brukt. Linja for isskje av tre (5147343) vart delvis kansellert av ASKO (opphavleg tal 3, 2 vart kansellert, 1 stadfesta) - talet i denne lista er det stadfesta/leverte talet."
+  },
+  {
     "id": "2026-09-21-asko",
     "leverandor": "ASKO Rogaland",
     "dato": "2026-09-21",
@@ -324,6 +522,294 @@
         "antall": 3,
         "enhet": "ESK",
         "artikkelnummer": "4690798"
+      }
+    ],
+    "status": "Motteke",
+    "notat": ""
+  },
+  {
+    "id": "2026-09-21-asko",
+    "leverandor": "ASKO Rogaland",
+    "dato": "2026-09-21",
+    "kildeEpost": "edi@norgesgruppen.no",
+    "referansenummer": "AN-41238823 / 4944223",
+    "varedetaljerMangler": false,
+    "varelinjer": [
+      {
+        "varenavn": "Døner Kebab Halal Mix Stekt 2kg R.Stang (3 PK à 2KG)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "5404991"
+      },
+      {
+        "varenavn": "Etikett Matmerking Avtagbar 10 (1 ESK à 2400STK)",
+        "antall": 1,
+        "enhet": "ESK",
+        "artikkelnummer": "6882120"
+      },
+      {
+        "varenavn": "Tørk Skumsåpe Premium Mild S4 (6 FL à 1L)",
+        "antall": 1,
+        "enhet": "FL",
+        "artikkelnummer": "2392611"
+      },
+      {
+        "varenavn": "Kent Surround 20pk (10 PK à 20STK)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "1342740"
+      },
+      {
+        "varenavn": "Marlboro Gold 20pk (10 PK à 20STK)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "4010062"
+      },
+      {
+        "varenavn": "Marlboro Red 20pk (10 PK à 20STK)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "4010070"
+      },
+      {
+        "varenavn": "Tiedemanns Rød Mix Nr.3 44g (5 PK à 44G)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "6045587"
+      },
+      {
+        "varenavn": "Epok No1 Ice Blue 4 (5 BX à 15,4G)",
+        "antall": 2,
+        "enhet": "BX",
+        "artikkelnummer": "6043426"
+      },
+      {
+        "varenavn": "Siberia Rød Mint 16g (5 BX à 16G)",
+        "antall": 3,
+        "enhet": "BX",
+        "artikkelnummer": "6714208"
+      },
+      {
+        "varenavn": "Siberia Rød Slim Mint 15g (5 BX à 15G)",
+        "antall": 2,
+        "enhet": "BX",
+        "artikkelnummer": "6714109"
+      },
+      {
+        "varenavn": "Skruf No2 Fresh S2 (5 BX à 16,6G)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "5028949"
+      },
+      {
+        "varenavn": "Skruf No4 Fresh S4 (5 BX à 16,6G)",
+        "antall": 1,
+        "enhet": "BX",
+        "artikkelnummer": "5029186"
+      },
+      {
+        "varenavn": "Skruf Sw No65 Fresh Freeze S6 (5 BX à 17,3G)",
+        "antall": 2,
+        "enhet": "BX",
+        "artikkelnummer": "6351548"
+      },
+      {
+        "varenavn": "Hamburgerbrød Chicago 90g Hatting (1 ESK à 48STK)",
+        "antall": 1,
+        "enhet": "ESK",
+        "artikkelnummer": "4517488"
+      },
+      {
+        "varenavn": "Bacon Skivet 500g Fryst Gilde (12 PK à 500G)",
+        "antall": 1,
+        "enhet": "PK",
+        "artikkelnummer": "4578803"
+      },
+      {
+        "varenavn": "Pommes Frites Riflet 180gx70stk Frionor (1 ESK à 12,6KG)",
+        "antall": 1,
+        "enhet": "ESK",
+        "artikkelnummer": "5222609"
+      },
+      {
+        "varenavn": "Farris Frus Eple&Kiwi 0,5L fl (24 FL à 0,5L)",
+        "antall": 1,
+        "enhet": "FL",
+        "artikkelnummer": "6106827"
+      },
+      {
+        "varenavn": "Ostepølse 110g 5,5kg (1 ESK à 5,5KG)",
+        "antall": 1,
+        "enhet": "ESK",
+        "artikkelnummer": "4891248"
+      },
+      {
+        "varenavn": "Grillpølse 110g Fryst Gilde (1 ESK à 6,6KG)",
+        "antall": 1,
+        "enhet": "ESK",
+        "artikkelnummer": "343814"
+      },
+      {
+        "varenavn": "Hamburger Original 33X160g (1 ESK à 5,28KG)",
+        "antall": 3,
+        "enhet": "ESK",
+        "artikkelnummer": "4690798"
+      }
+    ],
+    "status": "Motteke",
+    "notat": ""
+  },
+  {
+    "id": "2026-09-16-fjelland-19926",
+    "leverandor": "Handelshuset Fjelland",
+    "dato": "2026-09-16",
+    "kildeEpost": "ordre.tfjelland@tfjelland.no",
+    "referansenummer": "19926",
+    "varedetaljerMangler": false,
+    "varelinjer": [
+      {
+        "varenavn": "TAU PP-FILM BLÅTT 3-SLÅTT",
+        "antall": 6,
+        "enhet": "STK",
+        "artikkelnummer": "1607355"
+      },
+      {
+        "varenavn": "TAU PP-FILM BLÅTT 3-SLÅTT",
+        "antall": 6,
+        "enhet": "STK",
+        "artikkelnummer": "1607360"
+      }
+    ],
+    "status": "Motteke",
+    "notat": ""
+  },
+  {
+    "id": "2026-09-16-fjelland-19923",
+    "leverandor": "Handelshuset Fjelland",
+    "dato": "2026-09-16",
+    "kildeEpost": "ordre.tfjelland@tfjelland.no",
+    "referansenummer": "19923",
+    "varedetaljerMangler": false,
+    "varelinjer": [
+      {
+        "varenavn": "BLADHENGSEL PN ELF",
+        "antall": 5,
+        "enhet": "STK",
+        "artikkelnummer": "4170580"
+      },
+      {
+        "varenavn": "FISKARS SOLID RETT SPADE",
+        "antall": 3,
+        "enhet": "STK",
+        "artikkelnummer": "1120153"
+      },
+      {
+        "varenavn": "MURERBALJE FIRK. SORT",
+        "antall": 4,
+        "enhet": "STK",
+        "artikkelnummer": "2385070"
+      },
+      {
+        "varenavn": "MURERBALJE FIRK. SORT",
+        "antall": 4,
+        "enhet": "STK",
+        "artikkelnummer": "2385060"
+      },
+      {
+        "varenavn": "MURERBØTTE TYSK MED HELLETUT",
+        "antall": 6,
+        "enhet": "STK",
+        "artikkelnummer": "2385210"
+      },
+      {
+        "varenavn": "FISKARS CLASSIC ANLEGGSPADE",
+        "antall": 2,
+        "enhet": "STK",
+        "artikkelnummer": "1120003"
+      },
+      {
+        "varenavn": "FISKARS CLASSIC HAGERIVE",
+        "antall": 2,
+        "enhet": "STK",
+        "artikkelnummer": "1120615"
+      },
+      {
+        "varenavn": "HAGEVANNKANNE 10 LITER",
+        "antall": 8,
+        "enhet": "STK",
+        "artikkelnummer": "1140770"
+      },
+      {
+        "varenavn": "BESKJÆRINGSSAKS GARDENA EASYCUT 20MM",
+        "antall": 5,
+        "enhet": "STK",
+        "artikkelnummer": "1158792"
+      },
+      {
+        "varenavn": "FISKARS POWERGEAR RYDNINGSSAKS L L77",
+        "antall": 1,
+        "enhet": "STK",
+        "artikkelnummer": "1176568"
+      },
+      {
+        "varenavn": "FISKARS POWERGEAR RYDNINGSSAKS M L74",
+        "antall": 1,
+        "enhet": "STK",
+        "artikkelnummer": "1176567"
+      },
+      {
+        "varenavn": "GRESSTRIMMERSEN MN",
+        "antall": 6,
+        "enhet": "STK",
+        "artikkelnummer": "1172420"
+      },
+      {
+        "varenavn": "GRESSTRIMMERSEN MN",
+        "antall": 6,
+        "enhet": "STK",
+        "artikkelnummer": "1172435"
+      },
+      {
+        "varenavn": "BLADHENGSEL PN ELF",
+        "antall": 8,
+        "enhet": "STK",
+        "artikkelnummer": "4170390"
+      },
+      {
+        "varenavn": "BLADHENGSEL PN ELF",
+        "antall": 10,
+        "enhet": "STK",
+        "artikkelnummer": "4170410"
+      },
+      {
+        "varenavn": "BLADHENGSEL PN ELF",
+        "antall": 5,
+        "enhet": "STK",
+        "artikkelnummer": "4170520"
+      },
+      {
+        "varenavn": "BLADHENGSEL PN ELF",
+        "antall": 4,
+        "enhet": "STK",
+        "artikkelnummer": "4170603"
+      },
+      {
+        "varenavn": "ØYESKRUE ELF",
+        "antall": 6,
+        "enhet": "STK",
+        "artikkelnummer": "1736160"
+      },
+      {
+        "varenavn": "ØYESKRUE ELF 35x11x3",
+        "antall": 10,
+        "enhet": "STK",
+        "artikkelnummer": "1736100"
+      },
+      {
+        "varenavn": "MINILYS 80 LED 8M",
+        "antall": 4,
+        "enhet": "STK",
+        "artikkelnummer": "3544183"
       }
     ],
     "status": "Motteke",
